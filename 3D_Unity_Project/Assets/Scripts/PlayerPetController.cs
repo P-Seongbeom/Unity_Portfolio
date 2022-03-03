@@ -9,6 +9,9 @@ public class PlayerPetController : MonoBehaviour
     public NavMeshAgent Agent;
 
     public float JumpPower = 20f;
+    public float GravityRatio = 1f;
+
+    private AgentMover _agentMover;
 
     private float _height;
     private float _baseOffset;
@@ -28,6 +31,11 @@ public class PlayerPetController : MonoBehaviour
 
     private void Start()
     {
+        if(_agentMover == null)
+        {
+            _agentMover = GetComponent<AgentMover>();
+        }
+
         _height = 0;
         _baseOffset = Agent.baseOffset;
         
@@ -67,21 +75,22 @@ public class PlayerPetController : MonoBehaviour
     {
         Jump();
 
-        _jumpCooldown = 1f;
-        _height = 0.1f;
+        _jumpCooldown = 0.5f;
+        _height = 0.05f;
 
         while(_height > 0f)
         {
-            jumpPower = Mathf.Lerp(jumpPower, 0, jumpPower * 0.01f * Time.deltaTime);
-            jumpPower += Physics.gravity.y * Time.deltaTime;
-            _height += (jumpPower + Physics.gravity.y) * Time.deltaTime;
+            jumpPower = Mathf.Lerp(jumpPower, 0, jumpPower * 0.1f * Time.deltaTime);
+            jumpPower += Physics.gravity.y * GravityRatio * Time.deltaTime;
+
+            _height += (jumpPower + (Physics.gravity.y * GravityRatio)) * Time.deltaTime;
 
             yield return 0;
         }
 
         _height = 0;
     }
-    private void Jump()
+    public void Jump()
     {
         PetAnimator.SetTrigger(_jump);
     }
