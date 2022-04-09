@@ -188,7 +188,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: ecfa0439c55b55043910a6185c362464, type: 3}
+    m_Motion: {fileID: 7400000, guid: 82f53628b54b2df40acd53d755165f55, type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -315,12 +315,6 @@ AnimatorController:
   m_Name: TypeB
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: _isMove
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
   - m_Name: moveSpeed
     m_Type: 1
     m_DefaultFloat: 0
