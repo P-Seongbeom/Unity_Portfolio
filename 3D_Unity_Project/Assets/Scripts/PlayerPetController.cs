@@ -17,19 +17,19 @@ public class PlayerPetController : MonoBehaviour
     private float _baseOffset;
     private float _jumpCooldown = 0;
 
-    private bool eat = false;
-    private bool rest = false;
+    //private bool eat = false;
+    //private bool rest = false;
 
     private int _moveSpeed;
     private int _jump;
-    private int _eat;
-    private int _rest;
+    //private int _eat;
+    //private int _rest;
 
     private Dictionary<int, string> _states;
 
     Vector3 speed;
 
-    private void Start()
+    void Start()
     {
         if(_agentMover == null)
         {
@@ -43,16 +43,16 @@ public class PlayerPetController : MonoBehaviour
         _states.Add(Animator.StringToHash("Base.Idle"), "Idle");
         _states.Add(Animator.StringToHash("Base.Move"), "Move");
         _states.Add(Animator.StringToHash("Base.Jump"), "Jump");
-        _states.Add(Animator.StringToHash("Base.Eat"), "Eat");
-        _states.Add(Animator.StringToHash("Base.Rest"), "Rest");
+        //_states.Add(Animator.StringToHash("Base.Eat"), "Eat");
+        //_states.Add(Animator.StringToHash("Base.Rest"), "Rest");
 
         _moveSpeed = Animator.StringToHash("moveSpeed");
         _jump = Animator.StringToHash("jump");
-        _eat = Animator.StringToHash("eat");
-        _rest = Animator.StringToHash("rest");
+        //_eat = Animator.StringToHash("eat");
+        //_rest = Animator.StringToHash("rest");
     }
 
-    private void Update()
+    void Update()
     {
         speed = Agent.velocity;
 
@@ -63,7 +63,7 @@ public class PlayerPetController : MonoBehaviour
         _jumpCooldown -= Time.deltaTime;
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if(other.tag == "JumpFence" && _jumpCooldown <= 0)
         {

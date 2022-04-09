@@ -7,21 +7,55 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public InputManager InputHandle;
 
+    public List<GameObject> PetPrefabs;
+    public List<GameObject> SpawnedPets;
 
-    private void Awake()
+    void Awake()
     {
-        GameManager.Instance = this;
-        
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     void Start()
     {
-        PlayerPetController controller = GetComponent<PlayerPetController>();
-        InputHandle.AddController(controller);
+        foreach (GameObject pet in PetPrefabs)
+        {
+            if (pet == null)
+            {
+                PetPrefabs.Remove(pet);
+            }
+        }
+
+        foreach (GameObject pet in PetPrefabs)
+        {
+            Spawn(pet);
+        }
     }
 
     
     void Update()
     {
         
+    }
+
+    public void Spawn(GameObject prefab)
+    {
+        if(prefab.GetComponent<PlayerPetController>() == null)
+        {
+            Debug.LogError("Prefab doesn't have 'PlayerPetController' component.");
+        }
+        else
+        {
+            GameObject obj = Instantiate(prefab);
+            obj.transform.position = new Vector3(-2, 2, -2);
+            PlayerPetController controller = obj.GetComponent<PlayerPetController>();
+            InputHandle.AddController(controller);
+            SpawnedPets.Add(controller.gameObject);
+        }
     }
 }

@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public PlayerPetController PlayerController;
-
     private Camera _camera;
-    private Transform Destination;
+    public Transform Destination;
 
+    public List<PlayerPetController> Controllers;
 
     private RaycastHit[] _hits;
     private Ray _ray;
@@ -16,17 +15,28 @@ public class InputManager : MonoBehaviour
     private Vector3 _destination;
     
 
-    private void Awake()
+    void Awake()
     {
         _camera = Camera.main;
     }
 
-    private void Start()
+    void Start()
     {
-        _destination = Vector3.zero;
+        if(Destination == null)
+        {
+            Debug.LogWarning("Destination not set.");
+            GameObject obj = new GameObject("Destination");
+            Destination = obj.transform;
+        }
+        if(Controllers.Count == 0)
+        {
+            Debug.LogWarning("PlayerPetController is empty.");
+        }
+
+        this.AddAllController();
     }
 
-    private void Update()
+    void Update()
     {
         SetDestinationPoint();
     }
@@ -53,8 +63,11 @@ public class InputManager : MonoBehaviour
                     }
                 }
             }
-
-            PlayerController.SetDestination(_destination);
+            Destination.position = _destination;
+            foreach(PlayerPetController controller in Controllers)
+            {
+                controller.SetDestination(_destination);
+            }
 
         }
     }
@@ -65,8 +78,21 @@ public class InputManager : MonoBehaviour
         _destination = hits[i].point;
     }
 
+    public void AddAllController()
+    {
+        PlayerPetController[] temp = FindObjectsOfType<PlayerPetController>();
+        foreach(PlayerPetController controller in temp)
+        {
+            this.AddController(controller);
+        }
+    }
+
     public void AddController(PlayerPetController control)
     {
-        control.SetDestination(_destination);
+        control.SetDestination(Destination.position);
+        if(false == Controllers.Contains(control))
+        {
+            Controllers.Add(control);
+        }
     }
 }
