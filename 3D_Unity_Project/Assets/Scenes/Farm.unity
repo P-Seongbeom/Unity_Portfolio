@@ -1991,6 +1991,7 @@ MonoBehaviour:
   - {fileID: 5766335999640877802, guid: ee0e47964f5a9e248828e4410c76cc30, type: 3}
   - {fileID: 7644101349189966885, guid: e5c9e88dcf35692438753c80f5884bf8, type: 3}
   SpawnedPets: []
+  StageSelectScene: StageSelect
 --- !u!1001 &388041001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5608,7 +5609,7 @@ GameObject:
   - component: {fileID: 965601905}
   - component: {fileID: 965601904}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7635,7 +7636,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Quest
 --- !u!222 &1323140897
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11656,7 +11657,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1995919131}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 377490314}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: EnterStageSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1995919131
 MonoBehaviour:
   m_ObjectHideFlags: 0
