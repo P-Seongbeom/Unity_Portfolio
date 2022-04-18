@@ -3,19 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+namespace Farm
 {
-    public static CameraController Instance;
-
-    private CinemachineVirtualCamera _vcam;
-
-    void Start()
+    public class CameraController : MonoBehaviour
     {
-        _vcam = GetComponent<CinemachineVirtualCamera>();
-    }
+        public static CameraController Instance;
 
-    void Update()
-    {
-        _vcam.Follow = Farm.GameManager.Instance.SpawnedPets[0].transform;
+        private CinemachineVirtualCamera _vcam;
+
+        void Start()
+        {
+            _vcam = GetComponent<CinemachineVirtualCamera>();
+        }
+
+        void Update()
+        {
+            _vcam.Follow = GameManager.Instance.SpawnedPets[0].transform;
+        }
     }
 }
