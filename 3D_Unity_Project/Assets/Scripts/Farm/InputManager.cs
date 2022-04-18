@@ -13,7 +13,6 @@ public class InputManager : MonoBehaviour
     private Ray _ray;
     private float _closestDistance;
     private Vector3 _destination;
-    
 
     void Awake()
     {

@@ -11,6 +11,7 @@ namespace StageSelect
         public static GameManager Instance;
 
         public string FarmSceneName;
+        public string BattleSceneName;
 
         void Awake()
         {
@@ -28,14 +29,28 @@ namespace StageSelect
         {
             PopupSystem.Instance.OpenPopup(
                 "Title Info",
-                "\n릴파넴!!!!!!!!!!!!!!!!!!\n문좀열어보세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-                ,()=> { Debug.Log("릴뱅온!!!"); },
-                ()=> { Debug.Log("추워...."); });
+                "\n!!!!!!!!!!!!!!!!!!\n문좀열어보세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+                , () => { PopupSystem.Instance.OpenPopup("Title Info", "극락!!!", 
+                    () => { Debug.Log("Yes, Go Battle"); 
+                        PopupSystem.Instance.ClosePopup();
+                        GoToBattle();}, 
+                    () => { Debug.Log("No, close"); 
+                        PopupSystem.Instance.ClosePopup(); }); },
+                () => { PopupSystem.Instance.OpenPopup("Title Info", "하치키타치 ㅠㅠㅠㅠㅠㅠㅠㅠ", 
+                    () => { Debug.Log("Yes,close"); 
+                        PopupSystem.Instance.ClosePopup(); }, 
+                    () => { Debug.Log("No,close"); 
+                        PopupSystem.Instance.ClosePopup(); }); });
         }
 
         public void BackToFarm()
         {
             SceneManager.LoadScene(FarmSceneName);
+        }
+
+        public void GoToBattle()
+        {
+            SceneManager.LoadScene(BattleSceneName);
         }
     }
 }

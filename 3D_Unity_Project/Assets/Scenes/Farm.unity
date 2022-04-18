@@ -1990,6 +1990,7 @@ MonoBehaviour:
   PetPrefabs:
   - {fileID: 5766335999640877802, guid: ee0e47964f5a9e248828e4410c76cc30, type: 3}
   - {fileID: 7644101349189966885, guid: e5c9e88dcf35692438753c80f5884bf8, type: 3}
+  - {fileID: 8580239734322272684, guid: 1ad9a20dcccf25e49a9a636f13f2b8e9, type: 3}
   SpawnedPets: []
   StageSelectScene: StageSelect
 --- !u!1001 &388041001
@@ -3901,7 +3902,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.40821788, y: -0.23456971, z: 0.109381646, w: 0.8754261}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

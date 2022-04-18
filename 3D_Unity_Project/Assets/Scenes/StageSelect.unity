@@ -2091,6 +2091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FarmSceneName: Farm
+  BattleSceneName: BattleScene
 --- !u!1 &1750857470
 GameObject:
   m_ObjectHideFlags: 0

@@ -58,8 +58,6 @@ public class PopupSystem : MonoBehaviour
         {
             _onClickOkay();
         }
-
-        ClosePopup();
     }
 
     public void OnClickCancel()
@@ -68,11 +66,9 @@ public class PopupSystem : MonoBehaviour
         {
             _onClickCancel();
         }
-
-        ClosePopup();
     }
 
-    void ClosePopup()
+    public void ClosePopup()
     {
         _animator.SetTrigger("close");
     }
