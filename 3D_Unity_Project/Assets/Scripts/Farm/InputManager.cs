@@ -14,6 +14,8 @@ public class InputManager : MonoBehaviour
     private float _closestDistance;
     private Vector3 _destination;
 
+    private float _stopDistance = 2f;
+
     void Awake()
     {
         _camera = Camera.main;
@@ -38,6 +40,13 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         SetDestinationPoint();
+
+        _stopDistance = 2f + Mathf.Sqrt((float)Controllers.Count / Mathf.PI);
+
+        foreach(PlayerPetController controller in Controllers)
+        {
+            controller.Agent.stoppingDistance = _stopDistance;
+        }
     }
 
     private void SetDestinationPoint()

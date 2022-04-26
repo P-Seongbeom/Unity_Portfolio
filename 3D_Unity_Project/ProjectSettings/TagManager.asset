@@ -8,6 +8,7 @@ TagManager:
   - MyPet
   - NPC
   - JumpFence
+  - Enemy
   layers:
   - Default
   - TransparentFX
