@@ -37,7 +37,7 @@ namespace BattleScene
                 MoveFocus();
             }
 
-            ActivateCheckPoint();
+            //ActivateCheckPoint();
         }
 
         public void MoveFocus()
@@ -45,18 +45,18 @@ namespace BattleScene
             this.transform.Translate(new Vector3(0, 0, MoveSpeed * Time.deltaTime));
         }
 
-        public void ActivateCheckPoint()
-        {
-            foreach(Transform point in CheckPoitns)
-            {
-                if(point.gameObject.activeSelf && transform.position.z >= point.position.z)
-                {
-                    MoveCamera = false;
-                    point.gameObject.SetActive(false);
-                    StopCoroutine("MovePet");
-                }
-            }
-        }
+        //public void ActivateCheckPoint()
+        //{
+        //    foreach(Transform point in CheckPoitns)
+        //    {
+        //        if(point.gameObject.activeSelf && transform.position.z >= point.position.z)
+        //        {
+        //            MoveCamera = false;
+        //            point.gameObject.SetActive(false);
+        //            //StopCoroutine("MovePet");
+        //        }
+        //    }
+        //}
     }
 }
 
