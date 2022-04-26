@@ -1954,7 +1954,7 @@ GameObject:
   - component: {fileID: 377490313}
   - component: {fileID: 377490314}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: FarmManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

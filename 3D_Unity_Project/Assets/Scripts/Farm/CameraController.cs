@@ -18,7 +18,7 @@ namespace Farm
 
         void Update()
         {
-            _vcam.Follow = GameManager.Instance.SpawnedPets[0].transform;
+            _vcam.Follow = FarmManager.Instance.SpawnedPets[0].transform;
         }
     }
 }

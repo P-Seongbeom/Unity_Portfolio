@@ -13,7 +13,11 @@ namespace BattleScene
         public List<Transform> CheckPoints;
 
         public GameObject Pets;
-        public PetMover[] PetMovers;
+        public List<PetMover> PetMovers;
+
+        public List<GameObject> Phases;
+        public GameObject CurrentPhase;
+        private int _phaseCount = 0;
 
         public bool _isBattle = false;
 
@@ -31,7 +35,7 @@ namespace BattleScene
 
         void Start()
         {
-            PetMovers = Pets.GetComponentsInChildren<PetMover>();
+            PetMovers.AddRange(Pets.GetComponentsInChildren<PetMover>());
         }
 
         void Update()
@@ -41,23 +45,28 @@ namespace BattleScene
             if (Input.GetKeyDown("space"))
             {
                 _isBattle = false;
+                ResumeMovement();
             }
 
-            ResumeMovement();
+            //ResumeMovement();
         }
 
         public void ActivateCheckPoint()
         {
             foreach(Transform point in CheckPoints)
             {
-                if(point.gameObject.activeSelf && CameraFocus.Instance.transform.position.z >= point.position.z)
+                if(point.gameObject.activeSelf && CameraController.Instance.transform.position.z >= point.position.z)
                 {
-                    CameraFocus.Instance.MoveCamera = false;
+                    CameraController.Instance.MoveCamera = false;
                     point.gameObject.SetActive(false);
+
+                    Debug.Log($"∆‰¿Ã¡Ó : {_phaseCount + 1}");
+                    SetCurrentPhase(_phaseCount);
+                    ++_phaseCount;
+                    _isBattle = true;
 
                     foreach(PetMover pet in PetMovers)
                     {
-                        _isBattle = true;
                         pet.StopPet();
                         pet.SetTarget();
                     }
@@ -69,11 +78,17 @@ namespace BattleScene
         {
             if(false == _isBattle)
             {
+                //Debug.Log("???");
                 foreach (PetMover pet in PetMovers)
                 {
                     StartCoroutine(pet.MovePet(pet.Destination));
                 }
             }
+        }
+
+        public void SetCurrentPhase(int phaseCount)
+        {
+            CurrentPhase = Phases[phaseCount];
         }
     }
 }
