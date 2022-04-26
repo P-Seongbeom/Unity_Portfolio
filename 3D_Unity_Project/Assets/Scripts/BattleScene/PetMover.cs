@@ -26,7 +26,7 @@ namespace BattleScene
         public IEnumerator MovePet(Vector3 destination)
         {
             yield return new WaitForSeconds(2f);
-            CameraFocus.Instance.MoveCamera = true;
+            CameraController.Instance.MoveCamera = true;
             Controller.SetDestination(destination);
         }
 

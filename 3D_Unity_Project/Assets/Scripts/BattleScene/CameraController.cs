@@ -1,4 +1,3 @@
-using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,16 +8,55 @@ namespace BattleScene
     {
         public static CameraController Instance;
 
-        private CinemachineVirtualCamera _vcam;
+        public List<Transform> CheckPoitns;
 
-        void Start()
+        public float MoveSpeed = 10f;
+        public bool MoveCamera = true;
+
+        private void Awake()
         {
-            _vcam = GetComponent<CinemachineVirtualCamera>();
+            if(null == Instance)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
-        void Update()
+        private void Start()
         {
-            //_vcam.Follow = GameManager.Instance.SpawnedPets[0].transform;
+            MoveCamera = false;
         }
+
+        private void Update()
+        {
+            if(MoveCamera)
+            {
+                MoveFocus();
+            }
+
+            //ActivateCheckPoint();
+        }
+
+        public void MoveFocus()
+        {
+            this.transform.Translate(new Vector3(0, 0, MoveSpeed * Time.deltaTime));
+        }
+
+        //public void ActivateCheckPoint()
+        //{
+        //    foreach(Transform point in CheckPoitns)
+        //    {
+        //        if(point.gameObject.activeSelf && transform.position.z >= point.position.z)
+        //        {
+        //            MoveCamera = false;
+        //            point.gameObject.SetActive(false);
+        //            //StopCoroutine("MovePet");
+        //        }
+        //    }
+        //}
     }
 }
+
