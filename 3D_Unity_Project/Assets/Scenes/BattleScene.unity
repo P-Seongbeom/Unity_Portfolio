@@ -181,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87507063}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.5, y: 0, z: -95}
+  m_LocalPosition: {x: 7.5, y: 0, z: -110}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -429,6 +429,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
   Destination: {x: 0, y: 0, z: 0}
+  Targets: []
+  CurrentTargetPosition: {x: 0, y: 0, z: 0}
+  Enemy: {fileID: 0}
+  AttackRange: 0
 --- !u!4 &231669342 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7638680638325127421, guid: e5c9e88dcf35692438753c80f5884bf8, type: 3}
@@ -515,6 +519,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
   Destination: {x: 0, y: 0, z: 0}
+  Targets: []
+  CurrentTargetPosition: {x: 0, y: 0, z: 0}
+  Enemy: {fileID: 0}
+  AttackRange: 0
 --- !u!4 &285715885 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8575294315719921036, guid: 1ad9a20dcccf25e49a9a636f13f2b8e9, type: 3}
@@ -958,7 +966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1753403235907346352, guid: 5d07da1e7c72d3045a0d5261573b8420, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.7003727
+      value: -5.57
       objectReference: {fileID: 0}
     - target: {fileID: 1753403235907346352, guid: 5d07da1e7c72d3045a0d5261573b8420, type: 3}
       propertyPath: m_LocalPosition.y
@@ -966,7 +974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1753403235907346352, guid: 5d07da1e7c72d3045a0d5261573b8420, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.3904171
+      value: -1.45
       objectReference: {fileID: 0}
     - target: {fileID: 1753403235907346352, guid: 5d07da1e7c72d3045a0d5261573b8420, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1296,6 +1304,7 @@ GameObject:
   - component: {fileID: 1032610683}
   - component: {fileID: 1032610682}
   - component: {fileID: 1032610681}
+  - component: {fileID: 1032610680}
   m_Layer: 0
   m_Name: Follow Cam
   m_TagString: Untagged
@@ -1303,6 +1312,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1032610680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032610679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134de355abfb22d4b8ee9417e91222f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CheckPoitns: []
+  Pets: []
+  Focus: {fileID: 87507064}
+  FocusPosition: -120
+  MoveSpeed: 10
 --- !u!114 &1032610681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1545,7 +1571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1753403235907346352, guid: 5d07da1e7c72d3045a0d5261573b8420, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.2499866
+      value: 7.54
       objectReference: {fileID: 0}
     - target: {fileID: 1753403235907346352, guid: 5d07da1e7c72d3045a0d5261573b8420, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1553,7 +1579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1753403235907346352, guid: 5d07da1e7c72d3045a0d5261573b8420, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.634222
+      value: -1.39
       objectReference: {fileID: 0}
     - target: {fileID: 1753403235907346352, guid: 5d07da1e7c72d3045a0d5261573b8420, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2821,6 +2847,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
   Destination: {x: 0, y: 0, z: 0}
+  Targets: []
+  CurrentTargetPosition: {x: 0, y: 0, z: 0}
+  Enemy: {fileID: 0}
+  AttackRange: 0
 --- !u!4 &1880594679 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5768270992817269778, guid: ee0e47964f5a9e248828e4410c76cc30, type: 3}
@@ -3027,7 +3057,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978949367}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 134de355abfb22d4b8ee9417e91222f9, type: 3}
   m_Name: 
@@ -3037,8 +3067,10 @@ MonoBehaviour:
   - {fileID: 1218493325}
   - {fileID: 332640615}
   - {fileID: 1811209607}
+  Pets: []
+  Focus: {fileID: 0}
+  FocusPosition: -120
   MoveSpeed: 7
-  MoveCamera: 1
 --- !u!1001 &2025162701
 PrefabInstance:
   m_ObjectHideFlags: 0
