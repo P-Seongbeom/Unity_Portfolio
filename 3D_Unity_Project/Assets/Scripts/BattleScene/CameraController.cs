@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,12 @@ namespace BattleScene
         public static CameraController Instance;
 
         public List<Transform> CheckPoitns;
-
+        public Transform Focus;
+        
+        public float FocusPosition = -120f;
         public float MoveSpeed = 10f;
-        public bool MoveCamera = true;
+
+        private CinemachineVirtualCamera _vcam;
 
         private void Awake()
         {
@@ -27,36 +31,27 @@ namespace BattleScene
 
         private void Start()
         {
-            MoveCamera = false;
+            _vcam = GetComponent<CinemachineVirtualCamera>();
         }
 
         private void Update()
         {
-            if(MoveCamera)
-            {
-                MoveFocus();
-            }
-
-            //ActivateCheckPoint();
+            MoveFocus();
         }
 
         public void MoveFocus()
         {
-            this.transform.Translate(new Vector3(0, 0, MoveSpeed * Time.deltaTime));
+            foreach (Transform pet in BattleManager.Instance.Pets.transform)
+            {
+                if (pet.position.z > FocusPosition)
+                {
+                    Focus.position = new Vector3(Focus.position.x, Focus.position.y, pet.position.z + 15f);
+                }
+            }
+
+            _vcam.Follow = Focus;
         }
 
-        //public void ActivateCheckPoint()
-        //{
-        //    foreach(Transform point in CheckPoitns)
-        //    {
-        //        if(point.gameObject.activeSelf && transform.position.z >= point.position.z)
-        //        {
-        //            MoveCamera = false;
-        //            point.gameObject.SetActive(false);
-        //            //StopCoroutine("MovePet");
-        //        }
-        //    }
-        //}
     }
 }
 

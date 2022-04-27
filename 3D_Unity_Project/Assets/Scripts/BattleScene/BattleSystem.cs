@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IBattleBehavior
 {
     void SetTarget();
-
+    void ResetTarget();
 }

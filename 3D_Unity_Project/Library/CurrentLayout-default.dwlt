@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: Game
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 61
+  controlID: 177
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 442}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 62
+  controlID: 178
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 83
+  controlID: 39
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_MinSize: {x: 276, y: 192}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 155
+  controlID: 110
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -323,8 +323,8 @@ MonoBehaviour:
     y: 0
     width: 557
     height: 587
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -484,9 +484,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 37.58368, y: 31.411417, z: -11.169284}
+    m_Target: {x: 26.528162, y: 27.654211, z: -6.939284}
     speed: 2
-    m_Value: {x: 37.58368, y: 31.411417, z: -11.169284}
+    m_Value: {x: 26.528162, y: 27.654211, z: -6.939284}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -533,9 +533,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.25171867, y: 0.65236545, z: -0.24442454, w: -0.6717986}
+    m_Target: {x: -0.16546707, y: 0.82576895, z: -0.30939814, w: -0.44159353}
     speed: 2
-    m_Value: {x: -0.25171873, y: 0.65236557, z: -0.24442458, w: -0.6717987}
+    m_Value: {x: -0.16546659, y: 0.82576656, z: -0.30939725, w: -0.44159228}
   m_Size:
     m_Target: 1.9580059
     speed: 2
@@ -772,9 +772,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 6a3f0000
-      m_LastClickedID: 16234
-      m_ExpandedIDs: 6afbffff3c3f0000bc460000
+      m_SelectedIDs: baf60000
+      m_LastClickedID: 63162
+      m_ExpandedIDs: 3ef7ffffaef8ffff6afbffff263f0000463f00004c3f0000503f0000ee3f000026400000a2f60000c8f60000ccf60000e2f600009ef70000a2f70000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -836,22 +836,22 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefab/PetPrefab
+    - Assets/Scripts/BattleScene
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefab/PetPrefab
+  - Assets/Scripts/BattleScene
   m_LastFoldersGridSize: 16
   m_LastProjectPath: "C:\\Users\\Youngester\\Desktop\\\uC720\uB2C8\uD2F0\uD3EC\uD3F4\\3D_Unity_Portfolio\\Unity_Portfolio\\3D_Unity_Project"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 0e440000
-    m_LastClickedID: 17422
-    m_ExpandedIDs: 00000000e6430000e8430000ea430000
+    m_SelectedIDs: de440000
+    m_LastClickedID: 17630
+    m_ExpandedIDs: 00000000c6440000c8440000ca440000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -879,7 +879,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e6430000e8430000ea430000ec430000
+    m_ExpandedIDs: 00000000c6440000c8440000ca440000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -910,18 +910,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: aa420000964a0000a03a0000363f000018530000cc420000323d000068350100523501004c35010000000000f65b0100dc5b0100e25b0100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: GameManager
-      m_OriginalName: GameManager
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 17452
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
