@@ -1,0 +1,243 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.25f1 (9b9180224418) revision 10195328'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19042) 64bit CoreSingleLanguage' Language: 'ko' Physical Memory: 16274 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.3.25f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/Youngester/Desktop/유니티포폴/3D_Unity_Portfolio/Unity_Portfolio/3D_Unity_Project
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+1997
+Successfully changed project path to: C:/Users/Youngester/Desktop/유니티포폴/3D_Unity_Portfolio/Unity_Portfolio/3D_Unity_Project
+C:/Users/Youngester/Desktop/유니티포폴/3D_Unity_Portfolio/Unity_Portfolio/3D_Unity_Project
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 33.31 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.25f1 (9b9180224418)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Youngester/Desktop/유니티포폴/3D_Unity_Portfolio/Unity_Portfolio/3D_Unity_Project/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1650 SUPER (ID=0x2187)
+    Vendor:   
+    VRAM:     3955 MB
+    Driver:   30.0.15.1215
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56948
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001880 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 32.00 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.484 seconds
+Domain Reload Profiling:
+	ReloadAssembly (484ms)
+		BeginReloadAssembly (50ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (371ms)
+			LoadAssemblies (48ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (122ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (25ms)
+			SetupLoadedEditorAssemblies (138ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (32ms)
+				BeforeProcessingInitializeOnLoad (14ms)
+				ProcessInitializeOnLoadAttributes (66ms)
+				ProcessInitializeOnLoadMethodAttributes (22ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.004209 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.43 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.884 seconds
+Domain Reload Profiling:
+	ReloadAssembly (885ms)
+		BeginReloadAssembly (149ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (16ms)
+		EndReloadAssembly (682ms)
+			LoadAssemblies (78ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (231ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (38ms)
+			SetupLoadedEditorAssemblies (265ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (71ms)
+				ProcessInitializeOnLoadAttributes (175ms)
+				ProcessInitializeOnLoadMethodAttributes (8ms)
+				AfterProcessingInitializeOnLoad (6ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 0.37 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1707 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 82.7 MB.
+System memory in use after: 82.8 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 2142.
+Total: 2.786400 ms (FindLiveObjects: 0.147000 ms CreateObjectMapping: 0.039500 ms MarkObjects: 2.535900 ms  DeleteObjects: 0.062900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/Prefab/PetPrefab/Player
+  artifactKey: Guid(98842285d0434a043a2121dee5f945c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/Player using Guid(98842285d0434a043a2121dee5f945c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b78f3cea66e79a9d6cc637c697c39a1') in 0.004149 seconds 
+  Import took 0.006464 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000166 seconds.
+  path: Assets/Prefab/PetPrefab/Duck.prefab
+  artifactKey: Guid(3970b26c16034614cac10a50dfa97d3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/Duck.prefab using Guid(3970b26c16034614cac10a50dfa97d3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb3d6e12909c1ab7b30a2936169c506a') in 0.096065 seconds 
+  Import took 0.098669 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.086555 seconds.
+  path: Assets/Prefab/PetPrefab/Enemy
+  artifactKey: Guid(5df0a52d3d56c9d40895df217ee9f597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/Enemy using Guid(5df0a52d3d56c9d40895df217ee9f597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34350d7c7d2083825f7134d49834fa11') in 0.002460 seconds 
+  Import took 0.005157 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.838524 seconds.
+  path: Assets/Prefab/PetPrefab/PlayerPet
+  artifactKey: Guid(98842285d0434a043a2121dee5f945c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/PlayerPet using Guid(98842285d0434a043a2121dee5f945c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8141786a64faec4a5932fec535228b2') in 0.002397 seconds 
+  Import took 0.004947 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.662230 seconds.
+  path: Assets/Prefab/PetPrefab/EnemyPet
+  artifactKey: Guid(5df0a52d3d56c9d40895df217ee9f597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/EnemyPet using Guid(5df0a52d3d56c9d40895df217ee9f597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd93a3c7f1da3ca71b763b2927af12a12') in 0.002324 seconds 
+  Import took 0.004897 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.909535 seconds.
+  path: Assets/Prefab/PetPrefab/EnemyPet/Cat.prefab
+  artifactKey: Guid(a09602e1ddb15a44394903edd90b112c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/EnemyPet/Cat.prefab using Guid(a09602e1ddb15a44394903edd90b112c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ec83e1fedb49aa5d62c719e9f399665') in 0.017049 seconds 
+  Import took 0.020027 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.774504 seconds.
+  path: Assets/Prefab/PetPrefab/EnemyPet/Cat (1).prefab
+  artifactKey: Guid(90b841f17f2a9c548bca378c349801a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/EnemyPet/Cat (1).prefab using Guid(90b841f17f2a9c548bca378c349801a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7cc83a17931cad2b31a3dcfda9684dcb') in 0.017336 seconds 
+  Import took 0.020309 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 43.523781 seconds.
+  path: Assets/Prefab/PetPrefab/EnemyPet/ECat.prefab
+  artifactKey: Guid(a09602e1ddb15a44394903edd90b112c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/EnemyPet/ECat.prefab using Guid(a09602e1ddb15a44394903edd90b112c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4101144326db910b92935a44aa6954e8') in 0.015233 seconds 
+  Import took 0.018069 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.493988 seconds.
+  path: Assets/Prefab/PetPrefab/EnemyPet/Duck.prefab
+  artifactKey: Guid(a0d570ca1fe4d5d429c52bd6cb828e03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/EnemyPet/Duck.prefab using Guid(a0d570ca1fe4d5d429c52bd6cb828e03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c90305554b2d4fc4d381dcb90e2cb5d4') in 0.015273 seconds 
+  Import took 0.018994 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.865208 seconds.
+  path: Assets/Prefab/PetPrefab/EnemyPet/EDuck.prefab
+  artifactKey: Guid(a0d570ca1fe4d5d429c52bd6cb828e03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/EnemyPet/EDuck.prefab using Guid(a0d570ca1fe4d5d429c52bd6cb828e03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab82bd0a3962711f4c6ae60c71aedabc') in 0.021498 seconds 
+  Import took 0.024319 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.184920 seconds.
+  path: Assets/Prefab/PetPrefab/EnemyPet/Deer.prefab
+  artifactKey: Guid(794e5cec38a7edb4a9b3c034ff93517f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/EnemyPet/Deer.prefab using Guid(794e5cec38a7edb4a9b3c034ff93517f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60749ccbea21e5fb6e3db05834a95d94') in 0.016803 seconds 
+  Import took 0.019778 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.427343 seconds.
+  path: Assets/Prefab/PetPrefab/EnemyPet/EDeer.prefab
+  artifactKey: Guid(794e5cec38a7edb4a9b3c034ff93517f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/EnemyPet/EDeer.prefab using Guid(794e5cec38a7edb4a9b3c034ff93517f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c0c92d1983fa935aa98cc68f6113ab7') in 0.021397 seconds 
+  Import took 0.024368 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.012966 seconds.
+  path: Assets/Prefab/PetPrefab/EnemyPet/Bear.prefab
+  artifactKey: Guid(51ec127557289114b8d0e3a906b8d787) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/EnemyPet/Bear.prefab using Guid(51ec127557289114b8d0e3a906b8d787) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77062d2fd22236bb15f9d99b3044650b') in 0.015794 seconds 
+  Import took 0.018743 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.881558 seconds.
+  path: Assets/Prefab/PetPrefab/EnemyPet/EBear.prefab
+  artifactKey: Guid(51ec127557289114b8d0e3a906b8d787) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/PetPrefab/EnemyPet/EBear.prefab using Guid(51ec127557289114b8d0e3a906b8d787) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff9a6f622dbd0402dd0e37db656cc332') in 0.022110 seconds 
+  Import took 0.025018 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

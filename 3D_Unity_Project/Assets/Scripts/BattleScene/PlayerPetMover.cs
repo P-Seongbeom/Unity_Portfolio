@@ -14,23 +14,29 @@ namespace BattleScene
         public List<Transform> Targets;
         public Vector3 CurrentTargetPosition;
 
-        public Transform Enemy;
+        //public Transform Enemy;
         [SerializeField]
         private float AttackRange;
 
         private float _distanceTarget;
+        private bool inPhase = false;
 
         private void Start()
         {
             Controller = GetComponent<PlayerPetController>();
+
             Destination = new Vector3(transform.position.x, transform.position.y, transform.position.z + 250);
+
             CurrentTargetPosition = Destination;
+
             _distanceTarget = (transform.position - CurrentTargetPosition).sqrMagnitude;
+
             StartCoroutine(MovePet(Destination));
         }
 
         private void Update()
         {
+            ChaseTarget();
         }
 
         public IEnumerator MovePet(Vector3 destination)
@@ -42,23 +48,27 @@ namespace BattleScene
         public void StopPet()
         {
             Controller.SetDestination(this.transform.position);
+            inPhase = true;
         }
 
-        public void SetTarget()
+        public void ChaseTarget()
         {
-            foreach(Transform target in BattleManager.Instance.CurrentPhase.transform)
+            if(inPhase)
             {
-                Targets.Add(target.GetComponent<Transform>());
-
-                if((transform.position - target.position).sqrMagnitude < _distanceTarget)
+                foreach(Transform target in BattleManager.Instance.CurrentPhase.transform)
                 {
-                    Enemy = target;
-                    CurrentTargetPosition = target.position;
-                    _distanceTarget = (transform.position - CurrentTargetPosition).sqrMagnitude;
-                }
-            }
+                    Targets.Add(target.GetComponent<Transform>());
 
-            Controller.SetDestination(CurrentTargetPosition);
+                    if((transform.position - target.position).sqrMagnitude < _distanceTarget)
+                    {
+                        //Enemy = target;
+                        CurrentTargetPosition = target.position;
+                        _distanceTarget = (transform.position - CurrentTargetPosition).sqrMagnitude;
+                    }
+                }
+
+                Controller.SetDestination(CurrentTargetPosition);
+            }
         }
 
         public void ResetTarget()
@@ -66,6 +76,7 @@ namespace BattleScene
             Targets.Clear();
             CurrentTargetPosition = Destination;
             _distanceTarget = (transform.position - CurrentTargetPosition).sqrMagnitude;
+            inPhase = false;
         }
 
 
