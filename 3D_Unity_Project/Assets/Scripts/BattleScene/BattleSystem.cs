@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IBattleBehavior
 {
-    void SetTarget();
+    void ChaseTarget();
     void ResetTarget();
 }

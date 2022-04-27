@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -195,8 +195,8 @@ MonoBehaviour:
     y: 485
     width: 1022
     height: 462
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 39
+  controlID: 61
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -246,8 +246,8 @@ MonoBehaviour:
     y: 0
     width: 341
     height: 487
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -352,8 +352,8 @@ MonoBehaviour:
     y: 587
     width: 557
     height: 360
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 24}
   m_Panes:
   - {fileID: 24}
@@ -484,9 +484,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 26.528162, y: 27.654211, z: -6.939284}
+    m_Target: {x: 28.254671, y: 27.276781, z: -53.654984}
     speed: 2
-    m_Value: {x: 26.528162, y: 27.654211, z: -6.939284}
+    m_Value: {x: 28.254671, y: 27.276781, z: -53.654984}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -533,9 +533,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.16546707, y: 0.82576895, z: -0.30939814, w: -0.44159353}
+    m_Target: {x: -0.27000326, y: 0.41471627, z: -0.13032423, w: -0.85913885}
     speed: 2
-    m_Value: {x: -0.16546659, y: 0.82576656, z: -0.30939725, w: -0.44159228}
+    m_Value: {x: -0.26871487, y: 0.41491225, z: -0.12970231, w: -0.85954493}
   m_Size:
     m_Target: 1.9580059
     speed: 2
@@ -771,10 +771,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: baf60000
-      m_LastClickedID: 63162
-      m_ExpandedIDs: 3ef7ffffaef8ffff6afbffff263f0000463f00004c3f0000503f0000ee3f000026400000a2f60000c8f60000ccf60000e2f600009ef70000a2f70000
+      scrollPos: {x: 0, y: 211}
+      m_SelectedIDs: 644c0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 6afbffff263f0000543f0000583f0000763f0000803f0000184000004c40000064400000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -836,22 +836,22 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/BattleScene
+    - Assets/Prefab/PetPrefab/EnemyPet
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/BattleScene
+  - Assets/Prefab/PetPrefab/EnemyPet
   m_LastFoldersGridSize: 16
   m_LastProjectPath: "C:\\Users\\Youngester\\Desktop\\\uC720\uB2C8\uD2F0\uD3EC\uD3F4\\3D_Unity_Portfolio\\Unity_Portfolio\\3D_Unity_Project"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: de440000
-    m_LastClickedID: 17630
-    m_ExpandedIDs: 00000000c6440000c8440000ca440000
+    m_SelectedIDs: 34470000
+    m_LastClickedID: 18228
+    m_ExpandedIDs: 0000000004450000064500000845000018450000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -879,7 +879,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c6440000c8440000ca440000
+    m_ExpandedIDs: 00000000044500000645000008450000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
