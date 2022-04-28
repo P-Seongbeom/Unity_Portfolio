@@ -44,7 +44,7 @@ namespace Farm
 
         public void Spawn(GameObject prefab)
         {
-            if(prefab.GetComponent<PlayerPetController>() == null)
+            if(prefab.GetComponent<PetController>() == null)
             {
                 Debug.LogError("Prefab doesn't have 'PlayerPetController' component.");
             }
@@ -52,7 +52,7 @@ namespace Farm
             {
                 GameObject obj = Instantiate(prefab);
                 obj.transform.position = new Vector3(-2, 2, -2);
-                PlayerPetController controller = obj.GetComponent<PlayerPetController>();
+                PetController controller = obj.GetComponent<PetController>();
                 InputHandle.AddController(controller);
                 SpawnedPets.Add(controller.gameObject);
             }

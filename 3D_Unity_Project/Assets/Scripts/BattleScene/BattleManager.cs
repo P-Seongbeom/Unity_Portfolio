@@ -13,7 +13,7 @@ namespace BattleScene
         public List<Transform> CheckPoints;
 
         public GameObject PlayerPets;
-        public List<PlayerPetMover> PetMovers;
+        public List<PlayerPetBattleController> PetMovers;
 
         public List<GameObject> Phases;
         public GameObject CurrentPhase;
@@ -35,7 +35,7 @@ namespace BattleScene
 
         void Start()
         {
-            PetMovers.AddRange(PlayerPets.GetComponentsInChildren<PlayerPetMover>());
+            PetMovers.AddRange(PlayerPets.GetComponentsInChildren<PlayerPetBattleController>());
 
             foreach(GameObject phase in Phases)
             {
@@ -66,7 +66,7 @@ namespace BattleScene
                     ++_phaseCount;
                     //_isBattle = true;
 
-                    foreach(PlayerPetMover pet in PetMovers)
+                    foreach(PlayerPetBattleController pet in PetMovers)
                     {
                         pet.StopPet();
                         pet.ChaseTarget();
@@ -86,7 +86,7 @@ namespace BattleScene
         {
             //_isBattle = false;
             CurrentPhase.SetActive(false);
-            foreach (PlayerPetMover pet in PetMovers)
+            foreach (PlayerPetBattleController pet in PetMovers)
             {
                 pet.ResetTarget();
                 StartCoroutine(pet.MovePet(pet.Destination));

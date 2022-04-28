@@ -2528,6 +2528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Destination: {fileID: 1225937724}
   Controllers: []
+  _stopDistance: 5
 --- !u!4 &467138678
 Transform:
   m_ObjectHideFlags: 0
@@ -5044,7 +5045,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 15
   far clip plane: 1000
   field of view: 60
   orthographic: 0
