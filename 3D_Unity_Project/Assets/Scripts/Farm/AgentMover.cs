@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AgentMover : MonoBehaviour
 {
-    private PlayerPetController _playerController;
+    private PetController _playerController;
     public float JumpHeight = 5f;
     public float JumpDuration = 0.5f;
 
@@ -30,7 +30,7 @@ public class AgentMover : MonoBehaviour
     {
         if(_playerController == null)
         {
-            _playerController = GetComponent<PlayerPetController>();
+            _playerController = GetComponent<PetController>();
         }
 
         _playerController.Jump();

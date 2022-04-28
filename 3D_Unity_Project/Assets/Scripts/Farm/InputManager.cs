@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
     private Camera _camera;
     public Transform Destination;
 
-    public List<PlayerPetController> Controllers;
+    public List<PetController> Controllers;
 
     private RaycastHit[] _hits;
     private Ray _ray;
@@ -42,7 +42,7 @@ public class InputManager : MonoBehaviour
     {
         SetDestinationPoint();
 
-        foreach (PlayerPetController controller in Controllers)
+        foreach (PetController controller in Controllers)
         {
             controller.Agent.stoppingDistance = _stopDistance;
         }
@@ -71,7 +71,7 @@ public class InputManager : MonoBehaviour
                 }
             }
             Destination.position = _destination;
-            foreach(PlayerPetController controller in Controllers)
+            foreach(PetController controller in Controllers)
             {
                 controller.SetDestination(_destination);
             }
@@ -87,14 +87,14 @@ public class InputManager : MonoBehaviour
 
     public void AddAllController()
     {
-        PlayerPetController[] temp = FindObjectsOfType<PlayerPetController>();
-        foreach(PlayerPetController controller in temp)
+        PetController[] temp = FindObjectsOfType<PetController>();
+        foreach(PetController controller in temp)
         {
             this.AddController(controller);
         }
     }
 
-    public void AddController(PlayerPetController control)
+    public void AddController(PetController control)
     {
         control.SetDestination(Destination.position);
         if(false == Controllers.Contains(control))
