@@ -10,8 +10,13 @@ public class PopupSystem : MonoBehaviour
 
     public GameObject Popup;
 
-    public Text TitleText;
-    public Text ContentText;
+    public Text DifficultyText;
+    public Text EnemyText;
+    public Text CompensationText;
+
+    private string _difficulty;
+    private string _enemy;
+    private string _compensation;
 
     private Action _onClickOkay;
     private Action _onClickCancel;
@@ -30,6 +35,10 @@ public class PopupSystem : MonoBehaviour
         }
 
         _animator = Popup.GetComponent<Animator>();
+
+        _difficulty = DifficultyText.text;
+        _enemy = EnemyText.text;
+        _compensation = CompensationText.text;
     }
 
     void Update()
@@ -43,10 +52,11 @@ public class PopupSystem : MonoBehaviour
         }
     }
 
-    public void OpenPopup(string title, string content, Action onClickOkay, Action onClickCancel)
+    public void OpenPopup(string difficulty, string enemy, string compensation, Action onClickOkay, Action onClickCancel)
     {
-        TitleText.text = title;
-        ContentText.text = content;
+        DifficultyText.text += difficulty;
+        EnemyText.text += enemy;
+        CompensationText.text += compensation;
         _onClickOkay = onClickOkay;
         _onClickCancel = onClickCancel;
         Popup.SetActive(true);
@@ -57,6 +67,7 @@ public class PopupSystem : MonoBehaviour
         if (_onClickOkay != null)
         {
             _onClickOkay();
+            RevertText();
         }
     }
 
@@ -65,11 +76,19 @@ public class PopupSystem : MonoBehaviour
         if(_onClickCancel != null)
         {
             _onClickCancel();
+            RevertText();
         }
     }
 
     public void ClosePopup()
     {
         _animator.SetTrigger("close");
+    }
+
+    public void RevertText()
+    {
+         DifficultyText.text = _difficulty;
+         EnemyText.text = _enemy;
+         CompensationText.text = _compensation;
     }
 }
