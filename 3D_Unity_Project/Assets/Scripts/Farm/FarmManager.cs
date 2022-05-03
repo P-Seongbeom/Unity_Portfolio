@@ -38,6 +38,7 @@ namespace Farm
 
             foreach (GameObject pet in PetPrefabs)
             {
+                
                 Spawn(pet);
             }
         }

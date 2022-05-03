@@ -16,10 +16,10 @@ namespace BattleScene
 
         //public Transform Enemy;
         [SerializeField]
-        private float AttackRange;
+        private float _attackRange;
 
         private float _distanceTarget;
-        private bool inPhase = false;
+        private bool _inPhase = false;
 
         private void Start()
         {
@@ -30,6 +30,8 @@ namespace BattleScene
             CurrentTargetPosition = Destination;
 
             _distanceTarget = (transform.position - CurrentTargetPosition).sqrMagnitude;
+
+            Controller.Agent.stoppingDistance = _attackRange;
 
             StartCoroutine(MovePet(Destination));
         }
@@ -48,13 +50,13 @@ namespace BattleScene
         public void StopPet()
         {
             Controller.SetDestination(this.transform.position);
-            inPhase = true;
+            _inPhase = true;
             //Controller.Agent.isStopped = true;
         }
 
         public void ChaseTarget()
         {
-            if(inPhase)
+            if(_inPhase)
             {
                 //Controller.Agent.isStopped = false;
 
@@ -79,7 +81,7 @@ namespace BattleScene
             Targets.Clear();
             CurrentTargetPosition = Destination;
             _distanceTarget = (transform.position - CurrentTargetPosition).sqrMagnitude;
-            inPhase = false;
+            _inPhase = false;
         }
 
 
