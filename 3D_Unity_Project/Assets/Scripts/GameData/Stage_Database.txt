@@ -1,0 +1,2 @@
+Stage 1-1	0	100	FALSE
+Stage 1-2	1	200	FALSE
