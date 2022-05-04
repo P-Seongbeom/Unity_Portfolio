@@ -12,7 +12,7 @@ public class PopupSystem : MonoBehaviour
 
     public Text DifficultyText;
     public Text EnemyText;
-    public Text CompensationText;
+    public Text RewardText;
 
     private string _difficulty;
     private string _enemy;
@@ -38,7 +38,7 @@ public class PopupSystem : MonoBehaviour
 
         _difficulty = DifficultyText.text;
         _enemy = EnemyText.text;
-        _compensation = CompensationText.text;
+        _compensation = RewardText.text;
     }
 
     void Update()
@@ -56,7 +56,7 @@ public class PopupSystem : MonoBehaviour
     {
         DifficultyText.text += difficulty;
         EnemyText.text += enemy;
-        CompensationText.text += compensation;
+        RewardText.text += compensation;
         _onClickOkay = onClickOkay;
         _onClickCancel = onClickCancel;
         Popup.SetActive(true);
@@ -89,6 +89,6 @@ public class PopupSystem : MonoBehaviour
     {
          DifficultyText.text = _difficulty;
          EnemyText.text = _enemy;
-         CompensationText.text = _compensation;
+         RewardText.text = _compensation;
     }
 }

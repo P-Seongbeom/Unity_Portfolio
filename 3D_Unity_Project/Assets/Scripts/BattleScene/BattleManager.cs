@@ -39,9 +39,10 @@ public class BattleManager : MonoBehaviour
         //임시
         //Resources.Load<GameObject>("Prefab/Stages" + Stages[0].name);
 
-        CurrentStage = Instantiate(Resources.Load<GameObject>("Prefab/Stages/" + Stages[0].name));
-        Debug.Log(Stages[0].name);
-        Debug.Log($"스테이지 : { CurrentStage.name}");
+        //CurrentStage = Instantiate(Resources.Load<GameObject>("Prefab/Stages/" + Stages[0].name));
+        CurrentStage = Instantiate(Stages[0]);
+        //Debug.Log(Stages[0].name);
+        //Debug.Log($"스테이지 : { CurrentStage.name}");
 
         //Instantiate(CurrentStage);
         
