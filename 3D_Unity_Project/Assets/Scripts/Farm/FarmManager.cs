@@ -14,8 +14,10 @@ public class FarmManager : MonoBehaviour
 
     public GameObject TalkBox;
     public Text TalkText;
+    public Image PortraitImage;
     public GameObject ScanObject;
     public bool isTalk;
+    public int talkIndex;
 
     public string StageSelectScene;
 
@@ -29,9 +31,7 @@ public class FarmManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    void Start()
-    {
+
         foreach (GameObject pet in PetPrefabs)
         {
             if (pet == null)
@@ -45,6 +45,9 @@ public class FarmManager : MonoBehaviour
             
             Spawn(pet);
         }
+    }
+    void Start()
+    {
     }
 
     public void Spawn(GameObject prefab)
@@ -70,18 +73,36 @@ public class FarmManager : MonoBehaviour
 
     public void Communicate(GameObject scanObject)
     {
-        if(isTalk)
-        {
-            isTalk = false;
-        }
-        else
-        {
-            isTalk = true;
-            ScanObject = scanObject;
-            TalkText.text = "이것의 이름은 " + ScanObject.name + "라고 한다.";
-        }
+        ScanObject = scanObject;
+        
+        TalkData data = ScanObject.GetComponent<NPCData>()._dialogueData;
+
+        PortraitImage.sprite = ScanObject.GetComponent<NPCData>().Portrait;
+
+        Talk(data.TalkId);
 
         TalkBox.SetActive(isTalk);
+    }
+
+    void Talk(int id)
+    {
+        int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex(id);
+
+        string talkData = TalkManager.Instance.GetDialogue(id + questTalkIndex, talkIndex);
+
+        if (talkData == null)
+        {
+            isTalk = false;
+            talkIndex = 0;
+            Debug.Log(QuestManager.Instance.CheckQuest(id));
+            return;
+        }
+
+        TalkText.text = talkData;
+
+        isTalk = true;
+
+        ++talkIndex;
     }
 }
 

@@ -51,6 +51,12 @@ public class InputManager : MonoBehaviour
 
     private void SetDestinationPoint()
     {
+        if(Input.GetMouseButtonDown(0) && FarmManager.Instance.talkIndex > 0)
+        {
+            FarmManager.Instance.Communicate(FarmManager.Instance.ScanObject);
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             _closestDistance = 0;
@@ -70,9 +76,13 @@ public class InputManager : MonoBehaviour
                         RenewPoint(_hits, i);
                     }
                 }
+                //NPC 상호작용 부분
                 else if(_hits[i].collider.tag == "NPC")
                 {
-                    FarmManager.Instance.Communicate(_hits[i].collider.gameObject);
+                    if(_hits[i].collider.gameObject.GetComponent<NPCData>().CanInteract)
+                    {
+                        FarmManager.Instance.Communicate(_hits[i].collider.gameObject);
+                    }
                     //return;
                 }
             }
