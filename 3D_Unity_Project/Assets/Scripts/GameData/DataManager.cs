@@ -51,7 +51,7 @@ public class DataManager : MonoBehaviour
         {
             string[] row = line[i].Split('\t');
 
-            AllStageList.Add(new StageData(row[0], int.Parse(row[1]), int.Parse(row[2]), bool.Parse(row[3])));
+            AllStageList.Add(new StageData(row[0], int.Parse(row[1]), int.Parse(row[2]), bool.Parse(row[3]), bool.Parse(row[4])));
         }
 
         //전체 펫 리스트 불러오기
@@ -77,10 +77,18 @@ public class DataManager : MonoBehaviour
 
     void Update()
     {
-        //if(Input.GetKeyDown("q"))
-        //{
-
-        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OpenStage(0);
+            GetPetCard(0);
+            SaveStageData();
+            SavePlayerPetData();
+        }
+        else if(Input.GetKeyDown(KeyCode.Backspace))
+        {
+            ResetStageData();
+            ResetPlayerPetData();
+        }
     }
 
     public void SaveStageData()
@@ -88,6 +96,7 @@ public class DataManager : MonoBehaviour
         string jdata = JsonUtility.ToJson(new Serialization<StageData>(OpenStageList));
 
         File.WriteAllText(_stageFilePath, jdata);
+        print("스테이지 저장!");
     }
     
     public void LoadStageData()
@@ -116,12 +125,15 @@ public class DataManager : MonoBehaviour
         SaveStageData();
 
         LoadStageData();
+
+        print("스테이지 리셋!");
     }
 
     public void OpenStage(int stageNum)
     {
         AllStageList[stageNum].OpenStage = true;
         OpenStageList.Add(AllStageList[stageNum]);
+        print("스테이지 열음!");
     }
 
     public void SavePlayerPetData()
@@ -129,6 +141,7 @@ public class DataManager : MonoBehaviour
         string jdata = JsonUtility.ToJson(new Serialization<PlayerPetData>(HavePlayerPet));
 
         File.WriteAllText(_playerPetFilePath, jdata);
+        print("펫 저장!");
     }
 
     public void LoadPlayerPetData()
@@ -157,11 +170,14 @@ public class DataManager : MonoBehaviour
         SavePlayerPetData();
 
         LoadPlayerPetData();
+
+        print("펫 리셋!");
     }
 
     public void GetPetCard(int petNum)
     {
         AllPlayerPet[petNum].IsGetted = true;
         HavePlayerPet.Add(AllPlayerPet[petNum]);
+        print("펫 얻음!");
     }
 }
