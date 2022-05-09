@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
@@ -50,15 +51,15 @@ public class InputManager : MonoBehaviour
 
     private void SetDestinationPoint()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             _closestDistance = 0;
             _ray = _camera.ScreenPointToRay(Input.mousePosition);
             _hits = Physics.RaycastAll(_ray);
-            
+
             for(int i = 0; i < _hits.Length; ++i)
             {
-                if(_hits[i].collider.tag == "Ground")
+                if(_hits[i].collider.tag == "Ground" && !FarmManager.Instance.isTalk)
                 {
                     if(_closestDistance == 0f)
                     {
@@ -69,13 +70,20 @@ public class InputManager : MonoBehaviour
                         RenewPoint(_hits, i);
                     }
                 }
+                else if(_hits[i].collider.tag == "NPC")
+                {
+                    FarmManager.Instance.Communicate(_hits[i].collider.gameObject);
+                    //return;
+                }
             }
+
+            
             Destination.position = _destination;
+
             foreach(PetController controller in Controllers)
             {
                 controller.SetDestination(_destination);
             }
-
         }
     }
 
@@ -102,4 +110,6 @@ public class InputManager : MonoBehaviour
             Controllers.Add(control);
         }
     }
+
+
 }
