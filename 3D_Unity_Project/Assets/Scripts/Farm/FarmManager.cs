@@ -2,67 +2,87 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-namespace Farm
+public class FarmManager : MonoBehaviour
 {
-    public class FarmManager : MonoBehaviour
+    public static FarmManager Instance;
+    public InputManager InputHandle;
+
+    public List<GameObject> PetPrefabs;
+    public List<GameObject> SpawnedPets;
+
+    public GameObject TalkBox;
+    public Text TalkText;
+    public GameObject ScanObject;
+    public bool isTalk;
+
+    public string StageSelectScene;
+
+    void Awake()
     {
-        public static FarmManager Instance;
-        public InputManager InputHandle;
-
-        public List<GameObject> PetPrefabs;
-        public List<GameObject> SpawnedPets;
-
-        public string StageSelectScene;
-
-        void Awake()
+        if (Instance == null)
         {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            Instance = this;
         }
-        void Start()
+        else
         {
-            foreach (GameObject pet in PetPrefabs)
+            Destroy(gameObject);
+        }
+    }
+    void Start()
+    {
+        foreach (GameObject pet in PetPrefabs)
+        {
+            if (pet == null)
             {
-                if (pet == null)
-                {
-                    PetPrefabs.Remove(pet);
-                }
-            }
-
-            foreach (GameObject pet in PetPrefabs)
-            {
-                
-                Spawn(pet);
+                PetPrefabs.Remove(pet);
             }
         }
 
-        public void Spawn(GameObject prefab)
+        foreach (GameObject pet in PetPrefabs)
         {
-            if(prefab.GetComponent<PetController>() == null)
-            {
-                Debug.LogError("Prefab doesn't have 'PlayerPetController' component.");
-            }
-            else
-            {
-                GameObject obj = Instantiate(prefab);
-                obj.transform.position = new Vector3(-2, 2, -2);
-                PetController controller = obj.GetComponent<PetController>();
-                InputHandle.AddController(controller);
-                SpawnedPets.Add(controller.gameObject);
-            }
-        }
-
-        public void EnterStageSelect()
-        {
-            SceneManager.LoadScene(StageSelectScene);
+            
+            Spawn(pet);
         }
     }
 
+    public void Spawn(GameObject prefab)
+    {
+        if(prefab.GetComponent<PetController>() == null)
+        {
+            Debug.LogError("Prefab doesn't have 'PlayerPetController' component.");
+        }
+        else
+        {
+            GameObject obj = Instantiate(prefab);
+            obj.transform.position = new Vector3(-2, 2, -2);
+            PetController controller = obj.GetComponent<PetController>();
+            InputHandle.AddController(controller);
+            SpawnedPets.Add(controller.gameObject);
+        }
+    }
+
+    public void EnterStageSelect()
+    {
+        SceneManager.LoadScene(StageSelectScene);
+    }
+
+    public void Communicate(GameObject scanObject)
+    {
+        if(isTalk)
+        {
+            isTalk = false;
+        }
+        else
+        {
+            isTalk = true;
+            ScanObject = scanObject;
+            TalkText.text = "이것의 이름은 " + ScanObject.name + "라고 한다.";
+        }
+
+        TalkBox.SetActive(isTalk);
+    }
 }
+
+

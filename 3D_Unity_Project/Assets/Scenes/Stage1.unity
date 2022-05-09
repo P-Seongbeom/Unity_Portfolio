@@ -203,7 +203,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3484752333542622637, guid: 1ad9a20dcccf25e49a9a636f13f2b8e9, type: 3}
       propertyPath: _attackRange
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8575294315719921036, guid: 1ad9a20dcccf25e49a9a636f13f2b8e9, type: 3}
       propertyPath: m_RootOrder
@@ -252,6 +252,10 @@ PrefabInstance:
     - target: {fileID: 8579526557043587171, guid: 1ad9a20dcccf25e49a9a636f13f2b8e9, type: 3}
       propertyPath: m_Speed
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579526557043587171, guid: 1ad9a20dcccf25e49a9a636f13f2b8e9, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8580239734322272684, guid: 1ad9a20dcccf25e49a9a636f13f2b8e9, type: 3}
       propertyPath: m_Name
@@ -306,7 +310,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4457932665837332942, guid: e5c9e88dcf35692438753c80f5884bf8, type: 3}
       propertyPath: _attackRange
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7638680638325127421, guid: e5c9e88dcf35692438753c80f5884bf8, type: 3}
       propertyPath: m_RootOrder
@@ -359,6 +363,10 @@ PrefabInstance:
     - target: {fileID: 7643472822164407097, guid: e5c9e88dcf35692438753c80f5884bf8, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643472822164407097, guid: e5c9e88dcf35692438753c80f5884bf8, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7643472822164407098, guid: e5c9e88dcf35692438753c80f5884bf8, type: 3}
       propertyPath: m_Enabled
@@ -1267,6 +1275,10 @@ PrefabInstance:
       propertyPath: avoidancePriority
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 5765249951557381723, guid: ee0e47964f5a9e248828e4410c76cc30, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5765249951557381724, guid: ee0e47964f5a9e248828e4410c76cc30, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1321,7 +1333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8623431339842739649, guid: ee0e47964f5a9e248828e4410c76cc30, type: 3}
       propertyPath: _attackRange
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee0e47964f5a9e248828e4410c76cc30, type: 3}
