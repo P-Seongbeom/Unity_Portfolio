@@ -12,7 +12,7 @@ public class BattleManager : MonoBehaviour
 
     public List<Transform> CheckPoints;
 
-    public GameObject PlayerPets;
+    public GameObject InBattlePlayerPets;
     public List<PlayerPetBattleController> PetMovers;
 
     public List<GameObject> Phases;
@@ -31,11 +31,17 @@ public class BattleManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //수정
+        foreach(GameObject pet in GameManager.Instance.PetPrefabs)
+        {
+            pet.GetComponent<PlayerPetBattleController>();
+        }
     }
 
     void Start()
     {
-        PetMovers.AddRange(PlayerPets.GetComponentsInChildren<PlayerPetBattleController>());
+        PetMovers.AddRange(InBattlePlayerPets.GetComponentsInChildren<PlayerPetBattleController>());
         //임시
         //Resources.Load<GameObject>("Prefab/Stages" + Stages[0].name);
 

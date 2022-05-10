@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 7643472822164407098}
   - component: {fileID: 7643472822164407097}
   - component: {fileID: 4457932665837332942}
+  - component: {fileID: 1111692807554792560}
   m_Layer: 0
   m_Name: Dog
   m_TagString: MyPet
@@ -446,7 +447,29 @@ MonoBehaviour:
   Destination: {x: 0, y: 0, z: 0}
   Targets: []
   CurrentTargetPosition: {x: 0, y: 0, z: 0}
-  AttackRange: 0
+  _attackRange: 0
+--- !u!114 &1111692807554792560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7644101349189966885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147730de366c94c4a8e2fdbac81e5c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PetName: No-Name
+  PetNumber: -1
+  IsGetted: 0
+  Position: No-data
+  HP: -1
+  ATK: -1
+  DEF: -1
+  SkillCost: -1
+  Cooltime: -1
+  Range: -1
 --- !u!1 &7644104662959741591
 GameObject:
   m_ObjectHideFlags: 0

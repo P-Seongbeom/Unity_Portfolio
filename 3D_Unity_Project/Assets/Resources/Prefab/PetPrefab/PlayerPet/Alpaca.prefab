@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 5765249951557381724}
   - component: {fileID: 5765249951557381723}
   - component: {fileID: 8623431339842739649}
+  - component: {fileID: -7111723781098511559}
   m_Layer: 0
   m_Name: Alpaca
   m_TagString: MyPet
@@ -590,7 +591,29 @@ MonoBehaviour:
   Destination: {x: 0, y: 0, z: 0}
   Targets: []
   CurrentTargetPosition: {x: 0, y: 0, z: 0}
-  AttackRange: 0
+  _attackRange: 0
+--- !u!114 &-7111723781098511559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5766335999640877802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147730de366c94c4a8e2fdbac81e5c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PetName: No-Name
+  PetNumber: -1
+  IsGetted: 0
+  Position: No-data
+  HP: -1
+  ATK: -1
+  DEF: -1
+  SkillCost: -1
+  Cooltime: -1
+  Range: -1
 --- !u!1 &5766368158928851604
 GameObject:
   m_ObjectHideFlags: 0

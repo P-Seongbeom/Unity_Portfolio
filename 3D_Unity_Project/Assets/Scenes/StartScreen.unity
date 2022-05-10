@@ -538,6 +538,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1064131681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1064131682}
+  - component: {fileID: 1064131683}
+  m_Layer: 0
+  m_Name: QuestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1064131682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064131681}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1064131683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064131681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69033946881d23e4eb6f1fa3c820e511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuestData:
+  - {fileID: 11400000, guid: f2db763a8376ce648bef3908c1a70286, type: 2}
+  - {fileID: 11400000, guid: 641cf67c9cf971c43aa5fdc7fee4d707, type: 2}
+  - {fileID: 11400000, guid: 29a225ef31a205c4b97ad1d02ac4939a, type: 2}
+  - {fileID: 11400000, guid: d6a870d9a3956e041903784c3681f973, type: 2}
+  - {fileID: 11400000, guid: 034414bb99dafac4d82e53c055e3fc98, type: 2}
+  QuestId: 0
+  QuestActionIndex: 0
 --- !u!1 &1074242758
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,10 +620,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StageDatabase: {fileID: 4900000, guid: c02ceb90c3ad86b4a859fb9aacec950c, type: 3}
   PlayerPetDatabase: {fileID: 4900000, guid: 1a2f4187de2b6a746aea49c2ff8fdc09, type: 3}
+  QuestLogDatabase: {fileID: 4900000, guid: 01ab5f5a3ec4c7240b2a6163ff8f7327, type: 3}
   AllStageList: []
   OpenStageList: []
   AllPlayerPet: []
   HavePlayerPet: []
+  QuestLogNumber: 
 --- !u!4 &1074242760
 Transform:
   m_ObjectHideFlags: 0
@@ -709,6 +762,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3471dc0e30c9ba24081863f0bc988751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PetPrefabs:
+  - {fileID: 5766335999640877802, guid: ee0e47964f5a9e248828e4410c76cc30, type: 3}
+  - {fileID: 1026016538520102927, guid: cdcc504920cab944f866329134011d77, type: 3}
+  - {fileID: 1754200351495546220, guid: 5d07da1e7c72d3045a0d5261573b8420, type: 3}
+  - {fileID: 2003723351877361012, guid: e4cb704106079c14291c951513e76b73, type: 3}
+  - {fileID: 7644101349189966885, guid: e5c9e88dcf35692438753c80f5884bf8, type: 3}
+  - {fileID: 164989151359683388, guid: 3970b26c16034614cac10a50dfa97d3f, type: 3}
+  - {fileID: 8377240472365939758, guid: 02c2c9c6586047c40aaa02e85253328a, type: 3}
+  - {fileID: 9158087510846970067, guid: b4e982a405d08e14b940f2ab14225b61, type: 3}
+  - {fileID: 8580239734322272684, guid: 1ad9a20dcccf25e49a9a636f13f2b8e9, type: 3}
 --- !u!1 &2068865164
 GameObject:
   m_ObjectHideFlags: 0

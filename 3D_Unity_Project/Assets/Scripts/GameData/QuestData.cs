@@ -13,9 +13,15 @@ public class QuestData : ScriptableObject
     private int[] npcId;
     public int[] NpcId { get { return npcId; } }
 
-    public QuestData(string name, int[] npc)
-    {
-        questName = name;
-        npcId = npc;
-    }
+    [SerializeField]
+    private string questDescription;
+    public string QuestDescription { get { return questDescription; } }
+
+    [SerializeField]
+    private int rewardGold;
+    public int RewardGold { get { return rewardGold; } }
+
+    [SerializeField]
+    private string[] rewardCard;
+    public string[] RewardCard { get { return rewardCard; } }
 }

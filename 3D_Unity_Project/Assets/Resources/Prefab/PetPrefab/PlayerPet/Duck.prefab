@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 165664536669235553}
   - component: {fileID: 165664536669235552}
   - component: {fileID: 9186540360582462152}
+  - component: {fileID: 7143805812624321885}
   m_Layer: 0
   m_Name: Duck
   m_TagString: MyPet
@@ -277,7 +278,29 @@ MonoBehaviour:
   Destination: {x: 0, y: 0, z: 0}
   Targets: []
   CurrentTargetPosition: {x: 0, y: 0, z: 0}
-  AttackRange: 0
+  _attackRange: 0
+--- !u!114 &7143805812624321885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164989151359683388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147730de366c94c4a8e2fdbac81e5c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PetName: No-Name
+  PetNumber: -1
+  IsGetted: 0
+  Position: No-data
+  HP: -1
+  ATK: -1
+  DEF: -1
+  SkillCost: -1
+  Cooltime: -1
+  Range: -1
 --- !u!1 &165055393131892538
 GameObject:
   m_ObjectHideFlags: 0
