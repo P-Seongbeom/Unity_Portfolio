@@ -16,6 +16,7 @@ public class DataManager : MonoBehaviour
 
     public TextAsset StageDatabase;
     public TextAsset PlayerPetDatabase;
+    public TextAsset QuestLogDatabase;
 
     //public StageInfo StageData;
     public List<StageData> AllStageList;
@@ -24,10 +25,13 @@ public class DataManager : MonoBehaviour
     public List<PlayerPetData> AllPlayerPet;
     public List<PlayerPetData> HavePlayerPet;
 
+    public List<int> QuestLogNumber;
+
     //public List<Stage> StageData;
 
     string _stageFilePath;
     string _playerPetFilePath;
+    string _questLogFilePath;
 
     private void Awake()
     {
@@ -40,14 +44,11 @@ public class DataManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(this.gameObject);
-    }
 
-    void Start()
-    {
         //전체 스테이지 리스트 불러오기
         string[] line = StageDatabase.text.Substring(0, StageDatabase.text.Length - 1).Split('\n');
 
-        for(int i = 0; i < line.Length; ++i)
+        for (int i = 0; i < line.Length; ++i)
         {
             string[] row = line[i].Split('\t');
 
@@ -60,16 +61,28 @@ public class DataManager : MonoBehaviour
         {
             string[] row = line[i].Split('\t');
 
-            AllPlayerPet.Add(new PlayerPetData(row[0], int.Parse(row[1]), bool.Parse(row[2]), row[3], 
-                                                int.Parse(row[4]), int.Parse(row[5]), int.Parse(row[6]), 
+            AllPlayerPet.Add(new PlayerPetData(row[0], int.Parse(row[1]), bool.Parse(row[2]), row[3],
+                                                int.Parse(row[4]), int.Parse(row[5]), int.Parse(row[6]),
                                                 int.Parse(row[7]), float.Parse(row[8]), float.Parse(row[9])));
         }
 
+        //퀘스트 진행상황 불러오기
+        line = QuestLogDatabase.text.Substring(0, QuestLogDatabase.text.Length - 1).Split('\t');
+        for (int i = 0; i < line.Length; ++i)
+        {
+            QuestLogNumber.Add(int.Parse(line[i]));
+        }
+    }
+
+    void Start()
+    {
         _stageFilePath = Application.persistentDataPath + "/OpenStageList.txt";
         _playerPetFilePath = Application.persistentDataPath + "/HavePlayerPet.txt";
+        _questLogFilePath = Application.persistentDataPath + "/QuestNumber.txt";
 
         LoadStageData();
         LoadPlayerPetData();
+        LoadQuestLog();
 
         print(_playerPetFilePath);
     }
@@ -81,16 +94,23 @@ public class DataManager : MonoBehaviour
         {
             OpenStage(0);
             GetPetCard(0);
+            RenewQuestLog(50, 50);
             SaveStageData();
             SavePlayerPetData();
+            SaveQuestLog();
         }
         else if(Input.GetKeyDown(KeyCode.Backspace))
         {
             ResetStageData();
             ResetPlayerPetData();
+            ResetQuestLog();
+        }
+        else if(Input.GetKeyDown(KeyCode.Insert))
+        {
+            OpenStage(1);
         }
     }
-
+    #region StageData
     public void SaveStageData()
     {
         string jdata = JsonUtility.ToJson(new Serialization<StageData>(OpenStageList));
@@ -128,14 +148,15 @@ public class DataManager : MonoBehaviour
 
         print("스테이지 리셋!");
     }
-
     public void OpenStage(int stageNum)
     {
         AllStageList[stageNum].OpenStage = true;
         OpenStageList.Add(AllStageList[stageNum]);
         print("스테이지 열음!");
     }
+    #endregion
 
+    #region PlayerPetData
     public void SavePlayerPetData()
     {
         string jdata = JsonUtility.ToJson(new Serialization<PlayerPetData>(HavePlayerPet));
@@ -180,4 +201,48 @@ public class DataManager : MonoBehaviour
         HavePlayerPet.Add(AllPlayerPet[petNum]);
         print("펫 얻음!");
     }
+    #endregion
+
+    #region QuestLog
+    public void SaveQuestLog()
+    {
+        string jdata = JsonUtility.ToJson(new Serialization<int>(QuestLogNumber));
+
+        File.WriteAllText(_questLogFilePath, jdata);
+        print("퀘스트 저장!");
+    }
+
+    public void LoadQuestLog()
+    {
+        if (false == File.Exists(_questLogFilePath))
+        {
+            ResetQuestLog();
+            return;
+        }
+
+        string jdata = File.ReadAllText(_questLogFilePath);
+
+        QuestLogNumber = JsonUtility.FromJson<Serialization<int>>(jdata).target;
+    }
+
+    public void ResetQuestLog()
+    {
+        for (int i = 0; i < QuestLogNumber.Count; ++i)
+        {
+            QuestLogNumber[i] = 0;
+        }
+
+        SaveQuestLog();
+
+        LoadQuestLog();
+
+        print("퀘스트 리셋!");
+    }
+
+    public void RenewQuestLog(int questId, int actionIndex)
+    {
+        QuestLogNumber[0] = questId;
+        QuestLogNumber[1] = actionIndex;
+    }
+    #endregion
 }

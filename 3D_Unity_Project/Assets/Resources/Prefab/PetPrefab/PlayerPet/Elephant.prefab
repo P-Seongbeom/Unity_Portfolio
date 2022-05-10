@@ -802,6 +802,7 @@ GameObject:
   - component: {fileID: 2629955969631645904}
   - component: {fileID: 7733727002310992886}
   - component: {fileID: -4560258668939613628}
+  - component: {fileID: -2641061982624761903}
   m_Layer: 0
   m_Name: Elephant
   m_TagString: MyPet
@@ -941,4 +942,26 @@ MonoBehaviour:
   Destination: {x: 0, y: 0, z: 0}
   Targets: []
   CurrentTargetPosition: {x: 0, y: 0, z: 0}
-  AttackRange: 0
+  _attackRange: 0
+--- !u!114 &-2641061982624761903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8377240472365939758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147730de366c94c4a8e2fdbac81e5c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PetName: No-Name
+  PetNumber: -1
+  IsGetted: 0
+  Position: No-data
+  HP: -1
+  ATK: -1
+  DEF: -1
+  SkillCost: -1
+  Cooltime: -1
+  Range: -1

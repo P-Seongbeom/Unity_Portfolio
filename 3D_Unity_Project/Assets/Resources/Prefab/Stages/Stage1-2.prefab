@@ -444,6 +444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4181248628547472424}
+  - component: {fileID: -7411884675316365388}
   m_Layer: 0
   m_Name: Stage1-2
   m_TagString: Untagged
@@ -468,6 +469,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7411884675316365388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4181248628547472425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c0b063cee6ae24daed22de8ad70da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StageData:
+    StageName: 
+    StageNumber: 0
+    GoldReward: 0
+    OpenStage: 0
+    ClearStage: 0
+  StageNumber: 1
+  QuestId: 0
 --- !u!1001 &4181248626598165577
 PrefabInstance:
   m_ObjectHideFlags: 0

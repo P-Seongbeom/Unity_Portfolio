@@ -41,7 +41,7 @@ namespace BattleScene
 
         public void MoveFocus()
         {
-            foreach (Transform pet in BattleManager.Instance.PlayerPets.transform)
+            foreach (Transform pet in BattleManager.Instance.InBattlePlayerPets.transform)
             {
                 if (pet.position.z > FocusPosition)
                 {

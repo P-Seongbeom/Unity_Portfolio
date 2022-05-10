@@ -9,13 +9,16 @@ public class FarmManager : MonoBehaviour
     public static FarmManager Instance;
     public InputManager InputHandle;
 
-    public List<GameObject> PetPrefabs;
     public List<GameObject> SpawnedPets;
-
-    public GameObject TalkBox;
-    public Text TalkText;
-    public Image PortraitImage;
     public GameObject ScanObject;
+    public GameObject TutorialObject;
+
+    public Animator TalkBox;
+
+    public TypingEffect TalkEffect;
+
+    public Image PortraitImage;
+
     public bool isTalk;
     public int talkIndex;
 
@@ -32,22 +35,21 @@ public class FarmManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        foreach (GameObject pet in PetPrefabs)
+        foreach (GameObject pet in GameManager.Instance.PetPrefabs)
         {
-            if (pet == null)
+            if(pet.GetComponent<PetInfo>().IsGetted)
             {
-                PetPrefabs.Remove(pet);
+                Spawn(pet);
             }
-        }
-
-        foreach (GameObject pet in PetPrefabs)
-        {
-            
-            Spawn(pet);
         }
     }
     void Start()
     {
+        if (DataManager.Instance.QuestLogNumber[0] == 0)
+        {
+            Communicate(TutorialObject);
+        }
+        QuestManager.Instance.CheckQuest();
     }
 
     public void Spawn(GameObject prefab)
@@ -66,22 +68,15 @@ public class FarmManager : MonoBehaviour
         }
     }
 
-    public void EnterStageSelect()
-    {
-        SceneManager.LoadScene(StageSelectScene);
-    }
-
     public void Communicate(GameObject scanObject)
     {
         ScanObject = scanObject;
-        
-        TalkData data = ScanObject.GetComponent<NPCData>()._dialogueData;
 
         PortraitImage.sprite = ScanObject.GetComponent<NPCData>().Portrait;
 
-        Talk(data.TalkId);
+        Talk(ScanObject.GetComponent<NPCData>().NpcId);
 
-        TalkBox.SetActive(isTalk);
+        TalkBox.SetBool("isShow", isTalk);
     }
 
     void Talk(int id)
@@ -89,7 +84,6 @@ public class FarmManager : MonoBehaviour
         int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex(id);
 
         string talkData = TalkManager.Instance.GetDialogue(id + questTalkIndex, talkIndex);
-
         if (talkData == null)
         {
             isTalk = false;
@@ -98,11 +92,32 @@ public class FarmManager : MonoBehaviour
             return;
         }
 
-        TalkText.text = talkData;
+        TalkEffect.SetMessage(talkData);
 
         isTalk = true;
 
         ++talkIndex;
+    }
+
+    public void EnterStageSelect()
+    {
+        SceneManager.LoadScene(StageSelectScene);
+    }
+
+    public void OnClickQuestButton()
+    {
+        string title = 
+            QuestManager.Instance.QuestData[QuestManager.Instance.QuestDataIndex].QuestName;
+
+        string content =
+            QuestManager.Instance.QuestData[QuestManager.Instance.QuestDataIndex].QuestDescription;
+
+        string reward = 
+            QuestManager.Instance.QuestData[QuestManager.Instance.QuestDataIndex].RewardGold.ToString();
+
+        FarmUIPopup.Instance.OpenPopup(
+            title, content, $"{reward}°ñµå",
+            () => { FarmUIPopup.Instance.ClosePopup(); });
     }
 }
 

@@ -18,7 +18,7 @@ namespace BattleScene
         {
             Controller = GetComponent<PetController>();
 
-            foreach (Transform target in BattleManager.Instance.PlayerPets.transform)
+            foreach (Transform target in BattleManager.Instance.InBattlePlayerPets.transform)
             {
                 Targets.Add(target.GetComponent<Transform>());
                 _distanceTarget = (transform.position - target.position).sqrMagnitude;
@@ -34,7 +34,7 @@ namespace BattleScene
         {
             if(gameObject.activeSelf)
             {
-                foreach (Transform target in BattleManager.Instance.PlayerPets.transform)
+                foreach (Transform target in BattleManager.Instance.InBattlePlayerPets.transform)
                 {
                     if ((transform.position - target.position).sqrMagnitude < _distanceTarget)
                     {

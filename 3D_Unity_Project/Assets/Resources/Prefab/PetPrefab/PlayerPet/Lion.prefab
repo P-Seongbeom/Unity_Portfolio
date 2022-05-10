@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9160069782019468178}
   - component: {fileID: 9160069782019468179}
   - component: {fileID: 2526095850486596488}
+  - component: {fileID: -6059372961930957545}
   m_Layer: 0
   m_Name: Lion
   m_TagString: MyPet
@@ -155,7 +156,29 @@ MonoBehaviour:
   Destination: {x: 0, y: 0, z: 0}
   Targets: []
   CurrentTargetPosition: {x: 0, y: 0, z: 0}
-  AttackRange: 0
+  _attackRange: 0
+--- !u!114 &-6059372961930957545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9158087510846970067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147730de366c94c4a8e2fdbac81e5c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PetName: No-Name
+  PetNumber: -1
+  IsGetted: 0
+  Position: No-data
+  HP: -1
+  ATK: -1
+  DEF: -1
+  SkillCost: -1
+  Cooltime: -1
+  Range: -1
 --- !u!1 &9158097055055798441
 GameObject:
   m_ObjectHideFlags: 0

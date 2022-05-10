@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8579526557043587181}
   - component: {fileID: 8579526557043587171}
   - component: {fileID: 3484752333542622637}
+  - component: {fileID: -1758184585307072006}
   m_Layer: 0
   m_Name: Rabbit
   m_TagString: MyPet
@@ -185,7 +186,29 @@ MonoBehaviour:
   Destination: {x: 0, y: 0, z: 0}
   Targets: []
   CurrentTargetPosition: {x: 0, y: 0, z: 0}
-  AttackRange: 0
+  _attackRange: 0
+--- !u!114 &-1758184585307072006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8580239734322272684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147730de366c94c4a8e2fdbac81e5c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PetName: No-Name
+  PetNumber: -1
+  IsGetted: 0
+  Position: No-data
+  HP: -1
+  ATK: -1
+  DEF: -1
+  SkillCost: -1
+  Cooltime: -1
+  Range: -1
 --- !u!1 &8580287556031953690
 GameObject:
   m_ObjectHideFlags: 0

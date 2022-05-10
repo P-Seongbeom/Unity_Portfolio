@@ -11,6 +11,8 @@ namespace Farm
 
         private CinemachineVirtualCamera _vcam;
 
+        public Transform Destination;
+
         void Start()
         {
             _vcam = GetComponent<CinemachineVirtualCamera>();

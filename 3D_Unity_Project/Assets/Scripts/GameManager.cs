@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public List<GameObject> PetPrefabs;
+
     private void Awake()
     {
         if(null == Instance)
@@ -23,11 +25,32 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
-    }
+        DataManager.Instance.GetPetCard(0);
 
-    void Update()
-    {
-        
+        for(int i = 0; i < PetPrefabs.Count; ++i)
+        {
+            for(int j = 0; j < DataManager.Instance.HavePlayerPet.Count; ++j)
+            {
+                if(PetPrefabs[i].name == DataManager.Instance.HavePlayerPet[j].PetName)
+                {
+                    PetPrefabs[i].GetComponent<PetInfo>().SetInfo(
+                        DataManager.Instance.HavePlayerPet[j].PetName,
+                        DataManager.Instance.HavePlayerPet[j].PetNumber,
+                        DataManager.Instance.HavePlayerPet[j].IsGetted,
+                        DataManager.Instance.HavePlayerPet[j].Position,
+                        DataManager.Instance.HavePlayerPet[j].HP,
+                        DataManager.Instance.HavePlayerPet[j].ATK,
+                        DataManager.Instance.HavePlayerPet[j].DEF,
+                        DataManager.Instance.HavePlayerPet[j].SkillCost,
+                        DataManager.Instance.HavePlayerPet[j].Cooltime,
+                        DataManager.Instance.HavePlayerPet[j].Range);
+                }
+            }
+
+            if (PetPrefabs[i] == null)
+            {
+                PetPrefabs.Remove(PetPrefabs[i]);
+            }
+        }
     }
 }
