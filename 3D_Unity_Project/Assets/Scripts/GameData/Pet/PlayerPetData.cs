@@ -15,9 +15,10 @@ public class PlayerPetData
     public int SkillCost = -1;
     public float Cooltime = -1f;
     public float Range = -1;
+    public int Level = -1;
 
     public PlayerPetData(string petName, int petNum, bool getted, 
-        string position, int hp, int atk, int def, int cost, float cool, float range)
+        string position, int hp, int atk, int def, int cost, float cool, float range, int level)
     {
         PetName = petName;
         PetNumber = petNum;
@@ -29,5 +30,6 @@ public class PlayerPetData
         SkillCost = cost;
         Cooltime = cool;
         Range = range;
+        Level = level;
     }
 }

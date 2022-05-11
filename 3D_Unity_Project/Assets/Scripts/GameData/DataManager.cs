@@ -17,6 +17,7 @@ public class DataManager : MonoBehaviour
     public TextAsset StageDatabase;
     public TextAsset PlayerPetDatabase;
     public TextAsset QuestLogDatabase;
+    public TextAsset PlayerDatabase;
 
     //public StageInfo StageData;
     public List<StageData> AllStageList;
@@ -26,12 +27,14 @@ public class DataManager : MonoBehaviour
     public List<PlayerPetData> HavePlayerPet;
 
     public List<int> QuestLogNumber;
+    public PlayerData PlayerData;
 
     //public List<Stage> StageData;
 
     string _stageFilePath;
     string _playerPetFilePath;
     string _questLogFilePath;
+    string _playerFilePath;
 
     private void Awake()
     {
@@ -63,7 +66,8 @@ public class DataManager : MonoBehaviour
 
             AllPlayerPet.Add(new PlayerPetData(row[0], int.Parse(row[1]), bool.Parse(row[2]), row[3],
                                                 int.Parse(row[4]), int.Parse(row[5]), int.Parse(row[6]),
-                                                int.Parse(row[7]), float.Parse(row[8]), float.Parse(row[9])));
+                                                int.Parse(row[7]), float.Parse(row[8]), float.Parse(row[9]),
+                                                int.Parse(row[10])));
         }
 
         //퀘스트 진행상황 불러오기
@@ -72,6 +76,12 @@ public class DataManager : MonoBehaviour
         {
             QuestLogNumber.Add(int.Parse(line[i]));
         }
+
+        //플레이어 데이터 불러오기
+        line = PlayerDatabase.text.Substring(0, PlayerDatabase.text.Length - 1).Split('\t');
+
+        PlayerData = new PlayerData(line[0], int.Parse(line[1]), int.Parse(line[2]));
+        
     }
 
     void Start()
@@ -79,10 +89,12 @@ public class DataManager : MonoBehaviour
         _stageFilePath = Application.persistentDataPath + "/OpenStageList.txt";
         _playerPetFilePath = Application.persistentDataPath + "/HavePlayerPet.txt";
         _questLogFilePath = Application.persistentDataPath + "/QuestNumber.txt";
+        _playerFilePath = Application.persistentDataPath + "/Player.txt";
 
         LoadStageData();
         LoadPlayerPetData();
         LoadQuestLog();
+        LoadPlayerData();
 
         print(_playerPetFilePath);
     }
@@ -94,7 +106,8 @@ public class DataManager : MonoBehaviour
         {
             OpenStage(0);
             GetPetCard(0);
-            RenewQuestLog(50, 50);
+            RenewQuestLog(100, 100);
+            RenewPlayer("릴파넴", 700, 700);
             SaveStageData();
             SavePlayerPetData();
             SaveQuestLog();
@@ -227,10 +240,7 @@ public class DataManager : MonoBehaviour
 
     public void ResetQuestLog()
     {
-        for (int i = 0; i < QuestLogNumber.Count; ++i)
-        {
-            QuestLogNumber[i] = 0;
-        }
+        RenewQuestLog(0, 0);
 
         SaveQuestLog();
 
@@ -244,5 +254,49 @@ public class DataManager : MonoBehaviour
         QuestLogNumber[0] = questId;
         QuestLogNumber[1] = actionIndex;
     }
+    #endregion
+
+    #region PlayerData
+    public void SavePlayerData()
+    {
+        string jdata = JsonUtility.ToJson(PlayerData);
+
+        File.WriteAllText(_playerFilePath, jdata);
+        print("플레이어 저장!");
+    }
+
+    public void LoadPlayerData()
+    {
+        if (false == File.Exists(_playerFilePath))
+        {
+            ResetPlayerData();
+            return;
+        }
+
+        string jdata = File.ReadAllText(_playerFilePath);
+
+        PlayerData = JsonUtility.FromJson<PlayerData>(jdata);
+    }
+
+    public void ResetPlayerData()
+    {
+        string[] line = PlayerDatabase.text.Substring(0, PlayerDatabase.text.Length - 1).Split('\t');
+
+        RenewPlayer(line[0], int.Parse(line[1]), int.Parse(line[2]));
+
+        SavePlayerData();
+
+        LoadPlayerData();
+
+        print("플레이어 리셋!");
+    }
+
+    public void RenewPlayer(string name, int num, int gold)
+    {
+        PlayerData.PlayerName = name;
+        PlayerData.PlayerNum = num;
+        PlayerData.Gold = gold;
+    }
+
     #endregion
 }
