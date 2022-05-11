@@ -36,9 +36,15 @@ public class QuestManager : MonoBehaviour
 
     private void Start()
     {
+        print(DataManager.Instance.QuestLogNumber[0]);
         if (DataManager.Instance.QuestLogNumber[0] == 0)
         {
             QuestId += 10;
+        }
+        else
+        {
+            QuestId = DataManager.Instance.QuestLogNumber[0];
+            QuestActionIndex = DataManager.Instance.QuestLogNumber[1];
         }
     }
     private void Update()
@@ -82,6 +88,7 @@ public class QuestManager : MonoBehaviour
         QuestActionIndex = 0;
     }
 
+    //юс╫ц
     void ControlObject()
     {
         switch(QuestId)

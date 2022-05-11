@@ -25,7 +25,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        DataManager.Instance.GetPetCard(0);
+        if(DataManager.Instance.HavePlayerPet.Count == 0)
+        {
+            DataManager.Instance.GetPetCard(0);
+        }
 
         for(int i = 0; i < PetPrefabs.Count; ++i)
         {

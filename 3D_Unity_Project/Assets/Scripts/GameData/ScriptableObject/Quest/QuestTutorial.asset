@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questName: "\uB18D\uC7A5\uC5D0 \uC5B4\uC11C\uC624\uC138\uC694!"
   npcId: e8030000
-  questDescription: "\uB18D\uC7A5 \uC8FC\uC778\uC758 \uD658\uC601\uC2DD!!! \\n \uC54C\uD30C\uCE74\uB97C
+  questDescription: "\uB18D\uC7A5 \uC8FC\uC778\uC758 \uD658\uC601\uC2DD!!! \uC54C\uD30C\uCE74\uB97C
     \uBC1B\uC544\uAC00\uC138\uC694!!!"
   rewardGold: 0
   rewardCard: []
