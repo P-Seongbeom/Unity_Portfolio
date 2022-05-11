@@ -589,6 +589,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 034414bb99dafac4d82e53c055e3fc98, type: 2}
   QuestId: 0
   QuestActionIndex: 0
+  QuestDataIndex: 0
 --- !u!1 &1074242758
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +622,7 @@ MonoBehaviour:
   StageDatabase: {fileID: 4900000, guid: c02ceb90c3ad86b4a859fb9aacec950c, type: 3}
   PlayerPetDatabase: {fileID: 4900000, guid: 1a2f4187de2b6a746aea49c2ff8fdc09, type: 3}
   QuestLogDatabase: {fileID: 4900000, guid: 01ab5f5a3ec4c7240b2a6163ff8f7327, type: 3}
+  PlayerDatabase: {fileID: 4900000, guid: 0ea28970f5db2ad4c91e92449ceb4daf, type: 3}
   AllStageList: []
   OpenStageList: []
   AllPlayerPet: []

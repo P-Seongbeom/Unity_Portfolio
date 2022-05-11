@@ -14,6 +14,7 @@ public class PetInfo : MonoBehaviour
     public int SkillCost = -1;
     public float Cooltime = -1f;
     public float Range = -1;
+    public float Level = -1;
 
     private void Awake()
     {
@@ -32,7 +33,7 @@ public class PetInfo : MonoBehaviour
     }
 
     public void SetInfo(string petName, int petNum, bool getted,
-        string position, int hp, int atk, int def, int cost, float cool, float range)
+        string position, int hp, int atk, int def, int cost, float cool, float range, int level)
     {
         PetName = petName;
         PetNumber = petNum;
@@ -44,5 +45,6 @@ public class PetInfo : MonoBehaviour
         SkillCost = cost;
         Cooltime = cool;
         Range = range;
+        Level = level;
     }
 }

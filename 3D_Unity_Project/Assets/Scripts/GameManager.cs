@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour
                         DataManager.Instance.HavePlayerPet[j].DEF,
                         DataManager.Instance.HavePlayerPet[j].SkillCost,
                         DataManager.Instance.HavePlayerPet[j].Cooltime,
-                        DataManager.Instance.HavePlayerPet[j].Range);
+                        DataManager.Instance.HavePlayerPet[j].Range,
+                        DataManager.Instance.HavePlayerPet[j].Level);
                 }
             }
 

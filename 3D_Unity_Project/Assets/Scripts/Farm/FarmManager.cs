@@ -116,7 +116,7 @@ public class FarmManager : MonoBehaviour
             QuestManager.Instance.QuestData[QuestManager.Instance.QuestDataIndex].RewardGold.ToString();
 
         FarmUIPopup.Instance.OpenPopup(
-            title, content, $"{reward}°ñµå",
+            title+"\n", content, $"{reward}°ñµå",
             () => { FarmUIPopup.Instance.ClosePopup(); });
     }
 }
