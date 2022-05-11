@@ -716,7 +716,7 @@ MonoBehaviour:
   - {fileID: 4181248628547472425, guid: 48bd8b36247202742935aba21320999c, type: 3}
   CurrentStage: {fileID: 0}
   CheckPoints: []
-  PlayerPets: {fileID: 302368387}
+  InBattlePlayerPets: {fileID: 302368387}
   PetMovers: []
   Phases: []
   CurrentPhase: {fileID: 0}

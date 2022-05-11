@@ -33,10 +33,10 @@ public class BattleManager : MonoBehaviour
         }
 
         //¼öÁ¤
-        foreach(GameObject pet in GameManager.Instance.PetPrefabs)
-        {
-            pet.GetComponent<PlayerPetBattleController>();
-        }
+        //foreach(GameObject pet in GameManager.Instance.PetPrefabs)
+        //{
+        //    pet.GetComponent<PlayerPetBattleController>();
+        //}
     }
 
     void Start()

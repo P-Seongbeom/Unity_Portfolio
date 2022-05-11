@@ -14,6 +14,9 @@ namespace BattleScene
 
         private float _distanceTarget;
 
+        [SerializeField]
+        private float _attackRange;
+
         private void Start()
         {
             Controller = GetComponent<PetController>();
@@ -23,6 +26,8 @@ namespace BattleScene
                 Targets.Add(target.GetComponent<Transform>());
                 _distanceTarget = (transform.position - target.position).sqrMagnitude;
             }
+
+            Controller.Agent.stoppingDistance = _attackRange;
         }
 
         private void Update()
@@ -38,7 +43,6 @@ namespace BattleScene
                 {
                     if ((transform.position - target.position).sqrMagnitude < _distanceTarget)
                     {
-                        //Enemy = target;
                         CurrentTargetPosition = target.position;
                         _distanceTarget = (transform.position - CurrentTargetPosition).sqrMagnitude;
                     }

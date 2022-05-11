@@ -310,6 +310,7 @@ MonoBehaviour:
   Controller: {fileID: 0}
   Targets: []
   CurrentTargetPosition: {x: 0, y: 0, z: 0}
+  _attackRange: 10
 --- !u!1 &4412427619196146808
 GameObject:
   m_ObjectHideFlags: 0

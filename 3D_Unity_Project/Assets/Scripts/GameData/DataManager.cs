@@ -82,10 +82,6 @@ public class DataManager : MonoBehaviour
 
         PlayerData = new PlayerData(line[0], int.Parse(line[1]), int.Parse(line[2]));
         
-    }
-
-    void Start()
-    {
         _stageFilePath = Application.persistentDataPath + "/OpenStageList.txt";
         _playerPetFilePath = Application.persistentDataPath + "/HavePlayerPet.txt";
         _questLogFilePath = Application.persistentDataPath + "/QuestNumber.txt";
@@ -99,14 +95,19 @@ public class DataManager : MonoBehaviour
         print(_playerPetFilePath);
     }
 
+    void Start()
+    {
+
+    }
+
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Insert))
         {
             OpenStage(0);
             GetPetCard(0);
-            RenewQuestLog(100, 100);
+            RenewQuestLog(50, 50);
             RenewPlayer("¸±ÆÄ³Û", 700, 700);
             SaveStageData();
             SavePlayerPetData();
@@ -117,8 +118,9 @@ public class DataManager : MonoBehaviour
             ResetStageData();
             ResetPlayerPetData();
             ResetQuestLog();
+            ResetPlayerData();
         }
-        else if(Input.GetKeyDown(KeyCode.Insert))
+        else if(Input.GetKeyDown(KeyCode.Home))
         {
             OpenStage(1);
         }
@@ -210,6 +212,14 @@ public class DataManager : MonoBehaviour
 
     public void GetPetCard(int petNum)
     {
+        for(int i = 0; i < HavePlayerPet.Count; ++i)
+        {
+            if(AllPlayerPet[petNum].PetNumber == HavePlayerPet[i].PetNumber)
+            {
+                return;
+            }
+        }
+        
         AllPlayerPet[petNum].IsGetted = true;
         HavePlayerPet.Add(AllPlayerPet[petNum]);
         print("Æê ¾òÀ½!");
