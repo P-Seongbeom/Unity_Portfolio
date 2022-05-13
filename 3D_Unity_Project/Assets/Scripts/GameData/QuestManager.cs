@@ -67,11 +67,13 @@ public class QuestManager : MonoBehaviour
         if(id == QuestList[QuestId].NpcId[QuestActionIndex])
         {
             ++QuestActionIndex;
+            DataManager.Instance.RenewQuestLog(QuestId, QuestActionIndex);
         }
 
         if(QuestActionIndex == QuestList[QuestId].NpcId.Length)
         {
             NextQuest();
+            DataManager.Instance.RenewQuestLog(QuestId, QuestActionIndex);
         }
 
         return QuestList[QuestId].QuestName;
@@ -88,6 +90,7 @@ public class QuestManager : MonoBehaviour
         QuestActionIndex = 0;
     }
 
+    
     //юс╫ц
     void ControlObject()
     {
@@ -96,7 +99,7 @@ public class QuestManager : MonoBehaviour
             case 10:
                 if(QuestActionIndex == 2)
                 {
-                    //DataManager.Instance.OpenStage(0);
+                    
                 }
                 break;
             case 20:
@@ -104,4 +107,6 @@ public class QuestManager : MonoBehaviour
                 break;
         }
     }
+    
+    
 }

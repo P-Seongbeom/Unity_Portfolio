@@ -13,10 +13,6 @@ public class SelectStageInfo : MonoBehaviour
     {
         Button = gameObject.GetComponent<Button>();
     }
-    private void Start()
-    {
-        
-    }
 
     private void Update()
     {

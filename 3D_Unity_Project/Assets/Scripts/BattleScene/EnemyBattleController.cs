@@ -21,10 +21,10 @@ namespace BattleScene
         {
             Controller = GetComponent<PetController>();
 
-            foreach (Transform target in BattleManager.Instance.InBattlePlayerPets.transform)
+            for(int i = 0; i < BattleManager.Instance.InBattlePlayerPets.Count; ++i)
             {
-                Targets.Add(target.GetComponent<Transform>());
-                _distanceTarget = (transform.position - target.position).sqrMagnitude;
+                Targets.Add(BattleManager.Instance.InBattlePlayerPets[i].transform);
+                _distanceTarget = (transform.position - Targets[i].position).sqrMagnitude;
             }
 
             Controller.Agent.stoppingDistance = _attackRange;
@@ -39,11 +39,11 @@ namespace BattleScene
         {
             if(gameObject.activeSelf)
             {
-                foreach (Transform target in BattleManager.Instance.InBattlePlayerPets.transform)
+                for(int i = 0; i < BattleManager.Instance.InBattlePlayerPets.Count; ++i )
                 {
-                    if ((transform.position - target.position).sqrMagnitude < _distanceTarget)
+                    if ((transform.position - BattleManager.Instance.InBattlePlayerPets[i].transform.position).sqrMagnitude < _distanceTarget)
                     {
-                        CurrentTargetPosition = target.position;
+                        CurrentTargetPosition = BattleManager.Instance.InBattlePlayerPets[i].transform.position;
                         _distanceTarget = (transform.position - CurrentTargetPosition).sqrMagnitude;
                     }
                 }

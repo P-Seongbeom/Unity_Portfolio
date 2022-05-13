@@ -11,14 +11,16 @@ public class StageData
     public int GoldReward = -1;
     public bool OpenStage = false;
     public bool ClearStage = false;
+    public int QuestId = -1;
 
-    public StageData(string stageName, int stageNum, int goldReward, bool openStage, bool clearStage )
+    public StageData(string stageName, int stageNum, int goldReward, bool openStage, bool clearStage, int questId )
     {
         StageName = stageName;
         StageNumber = stageNum;
         GoldReward = goldReward;
         OpenStage = openStage;
         ClearStage = clearStage;
+        QuestId = questId;
     }
 }
 

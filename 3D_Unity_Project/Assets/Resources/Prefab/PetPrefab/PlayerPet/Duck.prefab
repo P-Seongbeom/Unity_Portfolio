@@ -291,6 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147730de366c94c4a8e2fdbac81e5c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardPortrait: {fileID: 21300000, guid: b9fd87a8161e82944b883a88d9d76ab5, type: 3}
   PetName: No-Name
   PetNumber: -1
   IsGetted: 0
@@ -301,6 +302,7 @@ MonoBehaviour:
   SkillCost: -1
   Cooltime: -1
   Range: -1
+  Level: -1
 --- !u!1 &165055393131892538
 GameObject:
   m_ObjectHideFlags: 0

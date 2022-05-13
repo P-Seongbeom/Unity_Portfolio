@@ -460,16 +460,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147730de366c94c4a8e2fdbac81e5c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PetName: No-Name
-  PetNumber: -1
-  IsGetted: 0
-  Position: No-data
-  HP: -1
-  ATK: -1
-  DEF: -1
-  SkillCost: -1
-  Cooltime: -1
-  Range: -1
+  CardPortrait: {fileID: 21300000, guid: 2a281ddd52f11c544937df73f57275d3, type: 3}
+  PetName: Dog
+  PetNumber: 2
+  IsGetted: 1
+  Position: Striker
+  HP: 80
+  ATK: 70
+  DEF: 15
+  SkillCost: 3
+  Cooltime: 5
+  Range: 10
+  Level: 1
 --- !u!1 &7644104662959741591
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public List<GameObject> PetPrefabs;
+    public List<GameObject> HavePets;
+    public List<GameObject> AgentPets;
 
     private void Awake()
     {
@@ -54,6 +56,13 @@ public class GameManager : MonoBehaviour
             if (PetPrefabs[i] == null)
             {
                 PetPrefabs.Remove(PetPrefabs[i]);
+            }
+        }
+        for(int i = 0; i < PetPrefabs.Count; ++i)
+        {
+            if (PetPrefabs[i].GetComponent<PetInfo>().IsGetted)
+            {
+                HavePets.Add(PetPrefabs[i]);
             }
         }
     }

@@ -35,12 +35,9 @@ public class FarmManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        foreach (GameObject pet in GameManager.Instance.PetPrefabs)
+        foreach (GameObject pet in GameManager.Instance.HavePets)
         {
-            if(pet.GetComponent<PetInfo>().IsGetted)
-            {
-                Spawn(pet);
-            }
+            Spawn(pet);
         }
     }
     void Start()
@@ -49,6 +46,7 @@ public class FarmManager : MonoBehaviour
         {
             Communicate(TutorialObject);
         }
+
         QuestManager.Instance.CheckQuest();
     }
 

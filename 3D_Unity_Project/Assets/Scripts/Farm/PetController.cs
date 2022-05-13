@@ -17,13 +17,8 @@ public class PetController : MonoBehaviour
     private float _baseOffset;
     private float _jumpCooldown = 0;
 
-    //private bool eat = false;
-    //private bool rest = false;
-
     private int _moveSpeed;
     private int _jump;
-    //private int _eat;
-    //private int _rest;
 
     private Dictionary<int, string> _states;
 
@@ -43,13 +38,9 @@ public class PetController : MonoBehaviour
         _states.Add(Animator.StringToHash("Base.Idle"), "Idle");
         _states.Add(Animator.StringToHash("Base.Move"), "Move");
         _states.Add(Animator.StringToHash("Base.Jump"), "Jump");
-        //_states.Add(Animator.StringToHash("Base.Eat"), "Eat");
-        //_states.Add(Animator.StringToHash("Base.Rest"), "Rest");
 
         _moveSpeed = Animator.StringToHash("moveSpeed");
         _jump = Animator.StringToHash("jump");
-        //_eat = Animator.StringToHash("eat");
-        //_rest = Animator.StringToHash("rest");
     }
 
     void Update()

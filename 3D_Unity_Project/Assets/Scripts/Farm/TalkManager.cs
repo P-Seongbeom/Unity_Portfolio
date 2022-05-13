@@ -26,12 +26,9 @@ public class TalkManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void GenerateData(int index)
     {
         talkData.Add(TalkData[index].TalkId, TalkData[index].TalkDialogue);
-
-        //talkData.Add(TalkData[10 + index].TalkId, TalkData[10 + index].TalkDialogue);
     }
 
     public string GetDialogue(int id, int dialogeIndex)
