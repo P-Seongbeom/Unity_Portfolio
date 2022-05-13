@@ -12,12 +12,8 @@ public class StageSelectPopup : MonoBehaviour
 
     public Animator Animator;
 
-    //public Text DifficultyText;
-    //public Text EnemyText;
     public Text RewardText;
 
-    //private string _difficulty;
-    //private string _enemy;
     private string _reward;
 
     private Action _onClickOkay;
@@ -34,8 +30,6 @@ public class StageSelectPopup : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //_difficulty = DifficultyText.text;
-        //_enemy = EnemyText.text;
         _reward = RewardText.text;
 
         Animator = Popup.GetComponent<Animator>();
@@ -54,8 +48,6 @@ public class StageSelectPopup : MonoBehaviour
 
     public void OpenPopup(string compensation, Action onClickOkay, Action onClickCancel)
     {
-        //DifficultyText.text += difficulty;
-        //EnemyText.text += enemy;
         RewardText.text += compensation;
         _onClickOkay = onClickOkay;
         _onClickCancel = onClickCancel;

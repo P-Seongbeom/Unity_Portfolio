@@ -55,7 +55,7 @@ public class DataManager : MonoBehaviour
         {
             string[] row = line[i].Split('\t');
 
-            AllStageList.Add(new StageData(row[0], int.Parse(row[1]), int.Parse(row[2]), bool.Parse(row[3]), bool.Parse(row[4])));
+            AllStageList.Add(new StageData(row[0], int.Parse(row[1]), int.Parse(row[2]), bool.Parse(row[3]), bool.Parse(row[4]), int.Parse(row[5])));
         }
 
         //전체 펫 리스트 불러오기
@@ -106,12 +106,10 @@ public class DataManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Insert))
         {
             OpenStage(0);
-            GetPetCard(0);
+            GetPetCard(6);
+            GetPetCard(2);
             RenewQuestLog(50, 50);
             RenewPlayer("릴파넴", 700, 700);
-            SaveStageData();
-            SavePlayerPetData();
-            SaveQuestLog();
         }
         else if(Input.GetKeyDown(KeyCode.Backspace))
         {
@@ -168,6 +166,7 @@ public class DataManager : MonoBehaviour
         AllStageList[stageNum].OpenStage = true;
         OpenStageList.Add(AllStageList[stageNum]);
         print("스테이지 열음!");
+        SaveStageData();
     }
     #endregion
 
@@ -222,7 +221,9 @@ public class DataManager : MonoBehaviour
         
         AllPlayerPet[petNum].IsGetted = true;
         HavePlayerPet.Add(AllPlayerPet[petNum]);
+        HavePlayerPet.Sort(delegate (PlayerPetData a, PlayerPetData b) { return a.PetNumber.CompareTo(b.PetNumber); });
         print("펫 얻음!");
+        SavePlayerPetData();
     }
     #endregion
 
@@ -263,6 +264,7 @@ public class DataManager : MonoBehaviour
     {
         QuestLogNumber[0] = questId;
         QuestLogNumber[1] = actionIndex;
+        SaveQuestLog();
     }
     #endregion
 
@@ -306,6 +308,8 @@ public class DataManager : MonoBehaviour
         PlayerData.PlayerName = name;
         PlayerData.PlayerNum = num;
         PlayerData.Gold = gold;
+
+        SavePlayerData();
     }
 
     #endregion

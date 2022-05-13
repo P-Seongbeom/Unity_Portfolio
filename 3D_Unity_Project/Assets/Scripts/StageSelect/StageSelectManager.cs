@@ -11,7 +11,7 @@ public class StageSelectManager : MonoBehaviour
     public static StageSelectManager Instance;
 
     public string FarmSceneName;
-    public string BattleSceneName;
+    public string DeckConfigSceneName;
 
     public GameObject SelectedObect;
 
@@ -32,9 +32,6 @@ public class StageSelectManager : MonoBehaviour
         for(int i = 0; i < DataManager.Instance.OpenStageList.Count; ++i)
         {
             StagePrefabs[i].GetComponent<StageInfo>().StageData = DataManager.Instance.OpenStageList[i];
-        }
-        for(int i = 0; i < StagePrefabs.Length; ++i)
-        {
             StageButtons[i].GetComponent<SelectStageInfo>().StageData = StagePrefabs[i].GetComponent<StageInfo>().StageData;
         }
     }
@@ -46,7 +43,7 @@ public class StageSelectManager : MonoBehaviour
         
         StageSelectPopup.Instance.OpenPopup( 
             $"{reward}°ñµå", 
-            () => { GoToBattle(); }, 
+            () => { GoToDeckConfig(); }, 
             () => { StageSelectPopup.Instance.ClosePopup(); });
     }
 
@@ -55,9 +52,9 @@ public class StageSelectManager : MonoBehaviour
         SceneManager.LoadScene(FarmSceneName);
     }
 
-    public void GoToBattle()
+    public void GoToDeckConfig()
     {
-        SceneManager.LoadScene(BattleSceneName);
+        SceneManager.LoadScene(DeckConfigSceneName);
     }
 }
 

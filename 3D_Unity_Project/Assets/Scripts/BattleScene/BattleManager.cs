@@ -10,16 +10,15 @@ public class BattleManager : MonoBehaviour
     public List<GameObject> Stages;
     public GameObject CurrentStage;
 
+    public List<Transform> AgentPetPosition;
     public List<Transform> CheckPoints;
 
-    public GameObject InBattlePlayerPets;
+    public List<GameObject> InBattlePlayerPets;
     public List<PlayerPetBattleController> PetMovers;
 
     public List<GameObject> Phases;
     public GameObject CurrentPhase;
     private int _phaseCount = 0;
-
-    //public bool _isBattle = false;
 
     private void Awake()
     {
@@ -31,33 +30,20 @@ public class BattleManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        for (int i = 0; i < AgentPetPosition.Count; ++i)
+        {
+            InBattlePlayerPets.Add(Instantiate(GameManager.Instance.AgentPets[i]));
+            InBattlePlayerPets[i].transform.position = AgentPetPosition[i].position;
+            PetMovers.Add(InBattlePlayerPets[i].GetComponent<PlayerPetBattleController>());
+        }
 
-        //수정
-        //foreach(GameObject pet in GameManager.Instance.PetPrefabs)
-        //{
-        //    pet.GetComponent<PlayerPetBattleController>();
-        //}
-    }
-
-    void Start()
-    {
-        PetMovers.AddRange(InBattlePlayerPets.GetComponentsInChildren<PlayerPetBattleController>());
-        //임시
-        //Resources.Load<GameObject>("Prefab/Stages" + Stages[0].name);
-
-        //CurrentStage = Instantiate(Resources.Load<GameObject>("Prefab/Stages/" + Stages[0].name));
         CurrentStage = Instantiate(Stages[0]);
-        //Debug.Log(Stages[0].name);
-        //Debug.Log($"스테이지 : { CurrentStage.name}");
-
-        //Instantiate(CurrentStage);
-        
 
         foreach (Transform point in CurrentStage.transform.GetChild(1).transform)
         {
             CheckPoints.Add(point);
         }
-        foreach(Transform phase in CurrentStage.transform.GetChild(2).transform)
+        foreach (Transform phase in CurrentStage.transform.GetChild(2).transform)
         {
             Phases.Add(phase.gameObject);
         }
@@ -89,7 +75,6 @@ public class BattleManager : MonoBehaviour
                 Debug.Log($"페이즈 : {_phaseCount + 1}");
                 SetCurrentPhase(_phaseCount);
                 ++_phaseCount;
-                //_isBattle = true;
 
                 foreach(PlayerPetBattleController pet in PetMovers)
                 {
@@ -109,7 +94,6 @@ public class BattleManager : MonoBehaviour
 
     public void EndPhase()
     {
-        //_isBattle = false;
         CurrentPhase.SetActive(false);
         foreach (PlayerPetBattleController pet in PetMovers)
         {

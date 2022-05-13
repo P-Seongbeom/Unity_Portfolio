@@ -1682,6 +1682,7 @@ MonoBehaviour:
     GoldReward: 0
     OpenStage: 0
     ClearStage: 0
+    QuestId: 0
 --- !u!1 &1250988669
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,6 +1840,7 @@ MonoBehaviour:
     GoldReward: 0
     OpenStage: 0
     ClearStage: 0
+    QuestId: 0
 --- !u!114 &1504143920 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8344536654980805, guid: b0784119e3777e8409ac4e916cfcd5fc, type: 3}
@@ -1977,7 +1979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FarmSceneName: Farm
-  BattleSceneName: Stage1
+  DeckConfigSceneName: DeckConfig
   SelectedObect: {fileID: 0}
   StagePrefabs:
   - {fileID: 9212400016515923357, guid: e089ab315d04f9e4eb0d6618304d1645, type: 3}

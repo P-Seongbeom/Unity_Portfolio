@@ -14,7 +14,6 @@ namespace BattleScene
         public List<Transform> Targets;
         public Vector3 CurrentTargetPosition;
 
-        //public Transform Enemy;
         [SerializeField]
         private float _attackRange;
 
@@ -51,22 +50,21 @@ namespace BattleScene
         {
             Controller.SetDestination(this.transform.position);
             _inPhase = true;
-            //Controller.Agent.isStopped = true;
         }
 
         public void ChaseTarget()
         {
             if(_inPhase)
             {
-                //Controller.Agent.isStopped = false;
-
                 foreach (Transform target in BattleManager.Instance.CurrentPhase.transform)
                 {
-                    Targets.Add(target.GetComponent<Transform>());
+                    if(false == Targets.Contains(target))
+                    {
+                        Targets.Add(target.GetComponent<Transform>());
+                    }
 
                     if((transform.position - target.position).sqrMagnitude < _distanceTarget)
                     {
-                        //Enemy = target;
                         CurrentTargetPosition = target.position;
                         _distanceTarget = (transform.position - CurrentTargetPosition).sqrMagnitude;
                     }

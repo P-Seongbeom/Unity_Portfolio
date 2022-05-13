@@ -76,14 +76,12 @@ public class InputManager : MonoBehaviour
                         RenewPoint(_hits, i);
                     }
                 }
-                //NPC 상호작용 부분
                 else if(_hits[i].collider.tag == "NPC")
                 {
                     if(_hits[i].collider.gameObject.GetComponent<NPCData>().CanInteract)
                     {
                         FarmManager.Instance.Communicate(_hits[i].collider.gameObject);
                     }
-                    //return;
                 }
             }
 

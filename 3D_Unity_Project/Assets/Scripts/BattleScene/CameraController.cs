@@ -41,12 +41,13 @@ namespace BattleScene
 
         public void MoveFocus()
         {
-            foreach (Transform pet in BattleManager.Instance.InBattlePlayerPets.transform)
+            for(int i = 0; i < BattleManager.Instance.InBattlePlayerPets.Count; ++i)
             {
-                if (pet.position.z > FocusPosition)
+                if (BattleManager.Instance.InBattlePlayerPets[i].transform.position.z > FocusPosition)
                 {
-                    Focus.position = new Vector3(Focus.position.x, Focus.position.y, pet.position.z + 15f);
+                    Focus.position = new Vector3(Focus.position.x, Focus.position.y, BattleManager.Instance.InBattlePlayerPets[i].transform.position.z + 15f);
                 }
+
             }
 
             _vcam.Follow = Focus;
