@@ -15,7 +15,7 @@ namespace BattleScene
         public float FocusPosition = -120f;
         public float MoveSpeed = 10f;
 
-        private CinemachineVirtualCamera _vcam;
+        public CinemachineVirtualCamera _vcam;
 
         private void Awake()
         {

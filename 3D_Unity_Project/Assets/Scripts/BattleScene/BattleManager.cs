@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BattleScene;
 
+
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
@@ -18,6 +19,13 @@ public class BattleManager : MonoBehaviour
 
     public List<GameObject> Phases;
     public GameObject CurrentPhase;
+    public bool inPhase;
+
+    public float OverallCost;
+    [SerializeField]
+    private float _costUpPerSecond;
+
+    public int HpBarIndexCount = 0;
     private int _phaseCount = 0;
 
     private void Awake()
@@ -51,11 +59,13 @@ public class BattleManager : MonoBehaviour
         foreach (GameObject phase in Phases)
         {
             phase.SetActive(false);
-        }
+        } 
     }
 
     void Update()
     {
+        CostUp();
+
         ActivateCheckPoint();
 
         if (Input.GetKeyDown("space"))
@@ -73,6 +83,7 @@ public class BattleManager : MonoBehaviour
                 point.gameObject.SetActive(false);
 
                 Debug.Log($"ÆäÀÌÁî : {_phaseCount + 1}");
+
                 SetCurrentPhase(_phaseCount);
                 ++_phaseCount;
 
@@ -88,17 +99,33 @@ public class BattleManager : MonoBehaviour
 
     public void SetCurrentPhase(int phaseCount)
     {
+        inPhase = true;
+        if (phaseCount > 0)
+        {
+            HpBarIndexCount += CurrentPhase.transform.childCount;
+        }
         CurrentPhase = Phases[phaseCount];
+        BattleUI.Instance.RenderEnemyHpBar(true);
         CurrentPhase.SetActive(true);
     }
 
     public void EndPhase()
     {
+        inPhase = false;
+        //BattleUI.Instance.RenderEnemyHpBar(false);
         CurrentPhase.SetActive(false);
         foreach (PlayerPetBattleController pet in PetMovers)
         {
             pet.ResetTarget();
             StartCoroutine(pet.MovePet(pet.Destination));
+        }
+    }
+
+    void CostUp()
+    {
+        if(OverallCost < 10)
+        {
+            OverallCost += _costUpPerSecond * Time.deltaTime;
         }
     }
 }
