@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 2693651818266012203}
   m_Layer: 0
   m_Name: ECat
-  m_TagString: MyPet
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -82,6 +82,19 @@ namespace BattleScene
             _inPhase = false;
         }
 
+        public void Attack()
+        {
 
+        }
+
+        public void UseSkill()
+        {
+
+        }
+
+        public void Die()
+        {
+
+        }
     }
 }

@@ -47,14 +47,29 @@ namespace BattleScene
                         _distanceTarget = (transform.position - CurrentTargetPosition).sqrMagnitude;
                     }
                 }
-            }
 
-            Controller.SetDestination(CurrentTargetPosition);
+                Controller.SetDestination(CurrentTargetPosition);
+            }
         }
 
         public void ResetTarget()
         { 
+
         }
 
+        public void Attack()
+        {
+
+        }
+
+        public void UseSkill()
+        {
+
+        }
+
+        public void Die()
+        {
+
+        }
     }
 }
