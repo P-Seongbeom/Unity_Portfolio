@@ -7,7 +7,7 @@ public class AgentMover : MonoBehaviour
 {
     private PetController _playerController;
     public float JumpHeight = 5f;
-    public float JumpDuration = 0.5f;
+    public float JumpDuration = 1f;
 
     IEnumerator Start()
     {
@@ -33,7 +33,7 @@ public class AgentMover : MonoBehaviour
             _playerController = GetComponent<PetController>();
         }
 
-        _playerController.Jump();
+        _playerController.JumpMotion();
 
         OffMeshLinkData offMesh = agent.currentOffMeshLinkData;
         Vector3 startPos = agent.transform.position;

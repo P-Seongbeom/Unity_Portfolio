@@ -8,39 +8,39 @@ public class PetController : MonoBehaviour
     public Animator PetAnimator;
     public NavMeshAgent Agent;
 
-    public float JumpPower = 20f;
-    public float GravityRatio = 1f;
-
-    private AgentMover _agentMover;
+    public float JumpPower;
+    public float GravityRatio;
 
     private float _height;
     private float _baseOffset;
     private float _jumpCooldown = 0;
 
-    private int _moveSpeed;
+    public int _moveSpeed;
     private int _jump;
+    private int _attack;
+    private int _skill;
+    private int _die;
 
     private Dictionary<int, string> _states;
 
     Vector3 speed;
 
     void Start()
-    {
-        if(_agentMover == null)
-        {
-            _agentMover = GetComponent<AgentMover>();
-        }
-
+    { 
         _height = 0;
         _baseOffset = Agent.baseOffset;
         
-        _states = new Dictionary<int, string>();
-        _states.Add(Animator.StringToHash("Base.Idle"), "Idle");
-        _states.Add(Animator.StringToHash("Base.Move"), "Move");
-        _states.Add(Animator.StringToHash("Base.Jump"), "Jump");
-
         _moveSpeed = Animator.StringToHash("moveSpeed");
         _jump = Animator.StringToHash("jump");
+        _attack = Animator.StringToHash("attack");
+        _skill = Animator.StringToHash("skill");
+        _die = Animator.StringToHash("die");
+
+        //_states = new Dictionary<int, string>();
+        //_states.Add(Animator.StringToHash("idle"), "Idle");
+        //_states.Add(Animator.StringToHash("move"), "Move");
+        //_states.Add(Animator.StringToHash("jump"), "Jump");
+        //_states.Add(Animator.StringToHash("attack"), "Attack");
     }
 
     void Update()
@@ -64,7 +64,7 @@ public class PetController : MonoBehaviour
 
     private IEnumerator JumpFence(float jumpPower)
     {
-        Jump();
+        JumpMotion();
 
         _jumpCooldown = 0.5f;
         _height = 0.05f;
@@ -81,9 +81,24 @@ public class PetController : MonoBehaviour
 
         _height = 0;
     }
-    public void Jump()
+    public void JumpMotion()
     {
         PetAnimator.SetTrigger(_jump);
+    }
+
+    public void AttackMotion()
+    {
+        PetAnimator.SetTrigger(_attack);
+    }
+
+    public void SkillMotion()
+    {
+        PetAnimator.SetTrigger(_skill);
+    }
+
+    public void DieMotion()
+    {
+        PetAnimator.SetTrigger(_die);
     }
 
     public void SetDestination(Vector3 pos)

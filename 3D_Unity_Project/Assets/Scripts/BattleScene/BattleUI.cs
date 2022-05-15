@@ -79,26 +79,20 @@ public class BattleUI : MonoBehaviour
 
         if(BattleManager.Instance.inPhase)
         {
-            for (int i = BattleManager.Instance.HpBarIndexCount; i < BattleManager.Instance.HpBarIndexCount + BattleManager.Instance.CurrentPhase.transform.childCount; ++i)
+            for(int i = 0; i < EnemyHpBarList.Count; ++i)
             {
-                if(BattleManager.Instance.CurrentPhase.transform.GetChild(i - BattleManager.Instance.HpBarIndexCount).gameObject.activeSelf)
+                if(BattleManager.Instance.InStageEnemy[i].activeSelf)
                 {
+                    EnemyHpBarList[i].SetActive(true);
+
                     EnemyHpBarList[i].transform.position
-                    = MainCam.WorldToScreenPoint(BattleManager.Instance.CurrentPhase.transform.GetChild(i - BattleManager.Instance.HpBarIndexCount).position + new Vector3(0, 4f, 1f));
+                    = MainCam.WorldToScreenPoint(BattleManager.Instance.InStageEnemy[i].transform.position + new Vector3(0, 4f, 1f));
+                }
+                else
+                {
+                    EnemyHpBarList[i].SetActive(false);
                 }
             }
-        }
-
-
-    }
-
-    public void RenderEnemyHpBar(bool alive)
-    {
-        print($"{BattleManager.Instance.HpBarIndexCount} ~~ {BattleManager.Instance.HpBarIndexCount + BattleManager.Instance.CurrentPhase.transform.childCount}");
-
-        for (int i = BattleManager.Instance.HpBarIndexCount; i < BattleManager.Instance.HpBarIndexCount + BattleManager.Instance.CurrentPhase.transform.childCount; ++i)
-        {
-            EnemyHpBarList[i].SetActive(alive);
         }
     }
 }

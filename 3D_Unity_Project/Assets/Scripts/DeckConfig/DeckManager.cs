@@ -39,19 +39,19 @@ public class DeckManager : MonoBehaviour
         if(InvenSlot[slotNum].GetComponent<Image>().color == Color.white && _clickCount < 3)
         {
             ChangeFrameColor(slotNum, Color.grey);
-            print($"{CurrentHavePets[slotNum].GetComponent<PetInfo>().PetName}를 선택!");
+            //print($"{CurrentHavePets[slotNum].GetComponent<PetInfo>().PetName}를 선택!");
             ApplyToSelectSlot(slotNum);
             ++_clickCount;
         }
         else if(_clickCount == 3 || _clickCount > 0)
         {
             ChangeFrameColor(slotNum, Color.white);
-            print($"{CurrentHavePets[slotNum].GetComponent<PetInfo>().PetName}를 해제!");
+            //print($"{CurrentHavePets[slotNum].GetComponent<PetInfo>().PetName}를 해제!");
             CancelApply(slotNum);
             --_clickCount;
         }
 
-        print(_clickCount);
+        //print(_clickCount);
 
     }
 

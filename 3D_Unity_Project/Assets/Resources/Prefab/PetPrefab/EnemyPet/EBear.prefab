@@ -447,7 +447,8 @@ GameObject:
   - component: {fileID: 8376040008191637822}
   - component: {fileID: 8376040008191637816}
   - component: {fileID: 8376040008191637817}
-  - component: {fileID: 8792312920034954336}
+  - component: {fileID: 6412980627540254099}
+  - component: {fileID: -7679713005325189343}
   m_Layer: 0
   m_Name: EBear
   m_TagString: Enemy
@@ -535,6 +536,7 @@ MonoBehaviour:
   Agent: {fileID: 8376040008191637817}
   JumpPower: 14
   GravityRatio: 1
+  _moveSpeed: 0
 --- !u!114 &8376040008191637816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,7 +573,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8792312920034954336
+--- !u!114 &6412980627540254099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -580,13 +582,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 8374925777529486746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 757ae7cbfda4edf4687da9bbfcf4aa07, type: 3}
+  m_Script: {fileID: 11500000, guid: 984a0057bfb92124ca4eadb802805ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
   Targets: []
   CurrentTargetPosition: {x: 0, y: 0, z: 0}
-  _attackRange: 10
+--- !u!114 &-7679713005325189343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374925777529486746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1afca7aff6f4493489ecc56bd6214eaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PetName: EBear
+  PetNumber: 0
+  HP: 150
+  ATK: 30
+  DEF: 20
+  Cooltime: 10
+  AttackRange: 5
+  SkillRange: 1
 --- !u!1 &8374945431626561804
 GameObject:
   m_ObjectHideFlags: 0

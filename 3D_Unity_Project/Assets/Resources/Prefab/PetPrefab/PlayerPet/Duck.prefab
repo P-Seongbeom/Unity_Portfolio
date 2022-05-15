@@ -224,8 +224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PetAnimator: {fileID: 223057722876809888}
   Agent: {fileID: 165664536669235552}
-  JumpPower: 14
-  GravityRatio: 1
+  JumpPower: 11
+  GravityRatio: 0.8
 --- !u!114 &165664536669235553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,14 +271,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 164989151359683388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8c49b2fb30692447a457ab78c6a1318, type: 3}
+  m_Script: {fileID: 11500000, guid: 66a91d5afe854bc44a57a4375b005db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
   Destination: {x: 0, y: 0, z: 0}
   Targets: []
-  CurrentTargetPosition: {x: 0, y: 0, z: 0}
-  _attackRange: 0
+  CurrentTarget: {fileID: 0}
+  BulletPos: {fileID: 0}
+  Bullet: {fileID: 0}
+  AttackEffect: {fileID: 0}
+  SkillEffect: {fileID: 0}
+  _longRange: 0
 --- !u!114 &7143805812624321885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,7 +305,8 @@ MonoBehaviour:
   DEF: -1
   SkillCost: -1
   Cooltime: -1
-  Range: -1
+  AttackRange: -1
+  SkillRange: -1
   Level: -1
 --- !u!1 &165055393131892538
 GameObject:

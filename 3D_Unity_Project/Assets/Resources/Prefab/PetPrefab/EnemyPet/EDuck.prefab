@@ -168,7 +168,8 @@ GameObject:
   - component: {fileID: 5216356481447766702}
   - component: {fileID: 5216356481447766689}
   - component: {fileID: 5216356481447766688}
-  - component: {fileID: 5343722793777567586}
+  - component: {fileID: 35453218171218533}
+  - component: {fileID: -1705539212733179345}
   m_Layer: 0
   m_Name: EDuck
   m_TagString: Enemy
@@ -256,6 +257,7 @@ MonoBehaviour:
   Agent: {fileID: 5216356481447766688}
   JumpPower: 14
   GravityRatio: 1
+  _moveSpeed: 0
 --- !u!114 &5216356481447766689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +294,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5343722793777567586
+--- !u!114 &35453218171218533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -301,13 +303,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 5215906501039409404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 757ae7cbfda4edf4687da9bbfcf4aa07, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b8c633176e5b444dbce0d0dbb5d829f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
   Targets: []
   CurrentTargetPosition: {x: 0, y: 0, z: 0}
-  _attackRange: 20
+--- !u!114 &-1705539212733179345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5215906501039409404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1afca7aff6f4493489ecc56bd6214eaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PetName: EDuck
+  PetNumber: 3
+  HP: 50
+  ATK: 10
+  DEF: 15
+  Cooltime: 5
+  AttackRange: 15
+  SkillRange: 30
 --- !u!1 &5215962837677968634
 GameObject:
   m_ObjectHideFlags: 0

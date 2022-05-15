@@ -16,15 +16,16 @@ public class DataManager : MonoBehaviour
 
     public TextAsset StageDatabase;
     public TextAsset PlayerPetDatabase;
+    public TextAsset EnemyPetDatabase;
     public TextAsset QuestLogDatabase;
     public TextAsset PlayerDatabase;
 
     //public StageInfo StageData;
     public List<StageData> AllStageList;
     public List<StageData> OpenStageList;
-
     public List<PlayerPetData> AllPlayerPet;
     public List<PlayerPetData> HavePlayerPet;
+    public List<EnemyPetData> EnemyPet;
 
     public List<int> QuestLogNumber;
     public PlayerData PlayerData;
@@ -33,6 +34,7 @@ public class DataManager : MonoBehaviour
 
     string _stageFilePath;
     string _playerPetFilePath;
+    string _enemyPetFilePath;
     string _questLogFilePath;
     string _playerFilePath;
 
@@ -67,7 +69,18 @@ public class DataManager : MonoBehaviour
             AllPlayerPet.Add(new PlayerPetData(row[0], int.Parse(row[1]), bool.Parse(row[2]), row[3],
                                                 int.Parse(row[4]), int.Parse(row[5]), int.Parse(row[6]),
                                                 int.Parse(row[7]), float.Parse(row[8]), float.Parse(row[9]),
-                                                int.Parse(row[10])));
+                                                float.Parse(row[10]), int.Parse(row[11])));
+        }
+
+        //적 펫 리스트 불러오기
+        line = EnemyPetDatabase.text.Substring(0, EnemyPetDatabase.text.Length - 1).Split('\n');
+        for (int i = 0; i < line.Length; ++i)
+        {
+            string[] row = line[i].Split('\t');
+
+            EnemyPet.Add(new EnemyPetData(row[0], int.Parse(row[1]), int.Parse(row[2]),
+                                                int.Parse(row[3]), int.Parse(row[4]), float.Parse(row[5]),
+                                                float.Parse(row[6]), float.Parse(row[7])));
         }
 
         //퀘스트 진행상황 불러오기
@@ -84,15 +97,17 @@ public class DataManager : MonoBehaviour
         
         _stageFilePath = Application.persistentDataPath + "/OpenStageList.txt";
         _playerPetFilePath = Application.persistentDataPath + "/HavePlayerPet.txt";
+        _enemyPetFilePath = Application.persistentDataPath + "/EnemyPet.txt";
         _questLogFilePath = Application.persistentDataPath + "/QuestNumber.txt";
         _playerFilePath = Application.persistentDataPath + "/Player.txt";
 
         LoadStageData();
         LoadPlayerPetData();
+        LoadEnemyPetData();
         LoadQuestLog();
         LoadPlayerData();
 
-        print(_playerPetFilePath);
+        print(_stageFilePath);
     }
 
     void Start()
@@ -108,7 +123,7 @@ public class DataManager : MonoBehaviour
             OpenStage(0);
             GetPetCard(6);
             GetPetCard(2);
-            RenewQuestLog(50, 50);
+            RenewQuestLog(50, 0);
             RenewPlayer("릴파넴", 700, 700);
         }
         else if(Input.GetKeyDown(KeyCode.Backspace))
@@ -167,6 +182,7 @@ public class DataManager : MonoBehaviour
         OpenStageList.Add(AllStageList[stageNum]);
         print("스테이지 열음!");
         SaveStageData();
+        LoadStageData();
     }
     #endregion
 
@@ -224,7 +240,41 @@ public class DataManager : MonoBehaviour
         HavePlayerPet.Sort(delegate (PlayerPetData a, PlayerPetData b) { return a.PetNumber.CompareTo(b.PetNumber); });
         print("펫 얻음!");
         SavePlayerPetData();
+        LoadPlayerPetData();
     }
+    #endregion
+
+    #region Enemy
+    public void SaveEnemyPetData()
+    {
+        string jdata = JsonUtility.ToJson(new Serialization<EnemyPetData>(EnemyPet));
+
+        File.WriteAllText(_enemyPetFilePath, jdata);
+        print("적 펫 저장!");
+    }
+
+    public void LoadEnemyPetData()
+    {
+        if (false == File.Exists(_enemyPetFilePath))
+        {
+            ResetEnemyPetData();
+            return;
+        }
+
+        string jdata = File.ReadAllText(_enemyPetFilePath);
+
+        EnemyPet = JsonUtility.FromJson<Serialization<EnemyPetData>>(jdata).target;
+    }
+
+    public void ResetEnemyPetData()
+    {
+        SaveEnemyPetData();
+
+        LoadEnemyPetData();
+
+        print("적 펫 리셋!");
+    }
+
     #endregion
 
     #region QuestLog
@@ -265,6 +315,7 @@ public class DataManager : MonoBehaviour
         QuestLogNumber[0] = questId;
         QuestLogNumber[1] = actionIndex;
         SaveQuestLog();
+        LoadQuestLog();
     }
     #endregion
 

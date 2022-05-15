@@ -16,16 +16,17 @@ public class BattleManager : MonoBehaviour
 
     public List<GameObject> InBattlePlayerPets;
     public List<PlayerPetBattleController> PetMovers;
+    public List<GameObject> InStageEnemy;
 
     public List<GameObject> Phases;
     public GameObject CurrentPhase;
+    public bool inBattle;
     public bool inPhase;
 
     public float OverallCost;
     [SerializeField]
     private float _costUpPerSecond;
 
-    public int HpBarIndexCount = 0;
     private int _phaseCount = 0;
 
     private void Awake()
@@ -51,15 +52,23 @@ public class BattleManager : MonoBehaviour
         {
             CheckPoints.Add(point);
         }
+
         foreach (Transform phase in CurrentStage.transform.GetChild(2).transform)
         {
             Phases.Add(phase.gameObject);
+            for(int i = 0; i < phase.transform.childCount; ++i)
+            {
+                InStageEnemy.Add(phase.transform.GetChild(i).gameObject);
+                //print(phase.transform.GetChild(i).GetComponent<EPetInfo>().PetName);
+            }
         }
 
         foreach (GameObject phase in Phases)
         {
             phase.SetActive(false);
-        } 
+        }
+
+        inBattle = true;
     }
 
     void Update()
@@ -82,15 +91,12 @@ public class BattleManager : MonoBehaviour
             {
                 point.gameObject.SetActive(false);
 
-                Debug.Log($"ÆäÀÌÁî : {_phaseCount + 1}");
-
                 SetCurrentPhase(_phaseCount);
                 ++_phaseCount;
 
                 foreach(PlayerPetBattleController pet in PetMovers)
                 {
                     pet.StopPet();
-                    pet.ChaseTarget();
                 }
             }
         }
@@ -100,20 +106,15 @@ public class BattleManager : MonoBehaviour
     public void SetCurrentPhase(int phaseCount)
     {
         inPhase = true;
-        if (phaseCount > 0)
-        {
-            HpBarIndexCount += CurrentPhase.transform.childCount;
-        }
         CurrentPhase = Phases[phaseCount];
-        BattleUI.Instance.RenderEnemyHpBar(true);
         CurrentPhase.SetActive(true);
     }
 
     public void EndPhase()
     {
         inPhase = false;
-        //BattleUI.Instance.RenderEnemyHpBar(false);
         CurrentPhase.SetActive(false);
+
         foreach (PlayerPetBattleController pet in PetMovers)
         {
             pet.ResetTarget();

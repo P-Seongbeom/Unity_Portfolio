@@ -621,12 +621,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StageDatabase: {fileID: 4900000, guid: c02ceb90c3ad86b4a859fb9aacec950c, type: 3}
   PlayerPetDatabase: {fileID: 4900000, guid: 1a2f4187de2b6a746aea49c2ff8fdc09, type: 3}
+  EnemyPetDatabase: {fileID: 4900000, guid: f9a5a407dc9fc4d45864202f8a7731c5, type: 3}
   QuestLogDatabase: {fileID: 4900000, guid: 01ab5f5a3ec4c7240b2a6163ff8f7327, type: 3}
   PlayerDatabase: {fileID: 4900000, guid: 0ea28970f5db2ad4c91e92449ceb4daf, type: 3}
   AllStageList: []
   OpenStageList: []
   AllPlayerPet: []
   HavePlayerPet: []
+  EnemyPet: []
   QuestLogNumber: 
 --- !u!4 &1074242760
 Transform:
@@ -776,6 +778,13 @@ MonoBehaviour:
   - {fileID: 8580239734322272684, guid: 1ad9a20dcccf25e49a9a636f13f2b8e9, type: 3}
   HavePets: []
   AgentPets: []
+  EnemyPrefabs:
+  - {fileID: 8374925777529486746, guid: 51ec127557289114b8d0e3a906b8d787, type: 3}
+  - {fileID: 4411818865965966654, guid: a09602e1ddb15a44394903edd90b112c, type: 3}
+  - {fileID: 6158980206054559650, guid: 794e5cec38a7edb4a9b3c034ff93517f, type: 3}
+  - {fileID: 5215906501039409404, guid: a0d570ca1fe4d5d429c52bd6cb828e03, type: 3}
+  - {fileID: 3257104023186796109, guid: 26020815b14594549843fc5cf71390c9, type: 3}
+  - {fileID: 1286018112781456311, guid: d6ac8dc3fbe929a4590f06e3ff4e5919, type: 3}
 --- !u!1 &2068865164
 GameObject:
   m_ObjectHideFlags: 0
