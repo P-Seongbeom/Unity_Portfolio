@@ -1,9 +1,0 @@
-Alpaca	0	FALSE	Tanker	200	40	40	4	15	10	1
-Elephant	1	FALSE	Tanker	250	50	30	5	20	5	1
-Dog	2	FALSE	Striker	80	70	15	3	5	10	1
-Cat	3	FALSE	Striker	60	90	10	2	3	10	1
-Bear	4	FALSE	Striker	150	90	20	5	15	10	1
-Lion	5	FALSE	Striker	130	100	20	4	10	10	1
-Rabbit	6	FALSE	Supporter	60	30	10	3	30	20	1
-Duck	7	FALSE	Supporter	50	30	15	4	30	20	1
-Deer	8	FALSE	Supporter	100	40	15	4	30	20	1

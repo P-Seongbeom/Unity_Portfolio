@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> HavePets;
     public List<GameObject> AgentPets;
 
+    public List<GameObject> EnemyPrefabs;
+
     private void Awake()
     {
         if(null == Instance)
@@ -48,7 +50,8 @@ public class GameManager : MonoBehaviour
                         DataManager.Instance.HavePlayerPet[j].DEF,
                         DataManager.Instance.HavePlayerPet[j].SkillCost,
                         DataManager.Instance.HavePlayerPet[j].Cooltime,
-                        DataManager.Instance.HavePlayerPet[j].Range,
+                        DataManager.Instance.HavePlayerPet[j].AttackRange,
+                        DataManager.Instance.HavePlayerPet[j].SkillRange,
                         DataManager.Instance.HavePlayerPet[j].Level);
                 }
             }
@@ -63,6 +66,31 @@ public class GameManager : MonoBehaviour
             if (PetPrefabs[i].GetComponent<PetInfo>().IsGetted)
             {
                 HavePets.Add(PetPrefabs[i]);
+            }
+        }
+
+        for (int i = 0; i < EnemyPrefabs.Count; ++i)
+        {
+            for (int j = 0; j < DataManager.Instance.EnemyPet.Count; ++j)
+            {
+                if (EnemyPrefabs[i].name == DataManager.Instance.EnemyPet[j].PetName)
+                {
+                    EnemyPrefabs[i].GetComponent<EPetInfo>().SetInfo(
+                        DataManager.Instance.EnemyPet[j].PetName,
+                        DataManager.Instance.EnemyPet[j].PetNumber,
+                        DataManager.Instance.EnemyPet[j].HP,
+                        DataManager.Instance.EnemyPet[j].ATK,
+                        DataManager.Instance.EnemyPet[j].DEF,
+                        DataManager.Instance.EnemyPet[j].Cooltime,
+                        DataManager.Instance.EnemyPet[j].AttackRange,
+                        DataManager.Instance.EnemyPet[j].SkillRange);
+                    //print(EnemyPrefabs[i].GetComponent<EPetInfo>().HP);
+                }
+            }
+
+            if (PetPrefabs[i] == null)
+            {
+                PetPrefabs.Remove(PetPrefabs[i]);
             }
         }
     }

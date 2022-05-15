@@ -35,7 +35,7 @@ public class TalkManager : MonoBehaviour
     {
         if(!talkData.ContainsKey(id))
         {
-            if(!talkData.ContainsKey(id - id % 10))
+            if(!talkData.ContainsKey(id - (id % 10)))
             {
                 //퀘스트 없을 때 기본 대사
                 return GetDialogue(id - (id % 100), dialogeIndex);

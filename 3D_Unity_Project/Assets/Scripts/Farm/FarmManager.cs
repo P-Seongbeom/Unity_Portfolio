@@ -80,7 +80,8 @@ public class FarmManager : MonoBehaviour
     void Talk(int id)
     {
         int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex(id);
-
+        print(id);
+        print(id + questTalkIndex);
         string talkData = TalkManager.Instance.GetDialogue(id + questTalkIndex, talkIndex);
         if (talkData == null)
         {

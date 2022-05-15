@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5865974451783120613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8099938378845940777}
+  m_Layer: 0
+  m_Name: Bullet Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8099938378845940777
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5865974451783120613}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.125, z: 0.1408}
+  m_LocalScale: {x: 0.125, y: 0.125, z: 0.125}
+  m_Children: []
+  m_Father: {fileID: 8575294315719921036}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8580237884453885310
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,6 +97,7 @@ Transform:
   m_Children:
   - {fileID: 8583855408446007090}
   - {fileID: 8583671556197762134}
+  - {fileID: 8099938378845940777}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -132,8 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PetAnimator: {fileID: 8521837133100200280}
   Agent: {fileID: 8579526557043587171}
-  JumpPower: 14
-  GravityRatio: 1
+  JumpPower: 11
+  GravityRatio: 0.8
 --- !u!114 &8579526557043587181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,14 +210,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 8580239734322272684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8c49b2fb30692447a457ab78c6a1318, type: 3}
+  m_Script: {fileID: 11500000, guid: 02b118139b42ece4fbb07238cd46ecdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
   Destination: {x: 0, y: 0, z: 0}
   Targets: []
-  CurrentTargetPosition: {x: 0, y: 0, z: 0}
-  _attackRange: 0
+  CurrentTarget: {fileID: 0}
+  BulletPos: {fileID: 8099938378845940777}
+  Bullet: {fileID: 4190322694393582493, guid: 8b87ec1ca01bd5a48932b47ebcb03042, type: 3}
+  AttackEffect: {fileID: 0}
+  SkillEffect: {fileID: 0}
+  _longRange: 0
 --- !u!114 &-1758184585307072006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +244,8 @@ MonoBehaviour:
   DEF: 10
   SkillCost: 3
   Cooltime: 30
-  Range: 20
+  AttackRange: 15
+  SkillRange: 30
   Level: 1
 --- !u!1 &8580287556031953690
 GameObject:
