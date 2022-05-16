@@ -72,7 +72,7 @@ public class QuestManager : MonoBehaviour
 
         if(QuestActionIndex == QuestList[QuestId].NpcId.Length)
         {
-            NextQuest();
+            QuestClear();
             DataManager.Instance.RenewQuestLog(QuestId, QuestActionIndex);
         }
 
@@ -90,7 +90,13 @@ public class QuestManager : MonoBehaviour
         QuestActionIndex = 0;
     }
 
-    
+    //퀘스트 클리어
+    public void QuestClear()
+    {
+        NextQuest();
+    }
+
+
     //임시
     void ControlObject()
     {

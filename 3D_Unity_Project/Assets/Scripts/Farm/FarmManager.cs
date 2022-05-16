@@ -24,6 +24,9 @@ public class FarmManager : MonoBehaviour
 
     public string StageSelectScene;
 
+    public Text _goldText;
+    public Text _playerName;
+
     void Awake()
     {
         if (Instance == null)
@@ -39,6 +42,9 @@ public class FarmManager : MonoBehaviour
         {
             Spawn(pet);
         }
+
+        _playerName.text = DataManager.Instance.PlayerData.PlayerName;
+        _goldText.text = DataManager.Instance.PlayerData.Gold.ToString();
     }
     void Start()
     {
@@ -98,11 +104,6 @@ public class FarmManager : MonoBehaviour
         ++talkIndex;
     }
 
-    public void EnterStageSelect()
-    {
-        SceneManager.LoadScene(StageSelectScene);
-    }
-
     public void OnClickQuestButton()
     {
         string title = 
@@ -117,6 +118,16 @@ public class FarmManager : MonoBehaviour
         FarmUIPopup.Instance.OpenPopup(
             title+"\n", content, $"{reward}°ñµå",
             () => { FarmUIPopup.Instance.ClosePopup(); });
+    }
+
+    public void TextUpdate()
+    {
+        _goldText.text = DataManager.Instance.PlayerData.Gold.ToString();
+    }
+
+    public void EnterStageSelect()
+    {
+        SceneManager.LoadScene(StageSelectScene);
     }
 }
 

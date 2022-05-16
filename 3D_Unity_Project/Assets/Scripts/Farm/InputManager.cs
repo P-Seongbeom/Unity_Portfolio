@@ -6,9 +6,10 @@ using UnityEngine.EventSystems;
 public class InputManager : MonoBehaviour
 {
     private Camera _camera;
-    public Transform Destination;
+    public GameObject Destination;
 
     public List<PetController> Controllers;
+    public ParticleSystem particleObject;
 
     private RaycastHit[] _hits;
     private Ray _ray;
@@ -25,18 +26,15 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
-        if(Destination == null)
-        {
-            Debug.LogWarning("Destination not set.");
-            GameObject obj = new GameObject("Destination");
-            Destination = obj.transform;
-        }
         if(Controllers.Count == 0)
         {
             Debug.LogWarning("PlayerPetController is empty.");
         }
 
-        this.AddAllController();
+        Destination.transform.position = Vector3.zero;
+        Destination.SetActive(false);
+
+        AddAllController();
     }
 
     void Update()
@@ -81,12 +79,14 @@ public class InputManager : MonoBehaviour
                     if(_hits[i].collider.gameObject.GetComponent<NPCData>().CanInteract)
                     {
                         FarmManager.Instance.Communicate(_hits[i].collider.gameObject);
+                        return;
                     }
                 }
             }
 
-            
-            Destination.position = _destination;
+            Destination.SetActive(true);
+            Destination.transform.position = _destination;
+            particleObject.Play();
 
             foreach(PetController controller in Controllers)
             {
@@ -112,12 +112,11 @@ public class InputManager : MonoBehaviour
 
     public void AddController(PetController control)
     {
-        control.SetDestination(Destination.position);
+        control.SetDestination(Destination.transform.position);
         if(false == Controllers.Contains(control))
         {
             Controllers.Add(control);
         }
     }
-
 
 }

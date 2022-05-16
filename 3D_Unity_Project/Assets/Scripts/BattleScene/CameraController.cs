@@ -12,7 +12,6 @@ namespace BattleScene
         public List<Transform> CheckPoitns;
         public Transform Focus;
         
-        public float FocusPosition = -120f;
         public float MoveSpeed = 10f;
 
         public CinemachineVirtualCamera _vcam;
@@ -43,7 +42,7 @@ namespace BattleScene
         {
             for(int i = 0; i < BattleManager.Instance.InBattlePlayerPets.Count; ++i)
             {
-                if (BattleManager.Instance.InBattlePlayerPets[i].transform.position.z > FocusPosition)
+                if (BattleManager.Instance.InBattlePlayerPets[i].transform.position.z > Focus.position.z - 15f)
                 {
                     Focus.position = new Vector3(Focus.position.x, Focus.position.y, BattleManager.Instance.InBattlePlayerPets[i].transform.position.z + 15f);
                 }

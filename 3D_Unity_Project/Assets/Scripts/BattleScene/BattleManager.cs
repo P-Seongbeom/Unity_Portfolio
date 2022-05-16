@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using BattleScene;
-
 
 public class BattleManager : MonoBehaviour
 {
@@ -22,12 +22,17 @@ public class BattleManager : MonoBehaviour
     public GameObject CurrentPhase;
     public bool inBattle;
     public bool inPhase;
+    public bool isClear;
 
     public float OverallCost;
+
+    public string FarmSceneName;
     [SerializeField]
     private float _costUpPerSecond;
 
     private int _phaseCount = 0;
+    private int _StageFailCount;
+    private int _StageClearCount;
 
     private void Awake()
     {
@@ -59,7 +64,6 @@ public class BattleManager : MonoBehaviour
             for(int i = 0; i < phase.transform.childCount; ++i)
             {
                 InStageEnemy.Add(phase.transform.GetChild(i).gameObject);
-                //print(phase.transform.GetChild(i).GetComponent<EPetInfo>().PetName);
             }
         }
 
@@ -81,6 +85,8 @@ public class BattleManager : MonoBehaviour
         {
             EndPhase();
         }
+
+        CheckBattle();
     }
 
     public void ActivateCheckPoint()
@@ -100,6 +106,85 @@ public class BattleManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void CheckBattle()
+    {
+        if(CurrentPhase == null)
+        {
+            return;
+        }
+        int failcount = 0;
+        int clearcount = 0;
+
+        //패배조건
+        foreach (GameObject pet in InBattlePlayerPets)
+        {
+
+            if (false == pet.activeSelf)
+            {
+                ++failcount;
+            }
+            _StageFailCount = failcount;
+        }
+
+        if(_StageFailCount == InBattlePlayerPets.Count)
+        {
+            StartCoroutine(StageFail());
+            isClear = false;
+        }
+
+        //승리조건
+        if (CurrentPhase == Phases[Phases.Count - 1])
+        {
+            for (int i = 0; i < CurrentPhase.transform.childCount; ++i)
+            {
+                if (false == CurrentPhase.transform.GetChild(i).gameObject.activeSelf)
+                {
+                    ++clearcount;
+                }
+                _StageClearCount = clearcount;
+            }
+        }
+
+        if (_StageClearCount == CurrentPhase.transform.childCount)
+        {
+            StartCoroutine(StageClear());
+            isClear = true;
+        }
+
+    }
+
+    public IEnumerator StageFail()
+    {
+        foreach(GameObject hpbar in BattleUI.Instance.EnemyHpBarList)
+        {
+            hpbar.SetActive(false);
+        }
+
+        yield return new WaitForSeconds(2);
+
+        BattleUI.Instance.StageOverUI.SetActive(true);
+
+        yield return new WaitForSeconds(2);
+
+        BattleUI.Instance.FailPhrase();
+    }
+
+    public IEnumerator StageClear()
+    {
+        foreach (PlayerPetBattleController pet in PetMovers)
+        {
+            pet.StopPet();
+        }
+
+        yield return new WaitForSeconds(2);
+
+        BattleUI.Instance.StageOverUI.SetActive(true);
+
+        yield return new WaitForSeconds(2);
+
+        BattleUI.Instance.ClearPhrase();
     }
 
 
@@ -128,5 +213,10 @@ public class BattleManager : MonoBehaviour
         {
             OverallCost += _costUpPerSecond * Time.deltaTime;
         }
+    }
+
+    public void BackToFarm()
+    {
+        SceneManager.LoadScene(FarmSceneName);
     }
 }
