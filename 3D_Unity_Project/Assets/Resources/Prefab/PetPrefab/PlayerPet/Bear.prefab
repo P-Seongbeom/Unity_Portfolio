@@ -392,7 +392,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026016538520102927}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.17, z: 0.25}
@@ -413,6 +413,7 @@ MonoBehaviour:
   Agent: {fileID: 1024918586323004588}
   JumpPower: 11
   GravityRatio: 0.8
+  _moveSpeed: 0
 --- !u!114 &1024918586323004589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,6 +470,7 @@ MonoBehaviour:
   Bullet: {fileID: 0}
   AttackEffect: {fileID: 0}
   SkillEffect: {fileID: 0}
+  isAlive: 1
   _longRange: 0
 --- !u!114 &-2361160888701510491
 MonoBehaviour:

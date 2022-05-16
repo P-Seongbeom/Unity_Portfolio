@@ -45,6 +45,15 @@ public class PetController : MonoBehaviour
 
     void Update()
     {
+        if (gameObject.tag == "MyPet" && gameObject.GetComponent<PlayerPetBattleController>()._usingSkill)
+        {
+            return;
+        }
+        else if (gameObject.tag == "Enemy" && gameObject.GetComponent<EnemyBattleController>()._usingSkill)
+        {
+            return;
+        }
+
         speed = Agent.velocity;
 
         PetAnimator.SetFloat(_moveSpeed, speed.sqrMagnitude);
@@ -94,6 +103,8 @@ public class PetController : MonoBehaviour
     public void SkillMotion()
     {
         PetAnimator.SetTrigger(_skill);
+        print("스킬모션은?");
+        StartCoroutine(WaitAnimationExit(PetAnimator));
     }
 
     public void DieMotion()
@@ -104,5 +115,24 @@ public class PetController : MonoBehaviour
     public void SetDestination(Vector3 pos)
     {
         Agent.SetDestination(pos);
+    }
+
+    public IEnumerator WaitAnimationExit(Animator animator)
+    {
+        while(animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+        {
+            print("돌고있나요");
+            yield return new WaitForEndOfFrame();
+        }
+        print("빠져나옴");
+        if(gameObject.tag == "MyPet")
+        {
+            gameObject.GetComponent<PlayerPetBattleController>()._usingSkill = false;
+            print("상태해제");
+        }
+        else if(gameObject.tag == "Enemy")
+        {
+            gameObject.GetComponent<EnemyBattleController>()._usingSkill = false;
+        }
     }
 }

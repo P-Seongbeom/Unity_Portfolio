@@ -84,7 +84,6 @@ public class GameManager : MonoBehaviour
                         DataManager.Instance.EnemyPet[j].Cooltime,
                         DataManager.Instance.EnemyPet[j].AttackRange,
                         DataManager.Instance.EnemyPet[j].SkillRange);
-                    //print(EnemyPrefabs[i].GetComponent<EPetInfo>().HP);
                 }
             }
 

@@ -10,26 +10,28 @@ public abstract class EnemyBattleController : MonoBehaviour, ITarget, IFight
 
     public GameObject CurrentTarget;
 
-        public Transform BulletPos;
+    public Transform BulletPos;
     public GameObject Bullet;
 
-    protected int _hp;
-    protected int _atk;
-    protected int _def;
-    protected float _attackRate = 1f;
-    protected float _attackDelay;
-    protected float _attackRange;
-    protected bool _attackReady;
-    protected float _skillCooltime;
-    protected float _skillDelay;
-    protected float _skillRange;
-    protected bool _skillReady;
-    protected bool _usingSkill;
+    public int _hp;
+    public int _atk;
+    public int _def;
+    public float _attackRate = 1f;
+    public float _attackDelay;
+    public float _attackRange;
+    public bool _attackReady;
+    public float _skillCooltime;
+    public float _skillDelay;
+    public float _skillRange;
+    public bool _skillReady;
+    public bool _usingSkill;
 
     protected float _distanceTarget;
 
     public bool isAlive = true;
     public bool _longRange;
+
+    public bool provocated = false;
 
     public Vector3 PlayerStartPoint;
 
@@ -88,7 +90,7 @@ public abstract class EnemyBattleController : MonoBehaviour, ITarget, IFight
 
     public IEnumerator ChaseTarget()
     {
-        if(isAlive)
+        if(isAlive && false == provocated)
         {
             for(int i = 0; i < BattleManager.Instance.InBattlePlayerPets.Count; ++i )
             {
@@ -113,10 +115,28 @@ public abstract class EnemyBattleController : MonoBehaviour, ITarget, IFight
             transform.forward = (CurrentTarget.transform.position - transform.position).normalized;
             Controller.SetDestination(CurrentTarget.transform.position);
 
-        }
-            yield return new WaitForSeconds(0.5f);
+            if(false == CurrentTarget.GetComponent<PlayerPetBattleController>().isAlive)
+            {
+                StopPet();
+            }
 
-            StartCoroutine(ChaseTarget());
+        }
+        else if(isAlive && provocated)
+        {
+            if(CurrentTarget.GetComponent<PlayerPetBattleController>().isAlive)
+            {
+                Controller.SetDestination(CurrentTarget.transform.position);
+                _distanceTarget = (transform.position - CurrentTarget.transform.position).sqrMagnitude;
+            }
+            else
+            {
+                provocated = false;
+            }
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        StartCoroutine(ChaseTarget());
     }
 
     public void ResetTarget()
@@ -148,9 +168,13 @@ public abstract class EnemyBattleController : MonoBehaviour, ITarget, IFight
     public void RangeAttack()
     {
         GameObject bullet = Instantiate(Bullet, BulletPos.position, BulletPos.rotation);
+
+        float height = bullet.GetComponent<Bullet>().Height;
         Vector3 vec = CurrentTarget.transform.position - bullet.transform.position;
-        vec.y = Vector3.Lerp(new Vector3(CurrentTarget.transform.position.x, CurrentTarget.transform.position.y + 5f, CurrentTarget.transform.position.z),
+        vec.y = Vector3.Lerp(new Vector3(CurrentTarget.transform.position.x, CurrentTarget.transform.position.y + height, CurrentTarget.transform.position.z),
                              bullet.transform.position, 0.5f).y;
+
+        bullet.GetComponent<Bullet>().myTag = gameObject.tag;
 
         Rigidbody bulletRigid = bullet.GetComponent<Rigidbody>();
         bulletRigid.AddForce(vec, ForceMode.Impulse);
@@ -159,14 +183,23 @@ public abstract class EnemyBattleController : MonoBehaviour, ITarget, IFight
 
     public void Damaged(int damage)
     {
-        //_hp -= (damage - _def);
+        int totalDamgae = damage - _def;
+
+        if(totalDamgae < 1)
+        {
+            _hp -= 1;
+        }
+        else
+        {
+            _hp -= totalDamgae;
+        }
         //print($"Àû : {_hp}");
 
-        //if (_hp < 0)
-        //{
-        //    Die();
-        //    isAlive = false;
-        //}
+        if (_hp < 1)
+        {
+            Die();
+            isAlive = false;
+        }
     }
 
     public void Die()
@@ -174,6 +207,7 @@ public abstract class EnemyBattleController : MonoBehaviour, ITarget, IFight
         StartCoroutine(Disappear());
         Collider collider = GetComponent<Collider>();
         collider.enabled = false;
+        Controller.Agent.enabled = false;
         Controller.DieMotion();
     }
 
@@ -185,4 +219,12 @@ public abstract class EnemyBattleController : MonoBehaviour, ITarget, IFight
     }
 
     public abstract void UseSkill();
+
+    public void StopPet()
+    {
+        if (isAlive)
+        {
+            Controller.SetDestination(this.transform.position);
+        }
+    }
 }

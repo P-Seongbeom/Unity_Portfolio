@@ -17,19 +17,19 @@ public abstract class PlayerPetBattleController : MonoBehaviour, ITarget, IFight
     public TrailRenderer AttackEffect;
     public TrailRenderer SkillEffect;
 
-    protected int _hp;
-    protected int _atk;
-    protected int _def;
-    protected float _attackRate = 1f;
-    protected float _attackDelay;
-    protected float _attackRange;
-    protected bool _attackReady;
-    protected float _skillCooltime;
-    protected float _skillDelay;
-    protected float _skillRange;
-    protected bool _skillReady;
-    protected bool _usingSkill;
-    protected int _skillCost;
+    public int _hp;
+    public int _atk;
+    public int _def;
+    public float _attackRate = 1f;
+    public float _attackDelay;
+    public float _attackRange;
+    public bool _attackReady;
+    public float _skillCooltime;
+    public float _skillDelay;
+    public float _skillRange;
+    public bool _skillReady;
+    public bool _usingSkill;
+    public int _skillCost;
 
     protected float _distanceTarget;
     protected bool _inPhase = false;
@@ -95,8 +95,11 @@ public abstract class PlayerPetBattleController : MonoBehaviour, ITarget, IFight
 
     public void StopPet()
     {
-        Controller.SetDestination(this.transform.position);
-        _inPhase = true;
+        if(isAlive)
+        {
+            Controller.SetDestination(this.transform.position);
+            _inPhase = true;
+        }
     }
 
     public IEnumerator ChaseTarget()
@@ -173,10 +176,13 @@ public abstract class PlayerPetBattleController : MonoBehaviour, ITarget, IFight
     public void RangeAttack()
     {
         GameObject bullet = Instantiate(Bullet, BulletPos.position, BulletPos.rotation);
-        Vector3 vec = CurrentTarget.transform.position - bullet.transform.position;
+
         float height = bullet.GetComponent<Bullet>().Height;
+        Vector3 vec = CurrentTarget.transform.position - bullet.transform.position;
         vec.y = Vector3.Lerp(new Vector3(CurrentTarget.transform.position.x, CurrentTarget.transform.position.y + height, CurrentTarget.transform.position.z),
                              bullet.transform.position, 0.5f).y;
+
+        bullet.GetComponent<Bullet>().myTag = gameObject.tag;
 
         Rigidbody bulletRigid = bullet.GetComponent<Rigidbody>();
         bulletRigid.AddForce(vec, ForceMode.Impulse);
@@ -184,19 +190,31 @@ public abstract class PlayerPetBattleController : MonoBehaviour, ITarget, IFight
 
     public void Damaged(int damage)
     {
-        //_hp -= (damage - _def);
+        int totalDamgae = (int)(damage - _def * 0.5f);
+
+        if (totalDamgae < 1)
+        {
+            _hp -= 1;
+        }
+        else
+        {
+            _hp -= totalDamgae;
+        }
         //print($"플레이어 : {_hp}");
 
-        //if (_hp < 0)
-        //{
-        //    isAlive = false;
-        //    Die();
-        //}
+        if (_hp < 1)
+        {
+            isAlive = false;
+            Die();
+        }
     }
 
     public void Die()
     {
         StartCoroutine(Disappear());
+        Collider collider = GetComponent<Collider>();
+        collider.enabled = false;
+        Controller.Agent.enabled = false;
         Controller.DieMotion();
     }
 

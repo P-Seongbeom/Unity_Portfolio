@@ -588,6 +588,7 @@ Transform:
   m_Children:
   - {fileID: 6157378192443754340}
   - {fileID: 6155570240107967830}
+  - {fileID: 8355258665386896858}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -634,7 +635,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6158980206054559650}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.15, z: 0.15}
@@ -706,7 +707,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
   Targets: []
-  CurrentTargetPosition: {x: 0, y: 0, z: 0}
+  CurrentTarget: {fileID: 0}
+  BulletPos: {fileID: 8355258665386896858}
+  Bullet: {fileID: 3755337165075719207, guid: 013bcf56e8013d94fb25c5b19545a11b, type: 3}
+  isAlive: 1
+  _longRange: 0
+  PlayerStartPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &-1562941078224638799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1345,4 +1351,34 @@ Transform:
   - {fileID: 6155701071392534506}
   m_Father: {fileID: 6155570240107967830}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8046239202175988348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8355258665386896858}
+  m_Layer: 0
+  m_Name: Bullet Deer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8355258665386896858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8046239202175988348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1268, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6157259987238195968}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

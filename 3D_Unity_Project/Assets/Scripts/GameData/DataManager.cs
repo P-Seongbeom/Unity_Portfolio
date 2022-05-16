@@ -14,13 +14,12 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
 
-    public TextAsset StageDatabase;
-    public TextAsset PlayerPetDatabase;
-    public TextAsset EnemyPetDatabase;
-    public TextAsset QuestLogDatabase;
-    public TextAsset PlayerDatabase;
+    private TextAsset StageDatabase;
+    private TextAsset PlayerPetDatabase;
+    private TextAsset EnemyPetDatabase;
+    private TextAsset QuestLogDatabase;
+    private TextAsset PlayerDatabase;
 
-    //public StageInfo StageData;
     public List<StageData> AllStageList;
     public List<StageData> OpenStageList;
     public List<PlayerPetData> AllPlayerPet;
@@ -29,8 +28,6 @@ public class DataManager : MonoBehaviour
 
     public List<int> QuestLogNumber;
     public PlayerData PlayerData;
-
-    //public List<Stage> StageData;
 
     string _stageFilePath;
     string _playerPetFilePath;
@@ -49,6 +46,12 @@ public class DataManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(this.gameObject);
+
+        StageDatabase = Resources.Load<TextAsset>("Database/Stage_Database");
+        PlayerPetDatabase = Resources.Load<TextAsset>("Database/PlayerPet_Database");
+        EnemyPetDatabase = Resources.Load<TextAsset>("Database/EnemyPet_Database");
+        QuestLogDatabase = Resources.Load<TextAsset>("Database/Quest_Database");
+        PlayerDatabase = Resources.Load<TextAsset>("Database/Player_Database");
 
         //전체 스테이지 리스트 불러오기
         string[] line = StageDatabase.text.Substring(0, StageDatabase.text.Length - 1).Split('\n');
@@ -303,10 +306,6 @@ public class DataManager : MonoBehaviour
     {
         RenewQuestLog(0, 0);
 
-        SaveQuestLog();
-
-        LoadQuestLog();
-
         print("퀘스트 리셋!");
     }
 
@@ -316,6 +315,8 @@ public class DataManager : MonoBehaviour
         QuestLogNumber[1] = actionIndex;
         SaveQuestLog();
         LoadQuestLog();
+        QuestManager.Instance.QuestId = QuestLogNumber[0];
+        QuestManager.Instance.QuestActionIndex = QuestLogNumber[1];
     }
     #endregion
 
@@ -347,10 +348,6 @@ public class DataManager : MonoBehaviour
 
         RenewPlayer(line[0], int.Parse(line[1]), int.Parse(line[2]));
 
-        SavePlayerData();
-
-        LoadPlayerData();
-
         print("플레이어 리셋!");
     }
 
@@ -361,6 +358,10 @@ public class DataManager : MonoBehaviour
         PlayerData.Gold = gold;
 
         SavePlayerData();
+        LoadPlayerData();
+
+        FarmManager.Instance._playerName.text = name;
+        FarmManager.Instance._goldText.text = gold.ToString();
     }
 
     #endregion
