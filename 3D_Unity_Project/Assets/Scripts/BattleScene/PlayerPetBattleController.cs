@@ -3,40 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class PlayerPetBattleController : MonoBehaviour, ITarget, IFight
+public abstract class PlayerPetBattleController : BattleController, ITarget, IFight
 {
-    public PetController Controller;
-
     public Vector3 Destination;
 
-    public List<GameObject> Targets;
-    public GameObject CurrentTarget;
-    public Transform BulletPos;
-    public GameObject Bullet;
+    public GameObject SkillRange;
 
-    public TrailRenderer AttackEffect;
-    public TrailRenderer SkillEffect;
+    public TrailRenderer RushEffect;
+    public ParticleSystem SkillUseEffect;
 
-    public int _hp;
-    public int _atk;
-    public int _def;
-    public float _attackRate = 1f;
-    public float _attackDelay;
-    public float _attackRange;
-    public bool _attackReady;
-    public float _skillCooltime;
-    public float _skillDelay;
-    public float _skillRange;
-    public bool _skillReady;
-    public bool _usingSkill;
-    public int _skillCost;
-
-    protected float _distanceTarget;
     protected bool _inPhase = false;
-    public bool isAlive = true;
-    public bool _longRange;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Controller = GetComponent<PetController>();
         _atk = GetComponent<PetInfo>().ATK;
@@ -46,9 +24,11 @@ public abstract class PlayerPetBattleController : MonoBehaviour, ITarget, IFight
         _attackRange = GetComponent<PetInfo>().AttackRange;
         _skillCooltime = GetComponent<PetInfo>().Cooltime;
         _skillRange = GetComponent<PetInfo>().SkillRange;
+        SkillRange = Instantiate(SkillRange);
+        SkillRange.SetActive(false);
     }
 
-    private void Start()
+    protected override void Start()
     {
         if(BattleManager.Instance == null)
         {
@@ -62,29 +42,7 @@ public abstract class PlayerPetBattleController : MonoBehaviour, ITarget, IFight
         
         StartCoroutine(MovePet(Destination));
 
-        if (_attackRange < 10)
-        {
-            _longRange = false;
-        }
-        else
-        {
-            _longRange = true;
-        }
-
-        StartCoroutine(ChaseTarget());
-    }
-
-    private void Update()
-    {
-        if(BattleManager.Instance == null)
-        {
-            return;
-        }
-
-        if(isAlive)
-        {
-            Attack();
-        }
+        base.Start();
     }
 
     public IEnumerator MovePet(Vector3 destination)
@@ -102,14 +60,14 @@ public abstract class PlayerPetBattleController : MonoBehaviour, ITarget, IFight
         }
     }
 
-    public IEnumerator ChaseTarget()
+    public override IEnumerator ChaseTarget()
     {
         if (_inPhase && isAlive)
         {
             foreach (Transform target in BattleManager.Instance.CurrentPhase.transform)
             {
                 if(false == Targets.Contains(target.gameObject)
-                    && target.gameObject.GetComponent<EnemyBattleController>().isAlive)
+                    && target.gameObject.GetComponent<BattleController>().isAlive)
                 {
                     Targets.Add(target.gameObject);
                 }
@@ -120,7 +78,7 @@ public abstract class PlayerPetBattleController : MonoBehaviour, ITarget, IFight
             foreach (GameObject target in Targets)
             {
                 if((transform.position - target.transform.position).sqrMagnitude < _distanceTarget
-                    && target.gameObject.GetComponent<EnemyBattleController>().isAlive)
+                    && target.gameObject.GetComponent<BattleController>().isAlive)
                 {
                     CurrentTarget = target;
                     _distanceTarget = (transform.position - CurrentTarget.transform.position).sqrMagnitude;
@@ -129,7 +87,7 @@ public abstract class PlayerPetBattleController : MonoBehaviour, ITarget, IFight
             transform.forward = (CurrentTarget.transform.position - transform.position).normalized;
             Controller.SetDestination(CurrentTarget.transform.position);
 
-            if(false == CurrentTarget.GetComponent<EnemyBattleController>().isAlive)
+            if(false == CurrentTarget.GetComponent<BattleController>().isAlive)
             {
                 ResetTarget();
             }
@@ -140,7 +98,7 @@ public abstract class PlayerPetBattleController : MonoBehaviour, ITarget, IFight
         StartCoroutine(ChaseTarget());
     }
 
-    public void ResetTarget()
+    public override void ResetTarget()
     {
         Targets.Clear();
         Controller.SetDestination(Destination);
@@ -148,7 +106,7 @@ public abstract class PlayerPetBattleController : MonoBehaviour, ITarget, IFight
         _inPhase = false;
     }
 
-    public void Attack() 
+    public override void Attack() 
     {
         if(false == _inPhase)
         {
@@ -168,63 +126,9 @@ public abstract class PlayerPetBattleController : MonoBehaviour, ITarget, IFight
             }
             else
             {
-                CurrentTarget.GetComponent<EnemyBattleController>().Damaged(_atk);
+                StartCoroutine(MeleeAttack());
             }
         }
     }
-
-    public void RangeAttack()
-    {
-        GameObject bullet = Instantiate(Bullet, BulletPos.position, BulletPos.rotation);
-
-        float height = bullet.GetComponent<Bullet>().Height;
-        Vector3 vec = CurrentTarget.transform.position - bullet.transform.position;
-        vec.y = Vector3.Lerp(new Vector3(CurrentTarget.transform.position.x, CurrentTarget.transform.position.y + height, CurrentTarget.transform.position.z),
-                             bullet.transform.position, 0.5f).y;
-
-        bullet.GetComponent<Bullet>().myTag = gameObject.tag;
-
-        Rigidbody bulletRigid = bullet.GetComponent<Rigidbody>();
-        bulletRigid.AddForce(vec, ForceMode.Impulse);
-    }
-
-    public void Damaged(int damage)
-    {
-        int totalDamgae = (int)(damage - _def * 0.5f);
-
-        if (totalDamgae < 1)
-        {
-            _hp -= 1;
-        }
-        else
-        {
-            _hp -= totalDamgae;
-        }
-        //print($"플레이어 : {_hp}");
-
-        if (_hp < 1)
-        {
-            isAlive = false;
-            Die();
-        }
-    }
-
-    public void Die()
-    {
-        StartCoroutine(Disappear());
-        Collider collider = GetComponent<Collider>();
-        collider.enabled = false;
-        Controller.Agent.enabled = false;
-        Controller.DieMotion();
-    }
-
-    public IEnumerator Disappear()
-    {
-        yield return new WaitForSeconds(3f);
-
-        gameObject.SetActive(false);
-    }
-
-    public abstract void UseSkill();
 }
 

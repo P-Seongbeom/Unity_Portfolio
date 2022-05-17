@@ -10,11 +10,11 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground")
-        {
-            //    print("¶¥¸ÂÃã");
-            Destroy(gameObject);
-        }
+        //if (collision.gameObject.tag == "Ground")
+        //{
+        //    //    print("¶¥¸ÂÃã");
+        //    Destroy(gameObject);
+        //}
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
             }
             else if (other.gameObject.tag == "Ground")
             {
-                print("¶¥¸ÂÃã");
+                //print("¶¥¸ÂÃã");
                 Destroy(gameObject);
             }
         }

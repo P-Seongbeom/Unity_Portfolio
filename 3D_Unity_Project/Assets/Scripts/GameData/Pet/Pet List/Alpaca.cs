@@ -4,10 +4,43 @@ using UnityEngine;
 
 public class Alpaca : PlayerPetBattleController
 {
+    protected override void Update()
+    {
+        if(BattleManager.Instance == null)
+        {
+            return;
+        }
+        base.Update();
+        UseSkill();
+    }
+
     public override void UseSkill()
     {
-        _usingSkill = true;
-        StartCoroutine(Provoke());
+        if(false == BattleUI.Instance._waitSkillUse)
+        {
+            return;
+        }
+        if(Input.GetMouseButton(0))
+        {
+            Vector3 rangePos = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
+            SkillRange.transform.position = rangePos;
+            SkillRange.SetActive(true);
+            //print(rangePos);
+            //print(SkillRange.activeSelf);
+        }
+
+        if(Input.GetMouseButtonUp(0))
+        {
+            SkillRange.SetActive(false);
+
+            _usingSkill = true;
+
+            Time.timeScale = 1f;
+
+            BattleUI.Instance.CostUpdate(_skillCost, _skillCooltime);
+
+            StartCoroutine(Provoke());
+        }
     }
 
     IEnumerator Provoke()

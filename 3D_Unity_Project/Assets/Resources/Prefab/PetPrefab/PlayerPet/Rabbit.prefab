@@ -215,15 +215,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
-  Destination: {x: 0, y: 0, z: 0}
   Targets: []
   CurrentTarget: {fileID: 0}
   BulletPos: {fileID: 8099938378845940777}
   Bullet: {fileID: 4190322694393582493, guid: 8b87ec1ca01bd5a48932b47ebcb03042, type: 3}
-  AttackEffect: {fileID: 0}
-  SkillEffect: {fileID: 0}
+  _hp: 0
+  _atk: 0
+  _def: 0
+  _attackRate: 1
+  _attackDelay: 0
+  _attackRange: 0
+  _attackReady: 0
+  _skillCooltime: 0
+  _skillDelay: 0
+  _skillRange: 0
+  _skillReady: 0
+  _usingSkill: 0
+  _skillCost: 0
   isAlive: 1
   _longRange: 0
+  Destination: {x: 0, y: 0, z: 0}
+  SkillRange: {fileID: 2435498773775812059, guid: 7c4be5a77e964e54f9f1fce422ba7b0c, type: 3}
+  RushEffect: {fileID: 0}
+  SkillUseEffect: {fileID: 0}
 --- !u!114 &-1758184585307072006
 MonoBehaviour:
   m_ObjectHideFlags: 0

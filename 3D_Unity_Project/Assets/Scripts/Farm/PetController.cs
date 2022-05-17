@@ -103,7 +103,7 @@ public class PetController : MonoBehaviour
     public void SkillMotion()
     {
         PetAnimator.SetTrigger(_skill);
-        print("스킬모션은?");
+        //print("스킬모션은?");
         StartCoroutine(WaitAnimationExit(PetAnimator));
     }
 
@@ -121,14 +121,14 @@ public class PetController : MonoBehaviour
     {
         while(animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
         {
-            print("돌고있나요");
+            //print("돌고있나요");
             yield return new WaitForEndOfFrame();
         }
-        print("빠져나옴");
+        //print("빠져나옴");
         if(gameObject.tag == "MyPet")
         {
             gameObject.GetComponent<PlayerPetBattleController>()._usingSkill = false;
-            print("상태해제");
+            //print("상태해제");
         }
         else if(gameObject.tag == "Enemy")
         {
