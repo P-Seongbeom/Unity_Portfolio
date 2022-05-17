@@ -30,6 +30,9 @@ public class BattleUI : MonoBehaviour
     [SerializeField]
     private GameObject GoFarmButton;
 
+    public bool _waitSkillUse = false;
+    private int _selectedIndex;
+
     private void Awake()
     {
         if (null == Instance)
@@ -55,7 +58,7 @@ public class BattleUI : MonoBehaviour
         for(int i = 0; i < BattleManager.Instance.InBattlePlayerPets.Count; ++i)
         {
             GameObject hpbar = Instantiate(_playerHpBar, BattleManager.Instance.InBattlePlayerPets[i].transform.position, Quaternion.identity, transform);
-            hpbar.GetComponent<Slider>().maxValue = BattleManager.Instance.InBattlePlayerPets[i].GetComponent<PlayerPetBattleController>()._hp;
+            hpbar.GetComponent<Slider>().maxValue = BattleManager.Instance.InBattlePlayerPets[i].GetComponent<BattleController>()._hp;
             PlayerHpBarList.Add(hpbar);
         }
 
@@ -64,7 +67,7 @@ public class BattleUI : MonoBehaviour
             for (int j = 0; j < BattleManager.Instance.Phases[i].transform.childCount; ++j)
             {
                 GameObject hpbar = Instantiate(_enemyHpBar, BattleManager.Instance.Phases[i].transform.GetChild(j).position, Quaternion.identity, transform);
-                hpbar.GetComponent<Slider>().maxValue = BattleManager.Instance.Phases[i].transform.GetChild(j).GetComponent<EnemyBattleController>()._hp;
+                hpbar.GetComponent<Slider>().maxValue = BattleManager.Instance.Phases[i].transform.GetChild(j).GetComponent<BattleController>()._hp;
                 EnemyHpBarList.Add(hpbar);
             }
         }
@@ -86,16 +89,18 @@ public class BattleUI : MonoBehaviour
 
     void RenderPlayerHp()
     {
+
         for (int i = 0; i < BattleManager.Instance.InBattlePlayerPets.Count; ++i)
         {
+
             if (BattleManager.Instance.InBattlePlayerPets[i].activeSelf)
             {
                 PlayerHpBarList[i].transform.position
                 = MainCam.WorldToScreenPoint(BattleManager.Instance.InBattlePlayerPets[i].transform.position + new Vector3(0, 4f, 1f));
 
-                if(BattleManager.Instance.InBattlePlayerPets[i].GetComponent<PlayerPetBattleController>()._hp > 0)
+                if(BattleManager.Instance.InBattlePlayerPets[i].GetComponent<BattleController>()._hp > 0)
                 {
-                    PlayerHpBarList[i].GetComponent<Slider>().value = BattleManager.Instance.InBattlePlayerPets[i].GetComponent<PlayerPetBattleController>()._hp;
+                    PlayerHpBarList[i].GetComponent<Slider>().value = BattleManager.Instance.InBattlePlayerPets[i].GetComponent<BattleController>()._hp;
                 }
                 else
                 {
@@ -122,9 +127,9 @@ public class BattleUI : MonoBehaviour
                     EnemyHpBarList[i].transform.position
                     = MainCam.WorldToScreenPoint(BattleManager.Instance.InStageEnemy[i].transform.position + new Vector3(0, 4f, 1f));
 
-                    if (BattleManager.Instance.InStageEnemy[i].GetComponent<EnemyBattleController>()._hp > 0)
+                    if (BattleManager.Instance.InStageEnemy[i].GetComponent<BattleController>()._hp > 0)
                     {
-                        EnemyHpBarList[i].GetComponent<Slider>().value = BattleManager.Instance.InStageEnemy[i].GetComponent<EnemyBattleController>()._hp;
+                        EnemyHpBarList[i].GetComponent<Slider>().value = BattleManager.Instance.InStageEnemy[i].GetComponent<BattleController>()._hp;
                     }
                     else
                     {
@@ -139,11 +144,22 @@ public class BattleUI : MonoBehaviour
         }
     }
 
-    public void UsePetSkill(int uiNum)
+    public void ClickSkillButton(int uiNum)
     {
-        BattleManager.Instance.InBattlePlayerPets[uiNum].GetComponent<PlayerPetBattleController>().UseSkill();
-        BattleManager.Instance.OverallCost -= BattleManager.Instance.InBattlePlayerPets[uiNum].GetComponent<PlayerPetBattleController>()._skillCost;
-        StartCoroutine(BlockButton(uiNum, BattleManager.Instance.InBattlePlayerPets[uiNum].GetComponent<PlayerPetBattleController>()._skillCooltime));
+        _waitSkillUse = true;
+        Time.timeScale = 0.5f;
+        _selectedIndex = uiNum;
+    }
+
+    public void UsePetSkill()
+    {
+        BattleManager.Instance.InBattlePlayerPets[_selectedIndex].GetComponent<BattleController>().UseSkill();
+    }
+
+    public void CostUpdate(int cost, float cooltime)
+    {
+        BattleManager.Instance.OverallCost -= cost;
+        StartCoroutine(BlockButton(_selectedIndex, cooltime));
     }
 
     public IEnumerator BlockButton(int uiNum,float time)

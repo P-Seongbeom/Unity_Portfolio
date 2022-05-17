@@ -86,7 +86,8 @@ public class BattleManager : MonoBehaviour
             EndPhase();
         }
 
-        CheckBattle();
+        CheckClear();
+        CheckFail();
     }
 
     public void ActivateCheckPoint()
@@ -107,34 +108,15 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
-
-    public void CheckBattle()
+    public void CheckClear()
     {
-        if(CurrentPhase == null)
+        if (CurrentPhase == null || inBattle == false)
         {
             return;
         }
-        int failcount = 0;
+
         int clearcount = 0;
 
-        //패배조건
-        foreach (GameObject pet in InBattlePlayerPets)
-        {
-
-            if (false == pet.activeSelf)
-            {
-                ++failcount;
-            }
-            _StageFailCount = failcount;
-        }
-
-        if(_StageFailCount == InBattlePlayerPets.Count)
-        {
-            StartCoroutine(StageFail());
-            isClear = false;
-        }
-
-        //승리조건
         if (CurrentPhase == Phases[Phases.Count - 1])
         {
             for (int i = 0; i < CurrentPhase.transform.childCount; ++i)
@@ -150,9 +132,36 @@ public class BattleManager : MonoBehaviour
         if (_StageClearCount == CurrentPhase.transform.childCount)
         {
             StartCoroutine(StageClear());
+            inBattle = false;
             isClear = true;
         }
+    }
 
+    public void CheckFail()
+    {
+        if(CurrentPhase == null || inBattle == false)
+        {
+            return;
+        }
+
+        int failcount = 0;
+
+        foreach (GameObject pet in InBattlePlayerPets)
+        {
+
+            if (false == pet.activeSelf)
+            {
+                ++failcount;
+            }
+            _StageFailCount = failcount;
+        }
+
+        if(_StageFailCount == InBattlePlayerPets.Count)
+        {
+            StartCoroutine(StageFail());
+            inBattle = false;
+            isClear = false;
+        }
     }
 
     public IEnumerator StageFail()
@@ -184,7 +193,14 @@ public class BattleManager : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
-        BattleUI.Instance.ClearPhrase();
+        if(isClear)
+        {
+            BattleUI.Instance.ClearPhrase();
+        }
+        else
+        {
+            BattleUI.Instance.FailPhrase();
+        }
     }
 
 
