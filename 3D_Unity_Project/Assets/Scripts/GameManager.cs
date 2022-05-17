@@ -34,7 +34,28 @@ public class GameManager : MonoBehaviour
             DataManager.Instance.GetPetCard(0);
         }
 
-        for(int i = 0; i < PetPrefabs.Count; ++i)
+        for (int i = 0; i < PetPrefabs.Count; ++i)
+        {
+            for(int j = 0; j < DataManager.Instance.AllPlayerPet.Count; ++j)
+            {
+                if(PetPrefabs[i].name == DataManager.Instance.AllPlayerPet[j].PetName)
+                PetPrefabs[i].GetComponent<PetInfo>().SetInfo(
+                    DataManager.Instance.AllPlayerPet[i].PetName,
+                    DataManager.Instance.AllPlayerPet[i].PetNumber,
+                    DataManager.Instance.AllPlayerPet[i].IsGetted,
+                    DataManager.Instance.AllPlayerPet[i].Position,
+                    DataManager.Instance.AllPlayerPet[i].HP,
+                    DataManager.Instance.AllPlayerPet[i].ATK,
+                    DataManager.Instance.AllPlayerPet[i].DEF,
+                    DataManager.Instance.AllPlayerPet[i].SkillCost,
+                    DataManager.Instance.AllPlayerPet[i].Cooltime,
+                    DataManager.Instance.AllPlayerPet[i].AttackRange,
+                    DataManager.Instance.AllPlayerPet[i].SkillRange,
+                    DataManager.Instance.AllPlayerPet[i].Level);
+            }
+        }
+
+        for (int i = 0; i < PetPrefabs.Count; ++i)
         {
             for(int j = 0; j < DataManager.Instance.HavePlayerPet.Count; ++j)
             {
@@ -55,12 +76,8 @@ public class GameManager : MonoBehaviour
                         DataManager.Instance.HavePlayerPet[j].Level);
                 }
             }
-
-            if (PetPrefabs[i] == null)
-            {
-                PetPrefabs.Remove(PetPrefabs[i]);
-            }
         }
+
         for(int i = 0; i < PetPrefabs.Count; ++i)
         {
             if (PetPrefabs[i].GetComponent<PetInfo>().IsGetted)
@@ -85,11 +102,6 @@ public class GameManager : MonoBehaviour
                         DataManager.Instance.EnemyPet[j].AttackRange,
                         DataManager.Instance.EnemyPet[j].SkillRange);
                 }
-            }
-
-            if (PetPrefabs[i] == null)
-            {
-                PetPrefabs.Remove(PetPrefabs[i]);
             }
         }
     }

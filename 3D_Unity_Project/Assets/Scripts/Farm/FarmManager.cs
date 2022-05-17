@@ -27,6 +27,8 @@ public class FarmManager : MonoBehaviour
     public Text _goldText;
     public Text _playerName;
 
+    public List<GameObject> temp;
+
     void Awake()
     {
         if (Instance == null)
@@ -48,6 +50,8 @@ public class FarmManager : MonoBehaviour
     }
     void Start()
     {
+        temp = SpawnedPets;
+
         if (DataManager.Instance.QuestLogNumber[0] == 0)
         {
             Communicate(TutorialObject);
@@ -106,6 +110,7 @@ public class FarmManager : MonoBehaviour
 
     public void OnClickQuestButton()
     {
+        //CardInvenPopup.Instance.ClosePopup();
         string title = 
             QuestManager.Instance.QuestData[QuestManager.Instance.QuestDataIndex].QuestName;
 
@@ -115,14 +120,19 @@ public class FarmManager : MonoBehaviour
         string reward = 
             QuestManager.Instance.QuestData[QuestManager.Instance.QuestDataIndex].RewardGold.ToString();
 
-        FarmUIPopup.Instance.OpenPopup(
-            title+"\n", content, $"{reward}°ñµå",
-            () => { FarmUIPopup.Instance.ClosePopup(); });
+        QuestPopup.Instance.OpenPopup(title+"\n", content, $"{reward}°ñµå",
+            () => { QuestPopup.Instance.ClosePopup(); });
+
     }
 
     public void TextUpdate()
     {
         _goldText.text = DataManager.Instance.PlayerData.Gold.ToString();
+    }
+
+    public void OnClickCardButton()
+    {
+        CardInvenPopup.Instance.OpenCardInven(SpawnedPets,() => { CardInvenPopup.Instance.ClosePopup(); });
     }
 
     public void EnterStageSelect()
