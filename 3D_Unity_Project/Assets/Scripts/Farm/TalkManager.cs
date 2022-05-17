@@ -56,4 +56,9 @@ public class TalkManager : MonoBehaviour
             return talkData[id][dialogeIndex];
         }
     }
+
+    void CheckExistDialog()
+    {
+        
+    }
 }

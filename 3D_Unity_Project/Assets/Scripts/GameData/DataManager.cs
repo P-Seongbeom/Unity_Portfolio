@@ -127,7 +127,7 @@ public class DataManager : MonoBehaviour
             GetPetCard(6);
             GetPetCard(2);
             RenewQuestLog(50, 0);
-            RenewPlayer("릴파넴", 700, 700);
+            SetPlayer("릴파넴", 700, 700);
         }
         else if(Input.GetKeyDown(KeyCode.Backspace))
         {
@@ -346,12 +346,12 @@ public class DataManager : MonoBehaviour
     {
         string[] line = PlayerDatabase.text.Substring(0, PlayerDatabase.text.Length - 1).Split('\t');
 
-        RenewPlayer(line[0], int.Parse(line[1]), int.Parse(line[2]));
+        SetPlayer(line[0], int.Parse(line[1]), int.Parse(line[2]));
 
         print("플레이어 리셋!");
     }
 
-    public void RenewPlayer(string name, int num, int gold)
+    public void SetPlayer(string name, int num, int gold)
     {
         PlayerData.PlayerName = name;
         PlayerData.PlayerNum = num;
@@ -359,6 +359,26 @@ public class DataManager : MonoBehaviour
 
         SavePlayerData();
         LoadPlayerData();
+
+        if(null == FarmManager.Instance)
+        {
+            return;
+        }
+        FarmManager.Instance._playerName.text = name;
+        FarmManager.Instance._goldText.text = gold.ToString();
+    }
+
+    public void GetGold(int gold)
+    {
+        PlayerData.Gold = gold;
+
+        SavePlayerData();
+        LoadPlayerData();
+
+        if (null == FarmManager.Instance)
+        {
+            return;
+        }
 
         FarmManager.Instance._playerName.text = name;
         FarmManager.Instance._goldText.text = gold.ToString();

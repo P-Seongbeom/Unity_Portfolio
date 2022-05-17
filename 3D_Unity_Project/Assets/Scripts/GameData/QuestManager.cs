@@ -84,18 +84,41 @@ public class QuestManager : MonoBehaviour
         return QuestList[QuestId].QuestName;
     }
 
+    //퀘스트 클리어
+    public void QuestClear()
+    {
+        //보상
+        GetQuestReward();
+
+        //다음 퀘스트
+        NextQuest();
+
+    }
+
     void NextQuest()
     {
         QuestId += 10;
         QuestActionIndex = 0;
     }
 
-    //퀘스트 클리어
-    public void QuestClear()
+    public void GetQuestReward()
     {
-        NextQuest();
-    }
+        DataManager.Instance.GetGold(QuestList[QuestId].RewardGold);
 
+        if(QuestList[QuestId].RewardCard.Length > 0)
+        {
+            for(int i = 0; i < QuestList[QuestId].RewardCard.Length; ++i)
+            {
+                if(DataManager.Instance.AllPlayerPet[i].PetName == QuestList[QuestId].RewardCard[i])
+                {
+                    DataManager.Instance.GetPetCard(DataManager.Instance.AllPlayerPet[i].PetNumber);
+                }
+            }
+        }
+
+        //보상 알림 메세지
+
+    }
 
     //임시
     void ControlObject()
