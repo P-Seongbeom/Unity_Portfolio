@@ -13,10 +13,15 @@ public class Dog : PlayerPetBattleController
         base.Update();
         UseSkill();
     }
+    //private void OnDrawGizmos()
+    //{
+    //    Debug.DrawRay(transform.position, transform.forward * 15f, Color.red);
+    //    Debug.DrawRay(SkillRange.transform.position, SkillRange.transform.forward * 15f, Color.green);
+    //}
 
     public override void UseSkill()
     {
-        if (false == BattleUI.Instance._waitSkillUse)
+        if (false == (BattleUI.Instance._waitSkillUse && UsingSkill))
         {
             return;
         }
@@ -24,37 +29,32 @@ public class Dog : PlayerPetBattleController
         {
             Vector3 rangePos = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
             SkillRange.transform.position = rangePos;
-            //SkillRange.transform.right = 
-            //SkillRange.SetActive(true);
+            SkillRange.SetActive(true);
         }
         if (Input.GetMouseButtonUp(0))
         {
-            SkillRange.SetActive(false);
+            SkillMotion = true;
 
-            _usingSkill = true;
+            SkillRange.SetActive(false);
 
             Time.timeScale = 1f;
 
             BattleUI.Instance.CostUpdate(_skillCost, _skillCooltime);
 
-            Controller.SkillMotion();
-            //StartCoroutine(Provoke());
+            StartCoroutine(Rush());
         }
     }
 
     IEnumerator Rush()
     {
-        Controller.Agent.isStopped = true;
-        Controller.Agent.stoppingDistance = 0f;
-        //Controller.Agent.SetDestination()
-        yield return null;
-    }
+        Controller.SkillMotion();
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(_usingSkill && gameObject.tag != other.tag)
+        yield return new WaitForSeconds(1f);
+
+        if(false == CurrentTarget.GetComponent<BattleController>().isAlive)
         {
-            other.GetComponent<BattleController>().Damaged(_atk);
+            yield break;
         }
+        CurrentTarget.GetComponent<BattleController>().Damaged((int)(_atk * 1.5));
     }
 }

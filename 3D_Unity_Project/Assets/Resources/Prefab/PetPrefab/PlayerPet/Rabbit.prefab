@@ -92,7 +92,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8580239734322272684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children:
   - {fileID: 8583855408446007090}
@@ -227,17 +227,17 @@ MonoBehaviour:
   _attackRange: 0
   _attackReady: 0
   _skillCooltime: 0
-  _skillDelay: 0
   _skillRange: 0
-  _skillReady: 0
-  _usingSkill: 0
+  SkillReady: 1
+  UsingSkill: 0
+  SkillMotion: 0
   _skillCost: 0
   isAlive: 1
   _longRange: 0
   Destination: {x: 0, y: 0, z: 0}
   SkillRange: {fileID: 2435498773775812059, guid: 7c4be5a77e964e54f9f1fce422ba7b0c, type: 3}
-  RushEffect: {fileID: 0}
   SkillUseEffect: {fileID: 0}
+  Carrot: {fileID: 4552011381279846189, guid: b911a792bf548ea41856d5d213a50a90, type: 3}
 --- !u!114 &-1758184585307072006
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,7 +9,6 @@ public abstract class PlayerPetBattleController : BattleController, ITarget, IFi
 
     public GameObject SkillRange;
 
-    public TrailRenderer RushEffect;
     public ParticleSystem SkillUseEffect;
 
     protected bool _inPhase = false;
@@ -62,6 +61,10 @@ public abstract class PlayerPetBattleController : BattleController, ITarget, IFi
 
     public override IEnumerator ChaseTarget()
     {
+        if(SkillMotion)
+        {
+            yield break;
+        }
         if (_inPhase && isAlive)
         {
             foreach (Transform target in BattleManager.Instance.CurrentPhase.transform)
@@ -84,8 +87,17 @@ public abstract class PlayerPetBattleController : BattleController, ITarget, IFi
                     _distanceTarget = (transform.position - CurrentTarget.transform.position).sqrMagnitude;
                 }
             }
-            transform.forward = (CurrentTarget.transform.position - transform.position).normalized;
-            Controller.SetDestination(CurrentTarget.transform.position);
+
+            if(false == SkillMotion)
+            {
+                transform.forward = (CurrentTarget.transform.position - transform.position).normalized;
+                Controller.SetDestination(CurrentTarget.transform.position);
+            }
+            else
+            {
+                transform.forward = (CurrentTarget.transform.position - transform.position).normalized;
+                Controller.SetDestination(CurrentTarget.transform.position);
+            }
 
             if(false == CurrentTarget.GetComponent<BattleController>().isAlive)
             {
@@ -115,7 +127,7 @@ public abstract class PlayerPetBattleController : BattleController, ITarget, IFi
         _attackDelay += Time.deltaTime;
         _attackReady = _attackRate < _attackDelay;
 
-        if(_attackReady && false == _usingSkill && CurrentTarget.activeSelf 
+        if(_attackReady && false == SkillMotion && CurrentTarget.activeSelf 
             && Mathf.Sqrt(_distanceTarget) < _attackRange && Controller.Agent.velocity.z == 0)
         {
             Controller.AttackMotion();

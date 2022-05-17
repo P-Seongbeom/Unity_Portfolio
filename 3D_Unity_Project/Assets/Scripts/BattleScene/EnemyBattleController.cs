@@ -101,7 +101,7 @@ public abstract class EnemyBattleController : BattleController, ITarget, IFight
         _attackDelay += Time.deltaTime;
         _attackReady = _attackRate < _attackDelay;
 
-        if (_attackReady && false == _usingSkill && CurrentTarget.activeSelf
+        if (_attackReady && false == SkillMotion && CurrentTarget.activeSelf
             && Mathf.Sqrt(_distanceTarget) < _attackRange && Controller.Agent.velocity.z == 0)
         {
             Controller.AttackMotion();

@@ -497,7 +497,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5766335999640877802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 12, y: 12, z: 12}
   m_Children:
   - {fileID: 5770039414117485946}
@@ -632,10 +632,10 @@ MonoBehaviour:
   _attackRange: 0
   _attackReady: 0
   _skillCooltime: 0
-  _skillDelay: 0
   _skillRange: 0
-  _skillReady: 0
-  _usingSkill: 0
+  SkillReady: 1
+  UsingSkill: 0
+  SkillMotion: 0
   _skillCost: 0
   isAlive: 1
   _longRange: 0

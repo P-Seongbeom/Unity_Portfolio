@@ -20,10 +20,10 @@ public abstract class BattleController : MonoBehaviour, ITarget, IFight
     public float _attackRange;
     public bool _attackReady;
     public float _skillCooltime;
-    public float _skillDelay;
     public float _skillRange;
-    public bool _skillReady;
-    public bool _usingSkill;
+    public bool SkillReady = true;
+    public bool UsingSkill = false;
+    public bool SkillMotion = false;
     public int _skillCost;
 
     protected float _distanceTarget;
@@ -72,7 +72,7 @@ public abstract class BattleController : MonoBehaviour, ITarget, IFight
         vec.y = Vector3.Lerp(new Vector3(CurrentTarget.transform.position.x, CurrentTarget.transform.position.y + height, CurrentTarget.transform.position.z),
                              bullet.transform.position, 0.5f).y;
 
-        bullet.GetComponent<Bullet>().myTag = gameObject.tag;
+        bullet.GetComponent<Bullet>().Target = CurrentTarget;
 
         Rigidbody bulletRigid = bullet.GetComponent<Rigidbody>();
         bulletRigid.AddForce(vec, ForceMode.Impulse);
