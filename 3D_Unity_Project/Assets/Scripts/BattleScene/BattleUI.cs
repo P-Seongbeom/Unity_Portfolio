@@ -85,6 +85,7 @@ public class BattleUI : MonoBehaviour
         CostBar.value = BattleManager.Instance.OverallCost;
         RenderPlayerHp();
         RenderEnemyHp();
+        CheckCost();
     }
 
     void RenderPlayerHp()
@@ -149,26 +150,46 @@ public class BattleUI : MonoBehaviour
         _waitSkillUse = true;
         Time.timeScale = 0.5f;
         _selectedIndex = uiNum;
+        BattleManager.Instance.InBattlePlayerPets[uiNum].GetComponent<BattleController>().UsingSkill = true;
     }
 
-    public void UsePetSkill()
-    {
-        BattleManager.Instance.InBattlePlayerPets[_selectedIndex].GetComponent<BattleController>().UseSkill();
-    }
 
     public void CostUpdate(int cost, float cooltime)
     {
         BattleManager.Instance.OverallCost -= cost;
+        print(cooltime);
         StartCoroutine(BlockButton(_selectedIndex, cooltime));
+    }
+
+    public void CheckCost()
+    {
+        for(int i = 0; i < BattleManager.Instance.InBattlePlayerPets.Count; ++i)
+        {
+            if(BattleManager.Instance.InBattlePlayerPets[i].GetComponent<BattleController>().SkillReady)
+            {
+                if(BattleManager.Instance.OverallCost < BattleManager.Instance.InBattlePlayerPets[i].GetComponent<BattleController>()._skillCost
+                    || false == BattleManager.Instance.InBattlePlayerPets[i].GetComponent<BattleController>().isAlive)
+                {
+                    PetSkills[i].interactable = false;
+                }
+                else if(BattleManager.Instance.OverallCost >= BattleManager.Instance.InBattlePlayerPets[i].GetComponent<BattleController>()._skillCost
+                    && BattleManager.Instance.InBattlePlayerPets[i].GetComponent<BattleController>().isAlive)
+                {
+                    PetSkills[i].interactable = true;
+                }
+            }
+        }
     }
 
     public IEnumerator BlockButton(int uiNum,float time)
     {
         PetSkills[uiNum].interactable = false;
+        BattleManager.Instance.InBattlePlayerPets[uiNum].GetComponent<BattleController>().SkillReady = false;
 
         yield return new WaitForSeconds(time);
 
         PetSkills[uiNum].interactable = true;
+        BattleManager.Instance.InBattlePlayerPets[uiNum].GetComponent<BattleController>().SkillReady = true;
     }
 
     public void ClearPhrase()

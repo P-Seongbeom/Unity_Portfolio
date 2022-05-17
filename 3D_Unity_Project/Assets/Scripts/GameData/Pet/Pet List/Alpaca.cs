@@ -16,7 +16,7 @@ public class Alpaca : PlayerPetBattleController
 
     public override void UseSkill()
     {
-        if(false == BattleUI.Instance._waitSkillUse)
+        if(false == (BattleUI.Instance._waitSkillUse && UsingSkill))
         {
             return;
         }
@@ -25,20 +25,22 @@ public class Alpaca : PlayerPetBattleController
             Vector3 rangePos = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
             SkillRange.transform.position = rangePos;
             SkillRange.SetActive(true);
-            //print(rangePos);
-            //print(SkillRange.activeSelf);
         }
 
         if(Input.GetMouseButtonUp(0))
         {
+            UsingSkill = false;
+
             SkillRange.SetActive(false);
 
-            _usingSkill = true;
+            SkillMotion = true;
 
             Time.timeScale = 1f;
 
             BattleUI.Instance.CostUpdate(_skillCost, _skillCooltime);
 
+            StopCoroutine(ChaseTarget());
+            
             StartCoroutine(Provoke());
         }
     }

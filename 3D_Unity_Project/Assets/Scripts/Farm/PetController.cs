@@ -45,15 +45,12 @@ public class PetController : MonoBehaviour
 
     void Update()
     {
-        if (gameObject.tag == "MyPet" && gameObject.GetComponent<PlayerPetBattleController>()._usingSkill)
+        if(gameObject.GetComponent<BattleController>().SkillMotion)
         {
+            Agent.velocity = Vector3.zero;
+            PetAnimator.SetFloat(_moveSpeed, 0f);
             return;
         }
-        else if (gameObject.tag == "Enemy" && gameObject.GetComponent<EnemyBattleController>()._usingSkill)
-        {
-            return;
-        }
-
         speed = Agent.velocity;
 
         PetAnimator.SetFloat(_moveSpeed, speed.sqrMagnitude);
@@ -119,20 +116,45 @@ public class PetController : MonoBehaviour
 
     public IEnumerator WaitAnimationExit(Animator animator)
     {
-        while(animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Skill"))
+        {
+            print("스킬");
+        }
+        else if(animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            print("어택");
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            print("멍");
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Move"))
+        {
+            print("움직");
+        }
+
+        while(!animator.GetCurrentAnimatorStateInfo(0).IsName("Skill"))
+        {
+            
+            yield return new WaitForEndOfFrame();
+        }
+
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
         {
             //print("돌고있나요");
             yield return new WaitForEndOfFrame();
         }
-        //print("빠져나옴");
-        if(gameObject.tag == "MyPet")
+        print("빠져나옴");
+        if (gameObject.tag == "MyPet")
         {
-            gameObject.GetComponent<PlayerPetBattleController>()._usingSkill = false;
+            gameObject.GetComponent<PlayerPetBattleController>().SkillMotion = false;
+            StartCoroutine(gameObject.GetComponent<PlayerPetBattleController>().ChaseTarget());
             //print("상태해제");
         }
-        else if(gameObject.tag == "Enemy")
+        else if (gameObject.tag == "Enemy")
         {
-            gameObject.GetComponent<EnemyBattleController>()._usingSkill = false;
+            gameObject.GetComponent<EnemyBattleController>().SkillMotion = false;
         }
+        //gameObject.GetComponent<BattleController>().SkillMotion = false;
     }
 }
