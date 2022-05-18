@@ -37,15 +37,8 @@ public class QuestManager : MonoBehaviour
     private void Start()
     {
         print(DataManager.Instance.QuestLogNumber[0]);
-        if (DataManager.Instance.QuestLogNumber[0] == 0)
-        {
-            QuestId += 10;
-        }
-        else
-        {
-            QuestId = DataManager.Instance.QuestLogNumber[0];
-            QuestActionIndex = DataManager.Instance.QuestLogNumber[1];
-        }
+
+        QuestNumberUpdate();
     }
     private void Update()
     {
@@ -103,39 +96,44 @@ public class QuestManager : MonoBehaviour
 
     public void GetQuestReward()
     {
+        //골드보상
         DataManager.Instance.GetGold(QuestList[QuestId].RewardGold);
 
-        if(QuestList[QuestId].RewardCard.Length > 0)
+        //카드보상
+        if (QuestList[QuestId].RewardCard.Length > 0)
         {
             for(int i = 0; i < QuestList[QuestId].RewardCard.Length; ++i)
             {
-                if(DataManager.Instance.AllPlayerPet[i].PetName == QuestList[QuestId].RewardCard[i])
+                foreach(PlayerPetData data in DataManager.Instance.AllPlayerPet)
                 {
-                    DataManager.Instance.GetPetCard(DataManager.Instance.AllPlayerPet[i].PetNumber);
+                    if(data.PetName == QuestList[QuestId].RewardCard[i])
+                    {
+                        DataManager.Instance.GetPetCard(data.PetNumber);
+                    }
                 }
             }
+        }
+        //스테이지 오픈
+        if(QuestList[QuestId].OpenStageNum != "-")
+        {
+            DataManager.Instance.OpenStage(int.Parse(QuestList[QuestId].OpenStageNum));
         }
 
         //보상 알림 메세지
 
     }
-
-    //임시
-    void ControlObject()
+    
+    public void QuestNumberUpdate()
     {
-        switch(QuestId)
+        if (DataManager.Instance.QuestLogNumber[0] == 0)
         {
-            case 10:
-                if(QuestActionIndex == 2)
-                {
-                    
-                }
-                break;
-            case 20:
-
-                break;
+            QuestId = 10;
+            QuestActionIndex = 0;
+        }
+        else
+        {
+            QuestId = DataManager.Instance.QuestLogNumber[0];
+            QuestActionIndex = DataManager.Instance.QuestLogNumber[1];
         }
     }
-    
-    
 }

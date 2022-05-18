@@ -2373,7 +2373,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage 1-1
+  m_Text: Stage000
 --- !u!222 &1281819006
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2780,6 +2780,7 @@ MonoBehaviour:
   - {fileID: 2046309134}
   CostBar: {fileID: 424933950}
   _currentCostText: {fileID: 1744932631}
+  _currentStageText: {fileID: 1281819005}
   PlayerHpBarList: []
   EnemyHpBarList: []
   _playerHpBar: {fileID: 4706349308467249628, guid: 9c9681047cfb4604faaf672f84fa7326, type: 3}

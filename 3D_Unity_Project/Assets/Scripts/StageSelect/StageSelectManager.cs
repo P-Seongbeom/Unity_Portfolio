@@ -14,6 +14,7 @@ public class StageSelectManager : MonoBehaviour
     public string DeckConfigSceneName;
 
     public GameObject SelectedObect;
+    public int SelectStageNum;
 
     public GameObject[] StagePrefabs;
     public GameObject[] StageButtons;
@@ -29,7 +30,13 @@ public class StageSelectManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        for(int i = 0; i < DataManager.Instance.OpenStageList.Count; ++i)
+        //for(int i = 0; i < DataManager.Instance.AllStageList.Count - 1; ++i)
+        //{
+        //    StagePrefabs[i].GetComponent<StageInfo>().StageData = DataManager.Instance.AllStageList[i];
+        //    StageButtons[i].GetComponent<SelectStageInfo>().StageData = StagePrefabs[i].GetComponent<StageInfo>().StageData;
+        //}
+
+        for (int i = 0; i < DataManager.Instance.OpenStageList.Count; ++i)
         {
             StagePrefabs[i].GetComponent<StageInfo>().StageData = DataManager.Instance.OpenStageList[i];
             StageButtons[i].GetComponent<SelectStageInfo>().StageData = StagePrefabs[i].GetComponent<StageInfo>().StageData;
@@ -40,7 +47,8 @@ public class StageSelectManager : MonoBehaviour
     {
         SelectedObect = EventSystem.current.currentSelectedGameObject;
         string reward = SelectedObect.GetComponent<SelectStageInfo>().StageData.GoldReward.ToString();
-        
+        SelectStageNum = SelectedObect.GetComponent<SelectStageInfo>().StageData.StageNumber;
+
         StageSelectPopup.Instance.OpenPopup( 
             $"{reward}°ñµå", 
             () => { GoToDeckConfig(); }, 
@@ -54,6 +62,7 @@ public class StageSelectManager : MonoBehaviour
 
     public void GoToDeckConfig()
     {
+        GameManager.Instance.CurrentStageNum = SelectStageNum;
         SceneManager.LoadScene(DeckConfigSceneName);
     }
 }

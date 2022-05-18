@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager Instance;
+
     private Camera _camera;
     public GameObject Destination;
 

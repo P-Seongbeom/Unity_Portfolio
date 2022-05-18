@@ -40,17 +40,17 @@ public class FarmManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        foreach (GameObject pet in GameManager.Instance.HavePets)
-        {
-            Spawn(pet);
-        }
-
         _playerName.text = DataManager.Instance.PlayerData.PlayerName;
         _goldText.text = DataManager.Instance.PlayerData.Gold.ToString();
     }
     void Start()
     {
         temp = SpawnedPets;
+
+        foreach (GameObject pet in GameManager.Instance.HavePets)
+        {
+            Spawn(pet);
+        }
 
         if (DataManager.Instance.QuestLogNumber[0] == 0)
         {
@@ -60,19 +60,47 @@ public class FarmManager : MonoBehaviour
         QuestManager.Instance.CheckQuest();
     }
 
+    public void RealTimePetUpdate()
+    {
+        foreach (GameObject pet in GameManager.Instance.HavePets)
+        {
+            Spawn(pet);
+        }
+    }
+
     public void Spawn(GameObject prefab)
     {
         if(prefab.GetComponent<PetController>() == null)
         {
             Debug.LogError("Prefab doesn't have 'PlayerPetController' component.");
         }
-        else
+
+        if (SpawnedPets.Count == 0)
         {
             GameObject obj = Instantiate(prefab);
             obj.transform.position = new Vector3(-2, 2, -2);
             PetController controller = obj.GetComponent<PetController>();
             InputHandle.AddController(controller);
             SpawnedPets.Add(controller.gameObject);
+        }
+        else
+        {
+            bool ishave = false;
+            for (int i = 0; i < SpawnedPets.Count; ++i)
+            {
+                if (SpawnedPets[i].GetComponent<PetInfo>().PetName == prefab.GetComponent<PetInfo>().PetName)
+                {
+                    ishave = true;
+                }
+            }
+            if(false == ishave)
+            {
+                GameObject spawnpet = Instantiate(prefab, SpawnedPets[0].transform.position + SpawnedPets[0].transform.forward * 5f, Quaternion.identity);
+                PetController controller = spawnpet.GetComponent<PetController>();
+                InputHandle.AddController(controller);
+
+                SpawnedPets.Add(controller.gameObject);
+            }
         }
     }
 
@@ -110,7 +138,6 @@ public class FarmManager : MonoBehaviour
 
     public void OnClickQuestButton()
     {
-        //CardInvenPopup.Instance.ClosePopup();
         string title = 
             QuestManager.Instance.QuestData[QuestManager.Instance.QuestDataIndex].QuestName;
 
@@ -132,6 +159,7 @@ public class FarmManager : MonoBehaviour
 
     public void OnClickCardButton()
     {
+
         CardInvenPopup.Instance.OpenCardInven(SpawnedPets,() => { CardInvenPopup.Instance.ClosePopup(); });
     }
 

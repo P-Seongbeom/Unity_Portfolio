@@ -96,7 +96,7 @@ public class DataManager : MonoBehaviour
         //플레이어 데이터 불러오기
         line = PlayerDatabase.text.Substring(0, PlayerDatabase.text.Length - 1).Split('\t');
 
-        PlayerData = new PlayerData(line[0], int.Parse(line[1]), int.Parse(line[2]));
+        PlayerData = new PlayerData(line[0], int.Parse(line[1]));
         
         _stageFilePath = Application.persistentDataPath + "/OpenStageList.txt";
         _playerPetFilePath = Application.persistentDataPath + "/HavePlayerPet.txt";
@@ -104,6 +104,10 @@ public class DataManager : MonoBehaviour
         _questLogFilePath = Application.persistentDataPath + "/QuestNumber.txt";
         _playerFilePath = Application.persistentDataPath + "/Player.txt";
 
+    }
+
+    void Start()
+    {
         LoadStageData();
         LoadPlayerPetData();
         LoadEnemyPetData();
@@ -111,10 +115,6 @@ public class DataManager : MonoBehaviour
         LoadPlayerData();
 
         print(_stageFilePath);
-    }
-
-    void Start()
-    {
 
     }
 
@@ -127,7 +127,7 @@ public class DataManager : MonoBehaviour
             GetPetCard(6);
             GetPetCard(2);
             RenewQuestLog(50, 0);
-            SetPlayer("릴파넴", 700, 700);
+            SetPlayer("릴파넴", 700);
         }
         else if(Input.GetKeyDown(KeyCode.Backspace))
         {
@@ -241,9 +241,18 @@ public class DataManager : MonoBehaviour
         AllPlayerPet[petNum].IsGetted = true;
         HavePlayerPet.Add(AllPlayerPet[petNum]);
         HavePlayerPet.Sort(delegate (PlayerPetData a, PlayerPetData b) { return a.PetNumber.CompareTo(b.PetNumber); });
+
         print("펫 얻음!");
         SavePlayerPetData();
         LoadPlayerPetData();
+
+        GameManager.Instance.HavingPetUpdate();
+
+        if(FarmManager.Instance != null)
+        {
+            FarmManager.Instance.RealTimePetUpdate();
+        }
+
     }
     #endregion
 
@@ -313,10 +322,11 @@ public class DataManager : MonoBehaviour
     {
         QuestLogNumber[0] = questId;
         QuestLogNumber[1] = actionIndex;
+
         SaveQuestLog();
         LoadQuestLog();
-        QuestManager.Instance.QuestId = QuestLogNumber[0];
-        QuestManager.Instance.QuestActionIndex = QuestLogNumber[1];
+
+        QuestManager.Instance.QuestNumberUpdate();
     }
     #endregion
 
@@ -346,15 +356,14 @@ public class DataManager : MonoBehaviour
     {
         string[] line = PlayerDatabase.text.Substring(0, PlayerDatabase.text.Length - 1).Split('\t');
 
-        SetPlayer(line[0], int.Parse(line[1]), int.Parse(line[2]));
+        SetPlayer(line[0], int.Parse(line[1]));
 
         print("플레이어 리셋!");
     }
 
-    public void SetPlayer(string name, int num, int gold)
+    public void SetPlayer(string name, int gold)
     {
         PlayerData.PlayerName = name;
-        PlayerData.PlayerNum = num;
         PlayerData.Gold = gold;
 
         SavePlayerData();
@@ -364,13 +373,13 @@ public class DataManager : MonoBehaviour
         {
             return;
         }
-        FarmManager.Instance._playerName.text = name;
-        FarmManager.Instance._goldText.text = gold.ToString();
+        FarmManager.Instance._playerName.text = PlayerData.PlayerName;
+        FarmManager.Instance._goldText.text = PlayerData.Gold.ToString();
     }
 
     public void GetGold(int gold)
     {
-        PlayerData.Gold = gold;
+        PlayerData.Gold += gold;
 
         SavePlayerData();
         LoadPlayerData();
@@ -380,8 +389,7 @@ public class DataManager : MonoBehaviour
             return;
         }
 
-        FarmManager.Instance._playerName.text = name;
-        FarmManager.Instance._goldText.text = gold.ToString();
+        FarmManager.Instance._goldText.text = PlayerData.Gold.ToString();
     }
 
     #endregion

@@ -52,7 +52,9 @@ public class DeckManager : MonoBehaviour
 
     public void EnterBattle()
     {
-        for(int i = 0; i < SelectedSlot.Length; ++i)
+        GameManager.Instance.AgentPets.Clear();
+
+        for (int i = 0; i < SelectedSlot.Length; ++i)
         {
             for(int j = 0; j < GameManager.Instance.HavePets.Count; ++j)
             {
