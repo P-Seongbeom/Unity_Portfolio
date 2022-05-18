@@ -20,3 +20,4 @@ MonoBehaviour:
   rewardCard:
   - Dog
   - Rabbit
+  openStageNum: 0

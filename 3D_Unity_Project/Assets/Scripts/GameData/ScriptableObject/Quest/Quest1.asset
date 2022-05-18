@@ -18,3 +18,4 @@ MonoBehaviour:
     \uB3FC\uC9C0\uC5D0\uAC8C \uAC00\uC11C \uB9D0\uC744 \uAC78\uC5B4\uBD10\uC694."
   rewardGold: 100
   rewardCard: []
+  openStageNum: '-'

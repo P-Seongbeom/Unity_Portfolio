@@ -51,7 +51,7 @@ public class BattleManager : MonoBehaviour
             PetMovers.Add(InBattlePlayerPets[i].GetComponent<PlayerPetBattleController>());
         }
 
-        CurrentStage = Instantiate(Stages[0]);
+        CurrentStage = Instantiate(Stages[GameManager.Instance.CurrentStageNum]);
 
         foreach (Transform point in CurrentStage.transform.GetChild(1).transform)
         {
@@ -77,15 +77,8 @@ public class BattleManager : MonoBehaviour
 
     void Update()
     {
-        CostUp();
-
         ActivateCheckPoint();
-
-        if (Input.GetKeyDown("space"))
-        {
-            EndPhase();
-        }
-
+        CostUp();
         CheckClear();
         CheckFail();
     }
@@ -201,6 +194,8 @@ public class BattleManager : MonoBehaviour
         {
             BattleUI.Instance.FailPhrase();
         }
+
+        
     }
 
 
@@ -225,7 +220,7 @@ public class BattleManager : MonoBehaviour
 
     void CostUp()
     {
-        if(OverallCost < 10)
+        if(OverallCost < 10 && inBattle)
         {
             OverallCost += _costUpPerSecond * Time.deltaTime;
         }
@@ -233,6 +228,13 @@ public class BattleManager : MonoBehaviour
 
     public void BackToFarm()
     {
+        if(isClear)
+        {
+            QuestManager.Instance.CheckQuest(CurrentStage.GetComponent<StageInfo>().StageData.QuestId);
+            DataManager.Instance.GetGold(CurrentStage.GetComponent<StageInfo>().StageData.GoldReward);
+            DataManager.Instance.OpenStage(CurrentStage.GetComponent<StageInfo>().StageData.StageNumber + 1);
+        }
+
         SceneManager.LoadScene(FarmSceneName);
     }
 }

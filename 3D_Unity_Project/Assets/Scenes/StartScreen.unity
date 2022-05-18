@@ -780,6 +780,7 @@ MonoBehaviour:
   - {fileID: 5215906501039409404, guid: a0d570ca1fe4d5d429c52bd6cb828e03, type: 3}
   - {fileID: 3257104023186796109, guid: 26020815b14594549843fc5cf71390c9, type: 3}
   - {fileID: 1286018112781456311, guid: d6ac8dc3fbe929a4590f06e3ff4e5919, type: 3}
+  CurrentStageNum: 0
 --- !u!1 &2068865164
 GameObject:
   m_ObjectHideFlags: 0

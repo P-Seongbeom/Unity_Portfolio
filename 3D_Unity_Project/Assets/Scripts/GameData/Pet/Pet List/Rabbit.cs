@@ -69,7 +69,7 @@ public class Rabbit : PlayerPetBattleController
 
             yield return new WaitForSeconds(1f);
 
-            for (int i = 0; i < Targets.Count; ++i)
+            for (int i = 0; i < BattleManager.Instance.InBattlePlayerPets.Count; ++i)
             {
                 if(BattleManager.Instance.InBattlePlayerPets[i].GetComponent<BattleController>().isAlive)
                 {

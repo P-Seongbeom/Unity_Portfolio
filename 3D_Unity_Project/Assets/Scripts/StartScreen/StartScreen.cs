@@ -29,8 +29,9 @@ public class StartScreen : MonoBehaviour
         }
     }
 
-    void GoToFarm()
+    void StartGame()
     {
         SceneManager.LoadScene(FarmSceneName);
+        //if()
     }
 }

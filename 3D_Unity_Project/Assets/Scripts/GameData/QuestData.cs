@@ -24,4 +24,8 @@ public class QuestData : ScriptableObject
     [SerializeField]
     private string[] rewardCard;
     public string[] RewardCard { get { return rewardCard; } }
+
+    [SerializeField]
+    private string openStageNum = "-";
+    public string OpenStageNum { get { return openStageNum; } }
 }

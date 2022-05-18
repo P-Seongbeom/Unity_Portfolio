@@ -12,6 +12,8 @@ public class BattleUI : MonoBehaviour
     public Slider CostBar;
     [SerializeField]
     private Text _currentCostText;
+    [SerializeField]
+    private Text _currentStageText;
 
     public List<GameObject> PlayerHpBarList;
     public List<GameObject> EnemyHpBarList;
@@ -48,6 +50,8 @@ public class BattleUI : MonoBehaviour
     {
         MainCam = Camera.main;
 
+        _currentStageText.text = BattleManager.Instance.CurrentStage.GetComponent<StageInfo>().StageData.StageName;
+
         for (int i = 0; i < PetSkills.Count; ++i)
         {
             PetSkills[i].image.sprite = BattleManager.Instance.InBattlePlayerPets[i].GetComponent<PetInfo>().CardPortrait;
@@ -82,9 +86,12 @@ public class BattleUI : MonoBehaviour
     {
         _currentCostText.text = ((int)BattleManager.Instance.OverallCost).ToString();
         CostBar.value = BattleManager.Instance.OverallCost;
-        RenderPlayerHp();
-        RenderEnemyHp();
-        CheckCost();
+        if(BattleManager.Instance.inBattle)
+        {
+            RenderPlayerHp();
+            RenderEnemyHp();
+            CheckCost();
+        }
     }
 
     void RenderPlayerHp()
@@ -194,6 +201,10 @@ public class BattleUI : MonoBehaviour
     {
         GoFarmButton.SetActive(true);
         ClearText.gameObject.SetActive(true);
+        for(int i = 0; i < PlayerHpBarList.Count; ++i)
+        {
+            PlayerHpBarList[i].SetActive(false);
+        }
     }
 
     public void FailPhrase()

@@ -9,12 +9,6 @@ public class Dog : PlayerPetBattleController
 
     public GameObject desti;
     public GameObject agentdes;
-    protected override void Awake()
-    {
-        base.Awake();
-        desti = Instantiate(desti);
-        agentdes = Instantiate(agentdes);
-    }
 
     protected override void Update()
     {
@@ -24,14 +18,12 @@ public class Dog : PlayerPetBattleController
         }
         base.Update();
         UseSkill();
-        agentdes.transform.position = Controller.Agent.destination;
-        print(Controller.Agent.velocity);
     }
-    private void OnDrawGizmos()
-    {
-        Debug.DrawRay(transform.position, transform.forward * 15f, Color.red);
-        Debug.DrawRay(SkillRange.transform.position, SkillRange.transform.forward * 15f, Color.green);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Debug.DrawRay(transform.position, transform.forward * 15f, Color.red);
+    //    Debug.DrawRay(SkillRange.transform.position, SkillRange.transform.forward * 15f, Color.green);
+    //}
 
     //public override void UseSkill()
     //{
@@ -122,9 +114,9 @@ public class Dog : PlayerPetBattleController
     IEnumerator Rush()
     {
         Controller.Agent.isStopped = true;
-        Controller.Agent.stoppingDistance = 1f;
-        //Controller.Agent.destination;
-        Controller.Agent.SetDestination(transform.position + transform.forward * 20f);
+        Controller.Agent.stoppingDistance = 0.5f;
+        Controller.Agent.SetDestination(transform.position + transform.forward * 10f);
+
         Controller.SkillMotion();
 
         yield return new WaitForSeconds(0.5f);
@@ -136,7 +128,15 @@ public class Dog : PlayerPetBattleController
 
         Controller.Agent.stoppingDistance = _attackRange;
         Controller.Agent.speed = 9f;
+
         StartCoroutine(ChaseTarget());
-        //CurrentTarget.GetComponent<BattleController>().Damaged((int)(_atk * 1.5));
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Enemy")
+        {
+            other.GetComponent<BattleController>()._hp -= (int)(_atk * 1.5f);
+        }
     }
 }
