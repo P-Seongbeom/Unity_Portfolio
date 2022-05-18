@@ -88,16 +88,11 @@ public abstract class PlayerPetBattleController : BattleController, ITarget, IFi
                 }
             }
 
-            if(false == SkillMotion)
-            {
+            
+
                 transform.forward = (CurrentTarget.transform.position - transform.position).normalized;
                 Controller.SetDestination(CurrentTarget.transform.position);
-            }
-            else
-            {
-                transform.forward = (CurrentTarget.transform.position - transform.position).normalized;
-                Controller.SetDestination(CurrentTarget.transform.position);
-            }
+
 
             if(false == CurrentTarget.GetComponent<BattleController>().isAlive)
             {
@@ -105,7 +100,8 @@ public abstract class PlayerPetBattleController : BattleController, ITarget, IFi
             }
         }
 
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
+        yield return null;
 
         StartCoroutine(ChaseTarget());
     }

@@ -30,7 +30,6 @@ public class BattleUI : MonoBehaviour
     [SerializeField]
     private GameObject GoFarmButton;
 
-    public bool _waitSkillUse = false;
     private int _selectedIndex;
 
     private void Awake()
@@ -147,7 +146,6 @@ public class BattleUI : MonoBehaviour
 
     public void ClickSkillButton(int uiNum)
     {
-        _waitSkillUse = true;
         Time.timeScale = 0.5f;
         _selectedIndex = uiNum;
         BattleManager.Instance.InBattlePlayerPets[uiNum].GetComponent<BattleController>().UsingSkill = true;

@@ -18,7 +18,7 @@ public class Rabbit : PlayerPetBattleController
 
     public override void UseSkill()
     {
-        if (false == (BattleUI.Instance._waitSkillUse && UsingSkill))
+        if (false == UsingSkill)
         {
             return;
         }
