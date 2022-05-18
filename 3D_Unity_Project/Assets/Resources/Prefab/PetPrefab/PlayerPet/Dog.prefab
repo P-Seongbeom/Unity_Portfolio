@@ -776,13 +776,9 @@ MonoBehaviour:
   _longRange: 0
   Destination: {x: 0, y: 0, z: 0}
   SkillRange: {fileID: 4836758154930743049, guid: b66b8e9f71f2183498bff0d64803e2b7, type: 3}
-  RushEffect: {fileID: 0}
   SkillUseEffect: {fileID: 0}
-  _rushPoint: {fileID: 2733891366998450817}
-  _stopPoint: {x: 0, y: 0, z: 0}
-  desti: {x: 0, y: 0, z: 0}
-  StopObj: {fileID: 6013739407977450340, guid: ad94726b0fbbb194982ec3ffe944e495, type: 3}
-  destiObj: {fileID: 7869956754582316271, guid: 9651315555dc25c4994e296132bb0657, type: 3}
+  desti: {fileID: 4677579696840407178, guid: 532bb621f4b83a9468b278e866b26b88, type: 3}
+  agentdes: {fileID: 3642295443930050920, guid: e811074cff6474f48898428e22c4b9fe, type: 3}
 --- !u!114 &3070677597263142315
 MonoBehaviour:
   m_ObjectHideFlags: 0

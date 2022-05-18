@@ -20,6 +20,7 @@ public class PetController : MonoBehaviour
     private int _attack;
     private int _skill;
     private int _die;
+    private int _idle;
 
     private Dictionary<int, string> _states;
 
@@ -35,6 +36,7 @@ public class PetController : MonoBehaviour
         _attack = Animator.StringToHash("attack");
         _skill = Animator.StringToHash("skill");
         _die = Animator.StringToHash("die");
+        _idle = Animator.StringToHash("idle");
 
         //_states = new Dictionary<int, string>();
         //_states.Add(Animator.StringToHash("idle"), "Idle");
@@ -47,7 +49,6 @@ public class PetController : MonoBehaviour
     {
         if(gameObject.GetComponent<BattleController>().SkillMotion)
         {
-            Agent.velocity = Vector3.zero;
             PetAnimator.SetFloat(_moveSpeed, 0f);
             return;
         }
@@ -109,6 +110,11 @@ public class PetController : MonoBehaviour
         PetAnimator.SetTrigger(_die);
     }
 
+    public void IdleMotion()
+    {
+        PetAnimator.SetTrigger(_idle);
+    }
+
     public void SetDestination(Vector3 pos)
     {
         Agent.SetDestination(pos);
@@ -156,5 +162,17 @@ public class PetController : MonoBehaviour
             gameObject.GetComponent<EnemyBattleController>().SkillMotion = false;
         }
         //gameObject.GetComponent<BattleController>().SkillMotion = false;
+    }
+
+    public IEnumerator Idle()
+    {
+        yield return null;
+        if(false == PetAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            IdleMotion();
+        }
+
+
+
     }
 }

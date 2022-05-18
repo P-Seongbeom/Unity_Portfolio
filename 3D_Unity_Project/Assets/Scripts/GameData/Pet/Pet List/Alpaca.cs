@@ -16,7 +16,7 @@ public class Alpaca : PlayerPetBattleController
 
     public override void UseSkill()
     {
-        if(false == (BattleUI.Instance._waitSkillUse && UsingSkill))
+        if(false == (UsingSkill))
         {
             return;
         }
