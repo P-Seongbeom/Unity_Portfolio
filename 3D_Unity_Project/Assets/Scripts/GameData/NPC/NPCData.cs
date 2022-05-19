@@ -46,4 +46,6 @@ public abstract class NPCData : MonoBehaviour
             CanInteract = false;
         }
     }
+
+    public abstract void Interact();
 }

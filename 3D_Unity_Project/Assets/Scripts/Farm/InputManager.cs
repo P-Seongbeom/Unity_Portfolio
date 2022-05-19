@@ -51,7 +51,7 @@ public class InputManager : MonoBehaviour
 
     private void SetDestinationPoint()
     {
-        if(Input.GetMouseButtonDown(0) && FarmManager.Instance.talkIndex > 0)
+        if(Input.GetMouseButtonDown(0) && FarmManager.Instance.talkIndex > 0 && FarmManager.Instance.TalkEffect.EndEffect)
         {
             FarmManager.Instance.Communicate(FarmManager.Instance.ScanObject);
             return;
@@ -80,7 +80,7 @@ public class InputManager : MonoBehaviour
                 {
                     if(_hits[i].collider.gameObject.GetComponent<NPCData>().CanInteract)
                     {
-                        FarmManager.Instance.Communicate(_hits[i].collider.gameObject);
+                        _hits[i].collider.gameObject.GetComponent<NPCData>().Interact();
                         return;
                     }
                 }

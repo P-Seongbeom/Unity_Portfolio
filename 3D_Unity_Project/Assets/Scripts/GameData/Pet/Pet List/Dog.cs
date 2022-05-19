@@ -59,6 +59,16 @@ public class Dog : PlayerPetBattleController
         {
             return;
         }
+
+        if (BattleUI.Instance.CkickDown)
+        {
+            SkillRange.SetActive(true);
+        }
+        else
+        {
+            SkillRange.SetActive(false);
+        }
+
         if (Input.GetMouseButton(0))
         {
             Vector3 rangePos = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
@@ -73,7 +83,6 @@ public class Dog : PlayerPetBattleController
                     SkillRange.transform.forward = (hit.point - rangePos).normalized;
                 }
             }
-            SkillRange.SetActive(true);
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -87,8 +96,6 @@ public class Dog : PlayerPetBattleController
             UsingSkill = false;
 
             SkillMotion = true;
-
-            SkillRange.SetActive(false);
 
             Time.timeScale = 1f;
 

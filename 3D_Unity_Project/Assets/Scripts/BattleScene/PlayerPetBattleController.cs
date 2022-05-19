@@ -23,8 +23,11 @@ public abstract class PlayerPetBattleController : BattleController, ITarget, IFi
         _attackRange = GetComponent<PetInfo>().AttackRange;
         _skillCooltime = GetComponent<PetInfo>().Cooltime;
         _skillRange = GetComponent<PetInfo>().SkillRange;
-        SkillRange = Instantiate(SkillRange);
-        SkillRange.SetActive(false);
+        if(SkillRange != null)
+        {
+            SkillRange = Instantiate(SkillRange);
+            SkillRange.SetActive(false);
+        }
     }
 
     protected override void Start()

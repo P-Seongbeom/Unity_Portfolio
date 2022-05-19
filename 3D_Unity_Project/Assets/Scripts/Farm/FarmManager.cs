@@ -148,19 +148,18 @@ public class FarmManager : MonoBehaviour
             QuestManager.Instance.QuestData[QuestManager.Instance.QuestDataIndex].RewardGold.ToString();
 
         QuestPopup.Instance.OpenPopup(title+"\n", content, $"{reward}°ñµå",
-            () => { QuestPopup.Instance.ClosePopup(); });
+            () => { QuestPopup.Instance.ClosePopup(QuestPopup.Instance.Animator[0]); });
 
     }
 
-    public void TextUpdate()
+    public void GoldTextUpdate()
     {
         _goldText.text = DataManager.Instance.PlayerData.Gold.ToString();
     }
 
     public void OnClickCardButton()
     {
-
-        CardInvenPopup.Instance.OpenCardInven(SpawnedPets,() => { CardInvenPopup.Instance.ClosePopup(); });
+        CardInvenPopup.Instance.OpenCardInven(SpawnedPets,() => { CardInvenPopup.Instance.ClosePopup(CardInvenPopup.Instance.Animator[0]); });
     }
 
     public void EnterStageSelect()

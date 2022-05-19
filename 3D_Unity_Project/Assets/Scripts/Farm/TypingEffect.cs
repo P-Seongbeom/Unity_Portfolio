@@ -12,6 +12,8 @@ public class TypingEffect : MonoBehaviour
     int index;
     float interval;
 
+    public bool EndEffect;
+
     private void Awake()
     {
         _messageText = GetComponent<Text>();
@@ -25,6 +27,7 @@ public class TypingEffect : MonoBehaviour
 
     void EffectStart()
     {
+        EndEffect = false;
         _messageText.text = "";
         index = 0;
         TalkCursor.SetActive(false);
@@ -44,11 +47,17 @@ public class TypingEffect : MonoBehaviour
         _messageText.text += _targetMassage[index];
         ++index;
 
+        if(Input.GetMouseButton(0))
+        {
+            _messageText.text = _targetMassage;
+        }
+
         Invoke("Effecting", interval);
     }
 
     void EffectEnd()
     {
+        EndEffect = true;
         TalkCursor.SetActive(true);
     }
 }

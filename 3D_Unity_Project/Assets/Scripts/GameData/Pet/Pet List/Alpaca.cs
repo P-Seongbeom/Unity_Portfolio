@@ -20,18 +20,25 @@ public class Alpaca : PlayerPetBattleController
         {
             return;
         }
-        if(Input.GetMouseButton(0))
+
+        if (BattleUI.Instance.CkickDown)
+        {
+            SkillRange.SetActive(true);
+        }
+        else
+        {
+            SkillRange.SetActive(false);
+        }
+
+        if (Input.GetMouseButton(0))
         {
             Vector3 rangePos = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
             SkillRange.transform.position = rangePos;
-            SkillRange.SetActive(true);
         }
 
         if(Input.GetMouseButtonUp(0))
         {
             UsingSkill = false;
-
-            SkillRange.SetActive(false);
 
             SkillMotion = true;
 

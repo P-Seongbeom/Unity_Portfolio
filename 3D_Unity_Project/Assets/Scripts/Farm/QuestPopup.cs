@@ -38,7 +38,7 @@ public class QuestPopup : FarmPopup
 
         _onClickClose = onClickClose;
 
-        Popup.SetActive(true);
+        Popups[0].SetActive(true);
     }
 
     public void OnClickClose()
