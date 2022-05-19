@@ -6,31 +6,36 @@ using System;
 
 public class FarmPopup : MonoBehaviour
 {
-    public GameObject Popup;
+    public List<GameObject> Popups;
 
-    public Animator Animator;
+    public List<Animator> Animator;
 
     protected Action _onClickClose;
 
     protected virtual void Awake()
     {
-        Animator = Popup.GetComponent<Animator>();
+        for(int i = 0; i < Animator.Count; ++i)
+        {
+            Animator[0] = Popups[0].GetComponent<Animator>();
+        }
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
-        if (Popup.activeSelf && (Animator.GetCurrentAnimatorStateInfo(0).IsName("Close") 
-                                || Animator.GetCurrentAnimatorStateInfo(0).IsName("CardClose")))
+        for(int i = 0; i < Popups.Count; ++i)
         {
-            if (Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            if (Popups[i].activeSelf && Animator[i].GetCurrentAnimatorStateInfo(0).IsName("Close"))
             {
-                Popup.SetActive(false);
+                if (Animator[i].GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                {
+                    Popups[i].SetActive(false);
+                }
             }
         }
     }
 
-    public void ClosePopup()
+    public void ClosePopup(Animator animator)
     {
-        Animator.SetTrigger("close");
+        animator.SetTrigger("close");
     }
 }
