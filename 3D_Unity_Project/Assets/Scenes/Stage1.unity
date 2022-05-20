@@ -1478,6 +1478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44544752029a4e14aba4c79ddc454da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BgmPlayer: {fileID: 1301787184}
   Stages:
   - {fileID: 6517809931499253478, guid: 00a0c3a582777164fabd4058dbc4292b, type: 3}
   - {fileID: 4181248628547472425, guid: 48bd8b36247202742935aba21320999c, type: 3}
@@ -1581,7 +1582,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 791058806}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1498762537}
+        m_TargetAssemblyTypeName: BattleUI, Assembly-CSharp
+        m_MethodName: ClickUpSkillButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &791058806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,22 +1654,6 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: BattleUI, Assembly-CSharp
           m_MethodName: ClickDownSkillButton
           m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1498762537}
-          m_TargetAssemblyTypeName: BattleUI, Assembly-CSharp
-          m_MethodName: ClickUpSkillButton
-          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2580,6 +2577,7 @@ GameObject:
   - component: {fileID: 1301787182}
   - component: {fileID: 1301787181}
   - component: {fileID: 1301787180}
+  - component: {fileID: 1301787184}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2686,6 +2684,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1301787184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301787179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4dd92b90478cc94c8114e19c14fcf25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BgmList:
+  - Name: basic
+    Audio: {fileID: 8300000, guid: a185ff9f4c3442542bcb53f53be9c7cc, type: 3}
+  - Name: clear
+    Audio: {fileID: 8300000, guid: 8007973bd85ef9a4e88079381c9bdddd, type: 3}
+  - Name: fail
+    Audio: {fileID: 8300000, guid: 2d0fe661caad1a347bd066ff9e75e552, type: 3}
 --- !u!1 &1498762532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2818,7 +2835,7 @@ MonoBehaviour:
   ClearText: {fileID: 600660974}
   FailText: {fileID: 1287888120}
   GoFarmButton: {fileID: 1669654764}
-  CkickDown: 0
+  ClickDown: 0
 --- !u!1 &1562696054
 GameObject:
   m_ObjectHideFlags: 0
@@ -3487,7 +3504,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2046309135}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1498762537}
+        m_TargetAssemblyTypeName: BattleUI, Assembly-CSharp
+        m_MethodName: ClickUpSkillButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2046309135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3547,22 +3576,6 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: BattleUI, Assembly-CSharp
           m_MethodName: ClickDownSkillButton
           m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1498762537}
-          m_TargetAssemblyTypeName: BattleUI, Assembly-CSharp
-          m_MethodName: ClickUpSkillButton
-          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

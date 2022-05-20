@@ -29,6 +29,8 @@ public class FarmManager : MonoBehaviour
 
     public List<GameObject> temp;
 
+    public BGMPlayer BgmPlayer;
+
     void Awake()
     {
         if (Instance == null)
@@ -40,8 +42,8 @@ public class FarmManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        _playerName.text = DataManager.Instance.PlayerData.PlayerName;
-        _goldText.text = DataManager.Instance.PlayerData.Gold.ToString();
+        _playerName.text = DataManager.Instance.PlayerData.Player.PlayerName;
+        _goldText.text = DataManager.Instance.PlayerData.Player.Gold.ToString();
     }
     void Start()
     {
@@ -52,7 +54,7 @@ public class FarmManager : MonoBehaviour
             Spawn(pet);
         }
 
-        if (DataManager.Instance.QuestLogNumber[0] == 0)
+        if (DataManager.Instance.QuestLog.QuestLogNumber[0] == 0)
         {
             Communicate(TutorialObject);
         }
@@ -118,14 +120,13 @@ public class FarmManager : MonoBehaviour
     void Talk(int id)
     {
         int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex(id);
-        print(id);
-        print(id + questTalkIndex);
+
         string talkData = TalkManager.Instance.GetDialogue(id + questTalkIndex, talkIndex);
         if (talkData == null)
         {
             isTalk = false;
             talkIndex = 0;
-            Debug.Log(QuestManager.Instance.CheckQuest(id));
+            QuestManager.Instance.CheckQuest(id);
             return;
         }
 
@@ -154,7 +155,7 @@ public class FarmManager : MonoBehaviour
 
     public void GoldTextUpdate()
     {
-        _goldText.text = DataManager.Instance.PlayerData.Gold.ToString();
+        _goldText.text = DataManager.Instance.PlayerData.Player.Gold.ToString();
     }
 
     public void OnClickCardButton()

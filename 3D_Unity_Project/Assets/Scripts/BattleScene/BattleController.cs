@@ -96,7 +96,6 @@ public abstract class BattleController : MonoBehaviour, ITarget, IFight
         {
             _hp -= totalDamgae;
         }
-        //print($"플레이어 : {_hp}");
 
         if (_hp < 1)
         {
@@ -107,11 +106,11 @@ public abstract class BattleController : MonoBehaviour, ITarget, IFight
 
     public virtual void Die()
     {
-        StartCoroutine(Disappear());
         Collider collider = GetComponent<Collider>();
         collider.enabled = false;
         Controller.Agent.enabled = false;
         Controller.DieMotion();
+        StartCoroutine(Disappear());
     }
 
     public virtual IEnumerator Disappear()

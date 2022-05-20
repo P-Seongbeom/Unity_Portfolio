@@ -4751,6 +4751,7 @@ MonoBehaviour:
   _goldText: {fileID: 1927138753}
   _playerName: {fileID: 1855052472}
   temp: []
+  BgmPlayer: {fileID: 963194230}
 --- !u!1 &381467853
 GameObject:
   m_ObjectHideFlags: 0
@@ -12440,6 +12441,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12546,6 +12548,23 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4dd92b90478cc94c8114e19c14fcf25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BgmList:
+  - Name: basic
+    Audio: {fileID: 8300000, guid: b31c9aca03a0bac46933b83c528a20e5, type: 3}
+  - Name: store
+    Audio: {fileID: 8300000, guid: b2d0aa21bbd64e9458efb5fc72365364, type: 3}
 --- !u!1 &965601903
 GameObject:
   m_ObjectHideFlags: 0
@@ -21073,6 +21092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharPerSeconds: 15
   TalkCursor: {fileID: 105920781}
+  EndEffect: 0
 --- !u!1 &1799523293
 GameObject:
   m_ObjectHideFlags: 3
@@ -22797,6 +22817,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 796de22ff43d58d4490cb759bb429d63, type: 2}
   - {fileID: 11400000, guid: bc8787142d4267b4fb05c44ba4ed5838, type: 2}
   - {fileID: 11400000, guid: 259c099f188261345a7ac56a0808ddd1, type: 2}
+  - {fileID: 11400000, guid: 89abc518b1063414f8defe102d8cb91a, type: 2}
 --- !u!1 &1927138751
 GameObject:
   m_ObjectHideFlags: 0
@@ -23871,7 +23892,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 217215adde3e3394f92efae7e2876c2c, type: 2}
+  - {fileID: 2100000, guid: 6c68ea06d28e09442b2cbb0128168c0b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

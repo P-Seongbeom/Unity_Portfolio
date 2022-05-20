@@ -23,7 +23,7 @@ public class Rabbit : PlayerPetBattleController
             return;
         }
 
-        if(BattleUI.Instance.CkickDown)
+        if (BattleUI.Instance.ClickDown)
         {
             SkillRange.SetActive(true);
         }
@@ -38,7 +38,7 @@ public class Rabbit : PlayerPetBattleController
             SkillRange.transform.position = rangePos;
         }
 
-        if (Input.GetMouseButtonUp(0) && BattleUI.Instance.CkickDown)
+        if (Input.GetMouseButtonUp(0) && BattleUI.Instance.ClickDown)
         {
             UsingSkill = false;
 
@@ -47,6 +47,8 @@ public class Rabbit : PlayerPetBattleController
             Time.timeScale = 1f;
 
             BattleUI.Instance.CostUpdate(_skillCost, _skillCooltime);
+
+            SkillRange.SetActive(false);
 
             StopCoroutine(ChaseTarget());
 

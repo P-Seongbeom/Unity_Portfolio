@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questName: "\uACE8\uCE6B\uAC70\uB9AC..."
   npcId: d0070000
-  questDescription: "\uB3FC\uC9C0\uC5D0\uAC8C \uBB34\uC2A8 \uBB38\uC81C\uAC00 \uC0DD\uACBC\uB098\uBD10\uC694...!
-    \uB3FC\uC9C0\uC5D0\uAC8C \uB9D0\uC744 \uAC78\uC5B4\uBD10\uC694!!"
+  questDescription: "\uB3FC\uC9C0\uC5D0\uAC8C \uBB38\uC81C\uAC00 \uC0DD\uACBC\uB098\uBD10\uC694...!
+    \uB3FC\uC9C0\uC5D0\uAC8C \uB2E4\uC2DC \uB9D0\uC744 \uAC78\uC5B4\uBD10\uC694!!"
   rewardGold: 100
   rewardCard:
   - Dog

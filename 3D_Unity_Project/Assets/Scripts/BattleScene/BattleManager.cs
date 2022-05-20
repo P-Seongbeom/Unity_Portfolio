@@ -8,6 +8,8 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
 
+    public BGMPlayer BgmPlayer;
+
     public List<GameObject> Stages;
     public GameObject CurrentStage;
 
@@ -159,7 +161,9 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator StageFail()
     {
-        foreach(GameObject hpbar in BattleUI.Instance.EnemyHpBarList)
+        BgmPlayer.PlayBGM("fail");
+
+        foreach (GameObject hpbar in BattleUI.Instance.EnemyHpBarList)
         {
             hpbar.SetActive(false);
         }
@@ -175,6 +179,8 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator StageClear()
     {
+        BgmPlayer.PlayBGM("clear");
+
         foreach (PlayerPetBattleController pet in PetMovers)
         {
             pet.StopPet();
@@ -231,8 +237,8 @@ public class BattleManager : MonoBehaviour
         if(isClear)
         {
             QuestManager.Instance.CheckQuest(CurrentStage.GetComponent<StageInfo>().StageData.QuestId);
-            DataManager.Instance.GetGold(CurrentStage.GetComponent<StageInfo>().StageData.GoldReward);
-            DataManager.Instance.OpenStage(CurrentStage.GetComponent<StageInfo>().StageData.StageNumber + 1);
+            DataManager.Instance.PlayerData.GetGold(CurrentStage.GetComponent<StageInfo>().StageData.GoldReward);
+            DataManager.Instance.StageData.OpenStage(CurrentStage.GetComponent<StageInfo>().StageData.StageNumber + 1);
         }
 
         SceneManager.LoadScene(FarmSceneName);

@@ -35,7 +35,7 @@ public class StorePopup : FarmPopup
 
     protected void Start()
     {
-        for(int i = 0; i < DataManager.Instance.AllPlayerPet.Count; ++i)
+        for(int i = 0; i < DataManager.Instance.MyPetData.AllPlayerPet.Count; ++i)
         {
             CardNums.Add(i);
         }
@@ -91,7 +91,7 @@ public class StorePopup : FarmPopup
 
         for(int i = 0; i < PickNums.Count; ++i)
         {
-            DataManager.Instance.GetPetCard(PickNums[i]);
+            DataManager.Instance.MyPetData.GetPetCard(PickNums[i]);
 
             foreach(GameObject pet in GameManager.Instance.PetPrefabs)
             {
