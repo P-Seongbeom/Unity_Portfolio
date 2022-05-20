@@ -30,15 +30,9 @@ public class StageSelectManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //for(int i = 0; i < DataManager.Instance.AllStageList.Count - 1; ++i)
-        //{
-        //    StagePrefabs[i].GetComponent<StageInfo>().StageData = DataManager.Instance.AllStageList[i];
-        //    StageButtons[i].GetComponent<SelectStageInfo>().StageData = StagePrefabs[i].GetComponent<StageInfo>().StageData;
-        //}
-
-        for (int i = 0; i < DataManager.Instance.OpenStageList.Count; ++i)
+        for (int i = 0; i < DataManager.Instance.StageData.OpenStageList.Count; ++i)
         {
-            StagePrefabs[i].GetComponent<StageInfo>().StageData = DataManager.Instance.OpenStageList[i];
+            StagePrefabs[i].GetComponent<StageInfo>().StageData = DataManager.Instance.StageData.OpenStageList[i];
             StageButtons[i].GetComponent<SelectStageInfo>().StageData = StagePrefabs[i].GetComponent<StageInfo>().StageData;
         }
     }

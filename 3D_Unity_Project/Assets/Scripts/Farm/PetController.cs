@@ -37,12 +37,6 @@ public class PetController : MonoBehaviour
         _skill = Animator.StringToHash("skill");
         _die = Animator.StringToHash("die");
         _idle = Animator.StringToHash("idle");
-
-        //_states = new Dictionary<int, string>();
-        //_states.Add(Animator.StringToHash("idle"), "Idle");
-        //_states.Add(Animator.StringToHash("move"), "Move");
-        //_states.Add(Animator.StringToHash("jump"), "Jump");
-        //_states.Add(Animator.StringToHash("attack"), "Attack");
     }
 
     void Update()
@@ -101,7 +95,7 @@ public class PetController : MonoBehaviour
     public void SkillMotion()
     {
         PetAnimator.SetTrigger(_skill);
-        //print("스킬모션은?");
+
         StartCoroutine(WaitAnimationExit(PetAnimator));
     }
 
@@ -122,23 +116,6 @@ public class PetController : MonoBehaviour
 
     public IEnumerator WaitAnimationExit(Animator animator)
     {
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Skill"))
-        {
-            print("스킬");
-        }
-        else if(animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-            print("어택");
-        }
-        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-        {
-            print("멍");
-        }
-        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Move"))
-        {
-            print("움직");
-        }
-
         while(!animator.GetCurrentAnimatorStateInfo(0).IsName("Skill"))
         {
             
@@ -147,21 +124,18 @@ public class PetController : MonoBehaviour
 
         while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
         {
-            //print("돌고있나요");
             yield return new WaitForEndOfFrame();
         }
-        print("빠져나옴");
+
         if (gameObject.tag == "MyPet")
         {
             gameObject.GetComponent<PlayerPetBattleController>().SkillMotion = false;
             StartCoroutine(gameObject.GetComponent<PlayerPetBattleController>().ChaseTarget());
-            //print("상태해제");
         }
         else if (gameObject.tag == "Enemy")
         {
             gameObject.GetComponent<EnemyBattleController>().SkillMotion = false;
         }
-        //gameObject.GetComponent<BattleController>().SkillMotion = false;
     }
 
     public IEnumerator Idle()
@@ -171,8 +145,5 @@ public class PetController : MonoBehaviour
         {
             IdleMotion();
         }
-
-
-
     }
 }

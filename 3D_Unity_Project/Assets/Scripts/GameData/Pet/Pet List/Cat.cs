@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Cat : PlayerPetBattleController
 {
-    //public override void Attack()
-    //{
-
-    //}
-
     public override void UseSkill()
     {
 

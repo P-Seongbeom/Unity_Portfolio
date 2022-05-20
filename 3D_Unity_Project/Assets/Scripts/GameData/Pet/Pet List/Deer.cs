@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Deer : PlayerPetBattleController
 {
-    //public override void Attack()
-    //{
-
-    //}
-
     public override void UseSkill()
     {
 

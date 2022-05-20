@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questName: "\uC0AC\uC790\uB97C \uBAB0\uC544\uB0B4\uC790!"
   npcId: 10270000f82a0000d0070000
-  questDescription: "\uB3FC\uC9C0\uAC00 \uC0AC\uC790\uB4E4\uC744 \uBAB0\uC544\uB0B4\uBA74
+  questDescription: "\uB3FC\uC9C0\uAC00 \uC0AC\uC790\uB97C \uBAB0\uC544\uB0B4\uBA74
     \uC54C\uB824\uB2EC\uB77C\uACE0 \uD558\uB124\uC694~ Stage 1-2\uAE4C\uC9C0 \uD074\uB9AC\uC5B4
     \uD574\uC8FC\uC138\uC694!"
   rewardGold: 300

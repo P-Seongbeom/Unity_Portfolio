@@ -31,28 +31,28 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if(DataManager.Instance.HavePlayerPet.Count == 0)
+        if(DataManager.Instance.MyPetData.HavePlayerPet.Count == 0)
         {
-            DataManager.Instance.GetPetCard(0);
+            DataManager.Instance.MyPetData.GetPetCard(0);
         }
 
         HavingPetUpdate();
 
         for (int i = 0; i < EnemyPrefabs.Count; ++i)
         {
-            for (int j = 0; j < DataManager.Instance.EnemyPet.Count; ++j)
+            for (int j = 0; j < DataManager.Instance.EnemyData.EnemyPet.Count; ++j)
             {
-                if (EnemyPrefabs[i].name == DataManager.Instance.EnemyPet[j].PetName)
+                if (EnemyPrefabs[i].name == DataManager.Instance.EnemyData.EnemyPet[j].PetName)
                 {
                     EnemyPrefabs[i].GetComponent<EPetInfo>().SetInfo(
-                        DataManager.Instance.EnemyPet[j].PetName,
-                        DataManager.Instance.EnemyPet[j].PetNumber,
-                        DataManager.Instance.EnemyPet[j].HP,
-                        DataManager.Instance.EnemyPet[j].ATK,
-                        DataManager.Instance.EnemyPet[j].DEF,
-                        DataManager.Instance.EnemyPet[j].Cooltime,
-                        DataManager.Instance.EnemyPet[j].AttackRange,
-                        DataManager.Instance.EnemyPet[j].SkillRange);
+                        DataManager.Instance.EnemyData.EnemyPet[j].PetName,
+                        DataManager.Instance.EnemyData.EnemyPet[j].PetNumber,
+                        DataManager.Instance.EnemyData.EnemyPet[j].HP,
+                        DataManager.Instance.EnemyData.EnemyPet[j].ATK,
+                        DataManager.Instance.EnemyData.EnemyPet[j].DEF,
+                        DataManager.Instance.EnemyData.EnemyPet[j].Cooltime,
+                        DataManager.Instance.EnemyData.EnemyPet[j].AttackRange,
+                        DataManager.Instance.EnemyData.EnemyPet[j].SkillRange);
                 }
             }
         }
@@ -62,46 +62,46 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < PetPrefabs.Count; ++i)
         {
-            for(int j = 0; j < DataManager.Instance.AllPlayerPet.Count; ++j)
+            for(int j = 0; j < DataManager.Instance.MyPetData.AllPlayerPet.Count; ++j)
             {
-                if(PetPrefabs[i].name == DataManager.Instance.AllPlayerPet[j].PetName)
+                if(PetPrefabs[i].name == DataManager.Instance.MyPetData.AllPlayerPet[j].PetName)
                 {
                     PetPrefabs[i].GetComponent<PetInfo>().SetInfo(
-                        DataManager.Instance.AllPlayerPet[j].PetName,
-                        DataManager.Instance.AllPlayerPet[j].PetNumber,
-                        DataManager.Instance.AllPlayerPet[j].IsGetted,
-                        DataManager.Instance.AllPlayerPet[j].Position,
-                        DataManager.Instance.AllPlayerPet[j].HP,
-                        DataManager.Instance.AllPlayerPet[j].ATK,
-                        DataManager.Instance.AllPlayerPet[j].DEF,
-                        DataManager.Instance.AllPlayerPet[j].SkillCost,
-                        DataManager.Instance.AllPlayerPet[j].Cooltime,
-                        DataManager.Instance.AllPlayerPet[j].AttackRange,
-                        DataManager.Instance.AllPlayerPet[j].SkillRange,
-                        DataManager.Instance.AllPlayerPet[j].Level);
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].PetName,
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].PetNumber,
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].IsGetted,
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].Position,
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].HP,
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].ATK,
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].DEF,
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].SkillCost,
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].Cooltime,
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].AttackRange,
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].SkillRange,
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].Level);
                 }
             }
         }
 
         for (int i = 0; i < PetPrefabs.Count; ++i)
         {
-            for (int j = 0; j < DataManager.Instance.HavePlayerPet.Count; ++j)
+            for (int j = 0; j < DataManager.Instance.MyPetData.HavePlayerPet.Count; ++j)
             {
-                if (PetPrefabs[i].name == DataManager.Instance.HavePlayerPet[j].PetName)
+                if (PetPrefabs[i].name == DataManager.Instance.MyPetData.HavePlayerPet[j].PetName)
                 {
                     PetPrefabs[i].GetComponent<PetInfo>().SetInfo(
-                        DataManager.Instance.HavePlayerPet[j].PetName,
-                        DataManager.Instance.HavePlayerPet[j].PetNumber,
-                        DataManager.Instance.HavePlayerPet[j].IsGetted,
-                        DataManager.Instance.HavePlayerPet[j].Position,
-                        DataManager.Instance.HavePlayerPet[j].HP,
-                        DataManager.Instance.HavePlayerPet[j].ATK,
-                        DataManager.Instance.HavePlayerPet[j].DEF,
-                        DataManager.Instance.HavePlayerPet[j].SkillCost,
-                        DataManager.Instance.HavePlayerPet[j].Cooltime,
-                        DataManager.Instance.HavePlayerPet[j].AttackRange,
-                        DataManager.Instance.HavePlayerPet[j].SkillRange,
-                        DataManager.Instance.HavePlayerPet[j].Level);
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].PetName,
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].PetNumber,
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].IsGetted,
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].Position,
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].HP,
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].ATK,
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].DEF,
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].SkillCost,
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].Cooltime,
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].AttackRange,
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].SkillRange,
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].Level);
                 }
             }
         }

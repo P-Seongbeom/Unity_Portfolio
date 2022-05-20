@@ -32,7 +32,7 @@ public class BattleUI : MonoBehaviour
     [SerializeField]
     private GameObject GoFarmButton;
 
-    public bool CkickDown = false;
+    public bool ClickDown = false;
     private int _selectedIndex;
 
     private void Awake()
@@ -156,18 +156,19 @@ public class BattleUI : MonoBehaviour
     {
         Time.timeScale = 0.5f;
         _selectedIndex = uiNum;
-        CkickDown = true;
+        ClickDown = true;
         BattleManager.Instance.InBattlePlayerPets[uiNum].GetComponent<BattleController>().UsingSkill = true;
     }
 
     public void ClickUpSkillButton()
     {
         Time.timeScale = 1f;
-        CkickDown = false;
+        ClickDown = false;
     }
 
     public void CostUpdate(int cost, float cooltime)
     {
+        ClickDown = false;
         BattleManager.Instance.OverallCost -= cost;
         print(cooltime);
         StartCoroutine(BlockButton(_selectedIndex, cooltime));

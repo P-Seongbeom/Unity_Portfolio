@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyBattleController : BattleController, ITarget, IFight
+public abstract class EnemyBattleController : BattleController
 {
     public bool provocated = false;
 

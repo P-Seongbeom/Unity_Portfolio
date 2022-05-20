@@ -374,7 +374,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3257104023186796109}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.1
+  m_Radius: 0.05
   m_Speed: 9
   m_Acceleration: 20
   avoidancePriority: 50
@@ -404,8 +404,22 @@ MonoBehaviour:
   CurrentTarget: {fileID: 0}
   BulletPos: {fileID: 0}
   Bullet: {fileID: 0}
+  _hp: 0
+  _atk: 0
+  _def: 0
+  _attackRate: 1
+  _attackDelay: 0
+  _attackRange: 0
+  _attackReady: 0
+  _skillCooltime: 0
+  _skillRange: 0
+  SkillReady: 1
+  UsingSkill: 0
+  SkillMotion: 0
+  _skillCost: 0
   isAlive: 1
   _longRange: 0
+  provocated: 0
   PlayerStartPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &-5960318759630679827
 MonoBehaviour:

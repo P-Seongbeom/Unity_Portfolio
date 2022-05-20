@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class PlayerPetBattleController : BattleController, ITarget, IFight
+public abstract class PlayerPetBattleController : BattleController
 {
     public Vector3 Destination;
 
@@ -103,7 +103,6 @@ public abstract class PlayerPetBattleController : BattleController, ITarget, IFi
             }
         }
 
-        //yield return new WaitForSeconds(0.5f);
         yield return null;
 
         StartCoroutine(ChaseTarget());

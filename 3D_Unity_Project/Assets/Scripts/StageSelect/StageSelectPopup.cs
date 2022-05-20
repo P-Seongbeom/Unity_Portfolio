@@ -41,6 +41,8 @@ public class StageSelectPopup : MonoBehaviour
         {
             if (Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
+                RevertText();
+
                 Popup.SetActive(false);
             }
         }
@@ -60,7 +62,6 @@ public class StageSelectPopup : MonoBehaviour
         if (_onClickOkay != null)
         {
             _onClickOkay();
-            StartCoroutine(RevertText());
         }
     }
 
@@ -69,14 +70,11 @@ public class StageSelectPopup : MonoBehaviour
         if (_onClickCancel != null)
         {
             _onClickCancel();
-            StartCoroutine(RevertText());
         }
     }
 
-    public IEnumerator RevertText()
+    public void RevertText()
     {
-        yield return new WaitForSeconds(1f);
-
         RewardText.text = _reward;
     }
 

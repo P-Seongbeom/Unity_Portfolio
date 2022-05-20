@@ -13,10 +13,28 @@ public class TypingEffect : MonoBehaviour
     float interval;
 
     public bool EndEffect;
+    private bool canSkip = false;
+    private float _effectTime;
 
     private void Awake()
     {
         _messageText = GetComponent<Text>();
+    }
+
+    private void Update()
+    {
+        if(canSkip)
+        {
+            _effectTime += Time.deltaTime;
+        }
+
+        if (Input.GetMouseButtonDown(0) && _effectTime > 0.3)
+        {
+            _effectTime = 0;
+            _messageText.text = _targetMassage;
+            EffectEnd();
+            return;
+        }
     }
 
     public void SetMessage(string msg)
@@ -28,6 +46,7 @@ public class TypingEffect : MonoBehaviour
     void EffectStart()
     {
         EndEffect = false;
+        canSkip = true;
         _messageText.text = "";
         index = 0;
         TalkCursor.SetActive(false);
@@ -47,16 +66,12 @@ public class TypingEffect : MonoBehaviour
         _messageText.text += _targetMassage[index];
         ++index;
 
-        if(Input.GetMouseButton(0))
-        {
-            _messageText.text = _targetMassage;
-        }
-
         Invoke("Effecting", interval);
     }
 
     void EffectEnd()
     {
+        canSkip = false;
         EndEffect = true;
         TalkCursor.SetActive(true);
     }

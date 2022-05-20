@@ -19,39 +19,6 @@ public class Dog : PlayerPetBattleController
         base.Update();
         UseSkill();
     }
-    //private void OnDrawGizmos()
-    //{
-    //    Debug.DrawRay(transform.position, transform.forward * 15f, Color.red);
-    //    Debug.DrawRay(SkillRange.transform.position, SkillRange.transform.forward * 15f, Color.green);
-    //}
-
-    //public override void UseSkill()
-    //{
-    //    if (false == UsingSkill))
-    //    {
-    //        return;
-    //    }
-    //    if (Input.GetMouseButton(0))
-    //    {
-    //        Vector3 rangePos = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
-    //        SkillRange.transform.position = rangePos;
-    //        SkillRange.SetActive(true);
-    //    }
-    //    if (Input.GetMouseButtonUp(0))
-    //    {
-    //        UsingSkill = true;
-    //
-    //        SkillMotion = true;
-
-    //        SkillRange.SetActive(false);
-
-    //        Time.timeScale = 1f;
-
-    //        BattleUI.Instance.CostUpdate(_skillCost, _skillCooltime);
-
-    //        StartCoroutine(Bite());
-    //    }
-    //}
 
     public override void UseSkill()
     {
@@ -60,7 +27,7 @@ public class Dog : PlayerPetBattleController
             return;
         }
 
-        if (BattleUI.Instance.CkickDown)
+        if (BattleUI.Instance.ClickDown)
         {
             SkillRange.SetActive(true);
         }
@@ -69,7 +36,7 @@ public class Dog : PlayerPetBattleController
             SkillRange.SetActive(false);
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && BattleUI.Instance.ClickDown)
         {
             Vector3 rangePos = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
             SkillRange.transform.position = rangePos;
@@ -100,29 +67,20 @@ public class Dog : PlayerPetBattleController
             Time.timeScale = 1f;
 
             BattleUI.Instance.CostUpdate(_skillCost, _skillCooltime);
+
+            SkillRange.SetActive(false);
+
             StopCoroutine(ChaseTarget());
+
             StartCoroutine(Rush());
         }
     }
-
-    //IEnumerator Bite()
-    //{
-    //    Controller.SkillMotion();
-
-    //    yield return new WaitForSeconds(1f);
-
-    //    if(false == CurrentTarget.GetComponent<BattleController>().isAlive)
-    //    {
-    //        yield break;
-    //    }
-    //    CurrentTarget.GetComponent<BattleController>().Damaged((int)(_atk * 1.5));
-    //}
 
     IEnumerator Rush()
     {
         Controller.Agent.isStopped = true;
         Controller.Agent.stoppingDistance = 0.5f;
-        Controller.Agent.SetDestination(transform.position + transform.forward * 10f);
+        Controller.Agent.SetDestination(transform.position + transform.forward * 15f);
 
         Controller.SkillMotion();
 
@@ -141,9 +99,14 @@ public class Dog : PlayerPetBattleController
 
     private void OnTriggerEnter(Collider other)
     {
+        if(false == SkillMotion)
+        {
+            return;
+        }
+
         if(other.tag == "Enemy")
         {
-            other.GetComponent<BattleController>()._hp -= (int)(_atk * 1.5f);
+            other.GetComponent<BattleController>().Damaged((int)(_atk * 1.5f));
         }
     }
 }
