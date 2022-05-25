@@ -63,6 +63,18 @@ public class PlayerPetDatabase : Database
         {
             if (AllPlayerPet[petNum].PetNumber == HavePlayerPet[i].PetNumber)
             {
+                ++HavePlayerPet[i].Level;
+                GameManager.Instance.HavingPetUpdate();
+                if (FarmManager.Instance != null)
+                {
+                    foreach(GameObject pet in FarmManager.Instance.SpawnedPets)
+                    {
+                        if(pet.GetComponent<PetInfo>().PetNumber == AllPlayerPet[petNum].PetNumber)
+                        {
+                            ++pet.GetComponent<PetInfo>().Level;
+                        }
+                    }
+                }
                 return;
             }
         }

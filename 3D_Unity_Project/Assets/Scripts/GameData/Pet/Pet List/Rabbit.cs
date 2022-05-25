@@ -30,6 +30,7 @@ public class Rabbit : PlayerPetBattleController
         else
         {
             SkillRange.SetActive(false);
+            UsingSkill = false;
         }
 
         if (Input.GetMouseButton(0))
@@ -64,15 +65,8 @@ public class Rabbit : PlayerPetBattleController
                 if(BattleManager.Instance.InBattlePlayerPets[i].GetComponent<BattleController>().isAlive)
                 {
                     GameObject carrot = Instantiate(Carrot, BulletPos.position, BulletPos.rotation);
-                    Vector3 vec = BattleManager.Instance.InBattlePlayerPets[i].transform.position - carrot.transform.position;
-                    vec.y = Vector3.Lerp(new Vector3(BattleManager.Instance.InBattlePlayerPets[i].transform.position.x,
-                                                    BattleManager.Instance.InBattlePlayerPets[i].transform.position.y + 7f,
-                                                    BattleManager.Instance.InBattlePlayerPets[i].transform.position.z),
-                                                    carrot.transform.position, 0.5f).y;
 
-                    Rigidbody rigid = carrot.GetComponent<Rigidbody>();
-
-                    rigid.AddForce(vec, ForceMode.Impulse);
+                    carrot.GetComponent<Bullet>().Target = BattleManager.Instance.InBattlePlayerPets[i];
                 }
             }
 

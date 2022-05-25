@@ -26,13 +26,13 @@ public class PetInfo : MonoBehaviour
         PetNumber = petNum;
         IsGetted = getted;
         Position = position;
-        HP = hp;
-        ATK = atk;
-        DEF = def;
         SkillCost = cost;
         Cooltime = cool;
         AttackRange = atkRange;
         SkillRange = sklRange;
         Level = level;
+        ATK = (int)(atk + (atk * Level * 0.1));
+        DEF = (int)(def + (def * Level * 0.1));
+        HP = (int)(hp +(hp * Level * 0.1));
     }
 }

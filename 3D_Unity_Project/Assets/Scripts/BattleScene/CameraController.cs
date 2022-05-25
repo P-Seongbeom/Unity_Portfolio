@@ -42,11 +42,10 @@ namespace BattleScene
         {
             for(int i = 0; i < BattleManager.Instance.InBattlePlayerPets.Count; ++i)
             {
-                if (BattleManager.Instance.InBattlePlayerPets[i].transform.position.z > Focus.position.z - 15f)
+                if (BattleManager.Instance.InBattlePlayerPets[i].transform.position.z > Focus.position.z - 10f)
                 {
-                    Focus.position = new Vector3(Focus.position.x, Focus.position.y, BattleManager.Instance.InBattlePlayerPets[i].transform.position.z + 15f);
+                    Focus.position = new Vector3(Focus.position.x, Focus.position.y, BattleManager.Instance.InBattlePlayerPets[i].transform.position.z + 10);
                 }
-
             }
 
             _vcam.Follow = Focus;

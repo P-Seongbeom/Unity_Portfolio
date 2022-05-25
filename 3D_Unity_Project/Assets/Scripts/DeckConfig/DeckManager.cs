@@ -16,6 +16,7 @@ public class DeckManager : MonoBehaviour
 
     public GameObject[] InvenSlot;
     public GameObject[] SelectedSlot;
+    public Text[] LevelText;
 
     private int _clickCount;
 
@@ -31,6 +32,10 @@ public class DeckManager : MonoBehaviour
             InvenSlot[i].GetComponent<Image>().sprite = i < CurrentHavePets.Count 
                                                       ? CurrentHavePets[i].GetComponent<PetInfo>().CardPortrait 
                                                       : InvenSlot[i].GetComponent<Image>().sprite;
+            if(InvenSlot[i].activeSelf)
+            {
+                LevelText[i].text = $"Lv : {CurrentHavePets[i].GetComponent<PetInfo>().Level}";
+            }
         }
     }
 

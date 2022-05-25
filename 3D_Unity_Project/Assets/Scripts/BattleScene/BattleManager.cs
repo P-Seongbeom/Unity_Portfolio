@@ -180,6 +180,7 @@ public class BattleManager : MonoBehaviour
     public IEnumerator StageClear()
     {
         BgmPlayer.PlayBGM("clear");
+        BgmPlayer.GetComponent<AudioSource>().volume = 0.8f;
 
         foreach (PlayerPetBattleController pet in PetMovers)
         {

@@ -11,7 +11,7 @@ public abstract class PlayerPetBattleController : BattleController
 
     public ParticleSystem SkillUseEffect;
 
-    protected bool _inPhase = false;
+    public bool _inPhase = false;
 
     protected virtual void Awake()
     {

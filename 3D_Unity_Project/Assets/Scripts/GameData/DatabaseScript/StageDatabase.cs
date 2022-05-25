@@ -57,7 +57,7 @@ public class StageDatabase : Database
     public void OpenStage(int stageNum)
     {
         AllStageList[stageNum].OpenStage = true;
-        Debug.Log(AllStageList[stageNum]);
+
         OpenStageList.Add(AllStageList[stageNum]);
 
         Save();

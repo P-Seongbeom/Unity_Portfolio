@@ -30,7 +30,6 @@ public class TypingEffect : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && _effectTime > 0.3)
         {
-            _effectTime = 0;
             _messageText.text = _targetMassage;
             EffectEnd();
             return;
@@ -72,6 +71,7 @@ public class TypingEffect : MonoBehaviour
     void EffectEnd()
     {
         canSkip = false;
+        _effectTime = 0;
         EndEffect = true;
         TalkCursor.SetActive(true);
     }
