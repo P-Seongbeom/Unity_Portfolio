@@ -154,6 +154,10 @@ public class BattleUI : MonoBehaviour
 
     public void ClickDownSkillButton(int uiNum)
     {
+        if(false == PetSkills[uiNum].interactable)
+        {
+            return;
+        }
         Time.timeScale = 0.5f;
         _selectedIndex = uiNum;
         ClickDown = true;
@@ -170,7 +174,7 @@ public class BattleUI : MonoBehaviour
     {
         ClickDown = false;
         BattleManager.Instance.OverallCost -= cost;
-        print(cooltime);
+
         StartCoroutine(BlockButton(_selectedIndex, cooltime));
     }
 

@@ -67,15 +67,7 @@ public abstract class BattleController : MonoBehaviour, ITarget, IFight
     {
         GameObject bullet = Instantiate(Bullet, BulletPos.position, BulletPos.rotation);
 
-        float height = bullet.GetComponent<Bullet>().Height;
-        Vector3 vec = CurrentTarget.transform.position - bullet.transform.position;
-        vec.y = Vector3.Lerp(new Vector3(CurrentTarget.transform.position.x, CurrentTarget.transform.position.y + height, CurrentTarget.transform.position.z),
-                             bullet.transform.position, 0.5f).y;
-
         bullet.GetComponent<Bullet>().Target = CurrentTarget;
-
-        Rigidbody bulletRigid = bullet.GetComponent<Rigidbody>();
-        bulletRigid.AddForce(vec, ForceMode.Impulse);
     }
 
     public virtual IEnumerator MeleeAttack()

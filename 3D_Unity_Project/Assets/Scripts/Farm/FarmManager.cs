@@ -27,9 +27,11 @@ public class FarmManager : MonoBehaviour
     public Text _goldText;
     public Text _playerName;
 
-    public List<GameObject> temp;
+    //public List<GameObject> temp;
 
     public BGMPlayer BgmPlayer;
+
+    public GameObject ResetButton;
 
     void Awake()
     {
@@ -47,7 +49,7 @@ public class FarmManager : MonoBehaviour
     }
     void Start()
     {
-        temp = SpawnedPets;
+        //temp = SpawnedPets;
 
         foreach (GameObject pet in GameManager.Instance.HavePets)
         {
@@ -167,6 +169,23 @@ public class FarmManager : MonoBehaviour
     {
         SceneManager.LoadScene(StageSelectScene);
     }
+
+    public void OnClickPlayerName()
+    {
+        ResetButton.SetActive(true);
+    }
+
+    public void ResetAllData()
+    {
+        DataManager.Instance.ResetAllData();
+    }
+
+    public void CancelReset()
+    {
+        ResetButton.SetActive(false);
+    }
+
+
 }
 
 

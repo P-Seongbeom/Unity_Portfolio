@@ -36,7 +36,7 @@ public class Dog : PlayerPetBattleController
             SkillRange.SetActive(false);
         }
 
-        if (Input.GetMouseButton(0) && BattleUI.Instance.ClickDown)
+        if (Input.GetMouseButton(0))
         {
             Vector3 rangePos = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
             SkillRange.transform.position = rangePos;
@@ -51,7 +51,7 @@ public class Dog : PlayerPetBattleController
                 }
             }
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && BattleUI.Instance.ClickDown)
         {
             Controller.Agent.velocity = Vector3.zero;
 

@@ -25,6 +25,7 @@ ScriptsOnlyBuild:
     - Elephant
     - Farm.CameraController
     - FarmManager
+    - FixResolution
     - GameManager
     - InputManager
     - Lion
@@ -46,6 +47,7 @@ ScriptsOnlyBuild:
     - TalkData
     - TalkManager
     - TextMotion
+    - ThresholdControl
     - TypingEffect
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
@@ -145,6 +147,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4622}
     - Class: 114
       Script: {instanceID: 4862}
+    - Class: 114
+      Script: {instanceID: 76152}
+    - Class: 114
+      Script: {instanceID: 92090}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -274,6 +280,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4838}
     - Class: 114
       Script: {instanceID: 4862}
+    - Class: 114
+      Script: {instanceID: 76152}
+    - Class: 114
+      Script: {instanceID: 92090}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -407,6 +417,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4562}
     - Class: 114
       Script: {instanceID: 4838}
+    - Class: 114
+      Script: {instanceID: 92090}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -530,6 +542,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4492}
     - Class: 114
       Script: {instanceID: 4562}
+    - Class: 114
+      Script: {instanceID: 92090}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -681,6 +695,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4562}
     - Class: 114
       Script: {instanceID: 4904}
+    - Class: 114
+      Script: {instanceID: 92090}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -862,7 +878,7 @@ ScriptsOnlyBuild:
     className: Rabbit
   - hash:
       serializedVersion: 2
-      Hash: 57e711e86159b2cdcbbb0b9864597d86
+      Hash: 6ec94429e3a9e69d3880956e962b7f68
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FarmManager
@@ -1712,6 +1728,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StartScreen
+  - hash:
+      serializedVersion: 2
+      Hash: 334b951a9474c7cd665714f8f667cb59
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ThresholdControl
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FixResolution
   platform: 13
   scenePathNames:
   - Assets/Scenes/StartScreen.unity

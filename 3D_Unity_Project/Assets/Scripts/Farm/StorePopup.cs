@@ -68,6 +68,12 @@ public class StorePopup : FarmPopup
 
     public void RandomCard(Action onClickClose)
     {
+        if(DataManager.Instance.PlayerData.Player.Gold < 100)
+        {
+            return;
+        }
+        DataManager.Instance.PlayerData.GetGold(-100);
+
         switch (SelectedSlotNum)
         {
             case 0:

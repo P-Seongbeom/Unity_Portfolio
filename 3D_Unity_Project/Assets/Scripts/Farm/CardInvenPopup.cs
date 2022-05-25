@@ -10,6 +10,8 @@ public class CardInvenPopup : FarmPopup
 
     public GameObject[] InvenSlot;
 
+    public Text[] LevelText;
+
     protected override void Awake()
     {
         if (Instance == null)
@@ -32,6 +34,10 @@ public class CardInvenPopup : FarmPopup
             InvenSlot[i].GetComponent<Image>().sprite = i < spawnPet.Count
                                                           ? spawnPet[i].GetComponent<PetInfo>().CardPortrait
                                                           : InvenSlot[i].GetComponent<Image>().sprite;
+            if(InvenSlot[i].activeSelf)
+            {
+                LevelText[i].text = $"Lv : {spawnPet[i].GetComponent<PetInfo>().Level}";
+            }
 
         }
 
