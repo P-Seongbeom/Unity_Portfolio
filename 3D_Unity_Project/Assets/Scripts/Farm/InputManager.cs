@@ -28,11 +28,6 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
-        if(Controllers.Count == 0)
-        {
-            Debug.LogWarning("PlayerPetController is empty.");
-        }
-
         Destination.transform.position = Vector3.zero;
         Destination.SetActive(false);
 
@@ -41,7 +36,10 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        SetDestinationPoint();
+        if(Input.GetMouseButtonDown(0))
+        {
+            SetDestinationPoint();
+        }
 
         foreach (PetController controller in Controllers)
         {
@@ -51,13 +49,13 @@ public class InputManager : MonoBehaviour
 
     private void SetDestinationPoint()
     {
-        if(Input.GetMouseButtonDown(0) && FarmManager.Instance.talkIndex > 0 && FarmManager.Instance.TalkEffect.EndEffect)
+        if(FarmManager.Instance.talkIndex > 0 && FarmManager.Instance.TalkEffect.EndEffect)
         {
             FarmManager.Instance.Communicate(FarmManager.Instance.ScanObject);
             return;
         }
 
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
             _closestDistance = 0;
             _ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -65,7 +63,7 @@ public class InputManager : MonoBehaviour
 
             for(int i = 0; i < _hits.Length; ++i)
             {
-                if(_hits[i].collider.tag == "Ground" && !FarmManager.Instance.isTalk)
+                if(_hits[i].collider.tag == "Ground")
                 {
                     if(_closestDistance == 0f)
                     {

@@ -78,7 +78,8 @@ public class GameManager : MonoBehaviour
                         DataManager.Instance.MyPetData.AllPlayerPet[j].Cooltime,
                         DataManager.Instance.MyPetData.AllPlayerPet[j].AttackRange,
                         DataManager.Instance.MyPetData.AllPlayerPet[j].SkillRange,
-                        DataManager.Instance.MyPetData.AllPlayerPet[j].Level);
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].Level,
+                        DataManager.Instance.MyPetData.AllPlayerPet[j].Weight);
                 }
             }
         }
@@ -101,7 +102,8 @@ public class GameManager : MonoBehaviour
                         DataManager.Instance.MyPetData.HavePlayerPet[j].Cooltime,
                         DataManager.Instance.MyPetData.HavePlayerPet[j].AttackRange,
                         DataManager.Instance.MyPetData.HavePlayerPet[j].SkillRange,
-                        DataManager.Instance.MyPetData.HavePlayerPet[j].Level);
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].Level,
+                        DataManager.Instance.MyPetData.HavePlayerPet[j].Weight);
                 }
             }
         }
@@ -116,10 +118,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-    }
 
-    public void LevelUp()
-    {
-
+        HavePets.Sort(delegate (GameObject a, GameObject b) { return a.GetComponent<PetInfo>().PetNumber.CompareTo(b.GetComponent<PetInfo>().PetNumber); });
     }
 }

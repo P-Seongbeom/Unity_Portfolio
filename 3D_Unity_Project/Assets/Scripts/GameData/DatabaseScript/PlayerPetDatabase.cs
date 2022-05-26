@@ -21,7 +21,7 @@ public class PlayerPetDatabase : Database
             AllPlayerPet.Add(new PlayerPetData(row[0], int.Parse(row[1]), bool.Parse(row[2]), row[3],
                                                 int.Parse(row[4]), int.Parse(row[5]), int.Parse(row[6]),
                                                 int.Parse(row[7]), float.Parse(row[8]), float.Parse(row[9]),
-                                                float.Parse(row[10]), int.Parse(row[11])));
+                                                float.Parse(row[10]), int.Parse(row[11]), int.Parse(row[12])));
         }
 
         path = Application.persistentDataPath + "/HavePlayerPet.txt";
@@ -63,18 +63,7 @@ public class PlayerPetDatabase : Database
         {
             if (AllPlayerPet[petNum].PetNumber == HavePlayerPet[i].PetNumber)
             {
-                ++HavePlayerPet[i].Level;
-                GameManager.Instance.HavingPetUpdate();
-                if (FarmManager.Instance != null)
-                {
-                    foreach(GameObject pet in FarmManager.Instance.SpawnedPets)
-                    {
-                        if(pet.GetComponent<PetInfo>().PetNumber == AllPlayerPet[petNum].PetNumber)
-                        {
-                            ++pet.GetComponent<PetInfo>().Level;
-                        }
-                    }
-                }
+                LevelUp(petNum, i);
                 return;
             }
         }
@@ -90,9 +79,30 @@ public class PlayerPetDatabase : Database
 
         if (FarmManager.Instance != null)
         {
-            FarmManager.Instance.RealTimePetUpdate();
+            FarmManager.Instance.PetUpdate();
         }
 
+    }
+
+    public void LevelUp(int petNum, int haveIndex)
+    {
+        ++HavePlayerPet[haveIndex].Level;
+
+        Save();
+        Load();
+
+        GameManager.Instance.HavingPetUpdate();
+
+        if (FarmManager.Instance != null)
+        {
+            foreach (GameObject pet in FarmManager.Instance.SpawnedPets)
+            {
+                if (pet.GetComponent<PetInfo>().PetNumber == AllPlayerPet[petNum].PetNumber)
+                {
+                    ++pet.GetComponent<PetInfo>().Level;
+                }
+            }
+        }
     }
 
 }

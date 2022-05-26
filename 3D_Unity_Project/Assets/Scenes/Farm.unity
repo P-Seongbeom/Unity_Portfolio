@@ -4921,7 +4921,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.2, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7198,11 +7198,11 @@ Transform:
   - {fileID: 1690570271}
   - {fileID: 1699287299}
   - {fileID: 1487071209}
+  - {fileID: 958360173}
   - {fileID: 743616194}
   - {fileID: 565858871}
   - {fileID: 482386386}
   - {fileID: 1903580762}
-  - {fileID: 958360173}
   m_Father: {fileID: 1980781653}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13042,7 +13042,7 @@ Transform:
   - {fileID: 1944266177}
   - {fileID: 1436047958}
   m_Father: {fileID: 496820618}
-  m_RootOrder: 16
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &959179106
 PrefabInstance:
@@ -16491,7 +16491,6 @@ MonoBehaviour:
   - {fileID: 381467855}
   - {fileID: 1516422422}
   - {fileID: 330771016}
-  CardNums: 
   PickNums: 
   PickedCardSlot:
   - {fileID: 1912196089}
@@ -24251,8 +24250,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c1d2801560b33b48bfb481fdffe7d88, type: 2}
   - {fileID: 11400000, guid: 21b369c6d8dc3aa469162cacd4aa388d, type: 2}
   - {fileID: 11400000, guid: e15b0ae3204fdbb4995abac692b6b369, type: 2}
-  - {fileID: 11400000, guid: 796de22ff43d58d4490cb759bb429d63, type: 2}
-  - {fileID: 11400000, guid: bc8787142d4267b4fb05c44ba4ed5838, type: 2}
   - {fileID: 11400000, guid: 259c099f188261345a7ac56a0808ddd1, type: 2}
   - {fileID: 11400000, guid: 89abc518b1063414f8defe102d8cb91a, type: 2}
 --- !u!1 &1927138751

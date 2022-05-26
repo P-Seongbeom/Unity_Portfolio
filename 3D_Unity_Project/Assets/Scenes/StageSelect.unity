@@ -2176,7 +2176,7 @@ MonoBehaviour:
   SelectStageNum: 0
   StagePrefabs:
   - {fileID: 6517809931499253478, guid: 00a0c3a582777164fabd4058dbc4292b, type: 3}
-  - {fileID: 4181248628547472425, guid: 48bd8b36247202742935aba21320999c, type: 3}
+  - {fileID: 192447132047129197, guid: 85aa71792aa4a4049bb27125e195a0c5, type: 3}
   StageButtons:
   - {fileID: 1504143916}
   - {fileID: 1200458973}

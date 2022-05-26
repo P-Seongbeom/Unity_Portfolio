@@ -18,9 +18,10 @@ public class PetInfo : MonoBehaviour
     public float AttackRange = -1;
     public float SkillRange = -1;
     public int Level = -1;
+    public int Weight = -1;
 
     public void SetInfo(string petName, int petNum, bool getted,
-        string position, int hp, int atk, int def, int cost, float cool, float atkRange, float sklRange, int level)
+        string position, int hp, int atk, int def, int cost, float cool, float atkRange, float sklRange, int level, int weight)
     {
         PetName = petName;
         PetNumber = petNum;
@@ -31,6 +32,8 @@ public class PetInfo : MonoBehaviour
         AttackRange = atkRange;
         SkillRange = sklRange;
         Level = level;
+        Weight = weight;
+
         ATK = (int)(atk + (atk * Level * 0.1));
         DEF = (int)(def + (def * Level * 0.1));
         HP = (int)(hp +(hp * Level * 0.1));

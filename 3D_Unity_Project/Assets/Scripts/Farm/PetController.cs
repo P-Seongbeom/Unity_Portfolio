@@ -137,13 +137,4 @@ public class PetController : MonoBehaviour
             gameObject.GetComponent<EnemyBattleController>().SkillMotion = false;
         }
     }
-
-    public IEnumerator Idle()
-    {
-        yield return null;
-        if(false == PetAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-        {
-            IdleMotion();
-        }
-    }
 }

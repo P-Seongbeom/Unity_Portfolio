@@ -41,17 +41,16 @@ public class DeckManager : MonoBehaviour
 
     public void TapInvenSlot(int slotNum)
     {
-        if(InvenSlot[slotNum].GetComponent<Image>().color == Color.white && _clickCount < CurrentHavePets.Count)
+        if(InvenSlot[slotNum].GetComponent<Image>().color == Color.white && _clickCount < SelectedSlot.Length)
         {
             ChangeFrameColor(slotNum, Color.grey);
             ApplyToSelectSlot(slotNum);
             ++_clickCount;
         }
-        else if(_clickCount == CurrentHavePets.Count || _clickCount > 0)
+        else if(_clickCount == SelectedSlot.Length || _clickCount > 0)
         {
             ChangeFrameColor(slotNum, Color.white);
             CancelApply(slotNum);
-            --_clickCount;
         }
     }
 
@@ -107,6 +106,7 @@ public class DeckManager : MonoBehaviour
                 if(InvenSlot[tapSlotNum].GetComponent<Image>().sprite == SelectedSlot[j].GetComponent<Image>().sprite)
                 {
                     SelectedSlot[j].GetComponent<Image>().sprite = nothing;
+                    --_clickCount;
                 }
             }
         }

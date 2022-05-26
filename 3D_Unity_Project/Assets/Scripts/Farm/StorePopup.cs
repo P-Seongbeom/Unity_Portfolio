@@ -9,7 +9,8 @@ public class StorePopup : FarmPopup
 {
     public static StorePopup Instance;
 
-    public List<int> CardNums;
+    Dictionary<int,int> AllPetCards;
+    private int _totalWeight;
     public List<int> PickNums;
 
     public GameObject[] PickedCardSlot;
@@ -30,6 +31,8 @@ public class StorePopup : FarmPopup
             Destroy(gameObject);
         }
 
+        AllPetCards = new Dictionary<int, int>();
+
         base.Awake();
     }
 
@@ -37,8 +40,14 @@ public class StorePopup : FarmPopup
     {
         for(int i = 0; i < DataManager.Instance.MyPetData.AllPlayerPet.Count; ++i)
         {
-            CardNums.Add(i);
+            AllPetCards.Add(i, DataManager.Instance.MyPetData.AllPlayerPet[i].Weight);
         }
+
+        for(int i = 0; i < AllPetCards.Count; ++i)
+        {
+            _totalWeight += AllPetCards[i];
+        }
+
     }
 
     public void OpenStorePopup(Action onClickClose)
@@ -80,7 +89,7 @@ public class StorePopup : FarmPopup
                 {
                     PickNums.Clear();
 
-                    PickNums.Add(Random.Range(0, CardNums.Count));
+                    PickNums.Add(RandomPick());
                     break;
                 }
             case 1:
@@ -89,7 +98,7 @@ public class StorePopup : FarmPopup
 
                     for (int i = 0; i < 10; ++i)
                     {
-                        PickNums.Add(Random.Range(0, CardNums.Count));
+                        PickNums.Add(RandomPick());
                     }
                     break;
                 }
@@ -111,6 +120,25 @@ public class StorePopup : FarmPopup
         _closePickBox = onClickClose;
 
         Popups[2].SetActive(true);
+    }
+
+    int RandomPick()
+    {
+        int weight = 0;
+        int selectNum;
+
+        selectNum = Mathf.RoundToInt(_totalWeight * Random.Range(0.0f, 1.0f));
+
+        for (int i = 0; i < AllPetCards.Count; ++i)
+        {
+            weight += AllPetCards[i];
+
+            if (selectNum <= weight)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public void OnClickClose()
