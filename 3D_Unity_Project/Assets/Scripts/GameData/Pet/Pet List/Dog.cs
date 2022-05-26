@@ -33,6 +33,7 @@ public class Dog : PlayerPetBattleController
         }
         else
         {
+            UsingSkill = false;
             SkillRange.SetActive(false);
         }
 

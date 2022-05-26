@@ -87,12 +87,11 @@ public class BattleUI : MonoBehaviour
     {
         _currentCostText.text = ((int)BattleManager.Instance.OverallCost).ToString();
         CostBar.value = BattleManager.Instance.OverallCost;
-        if(BattleManager.Instance.inBattle)
-        {
-            RenderPlayerHp();
-            RenderEnemyHp();
-            CheckCost();
-        }
+
+        RenderPlayerHp();
+        RenderEnemyHp();
+        CheckCost();
+        
     }
 
     void RenderPlayerHp()
@@ -124,32 +123,30 @@ public class BattleUI : MonoBehaviour
 
     void RenderEnemyHp()
     {
-        if (BattleManager.Instance.inPhase)
+        for (int i = 0; i < EnemyHpBarList.Count; ++i)
         {
-            for (int i = 0; i < EnemyHpBarList.Count; ++i)
+            if (BattleManager.Instance.InStageEnemy[i].activeSelf)
             {
-                if (BattleManager.Instance.InStageEnemy[i].activeSelf)
+                EnemyHpBarList[i].SetActive(true);
+
+                EnemyHpBarList[i].transform.position
+                = MainCam.WorldToScreenPoint(BattleManager.Instance.InStageEnemy[i].transform.position + new Vector3(0, 4f, 1f));
+
+                if (BattleManager.Instance.InStageEnemy[i].GetComponent<BattleController>()._hp > 0)
                 {
-                    EnemyHpBarList[i].SetActive(true);
-
-                    EnemyHpBarList[i].transform.position
-                    = MainCam.WorldToScreenPoint(BattleManager.Instance.InStageEnemy[i].transform.position + new Vector3(0, 4f, 1f));
-
-                    if (BattleManager.Instance.InStageEnemy[i].GetComponent<BattleController>()._hp > 0)
-                    {
-                        EnemyHpBarList[i].GetComponent<Slider>().value = BattleManager.Instance.InStageEnemy[i].GetComponent<BattleController>()._hp;
-                    }
-                    else
-                    {
-                        EnemyHpBarList[i].transform.Find("Fill Area").gameObject.SetActive(false);
-                    }
+                    EnemyHpBarList[i].GetComponent<Slider>().value = BattleManager.Instance.InStageEnemy[i].GetComponent<BattleController>()._hp;
                 }
                 else
                 {
-                    EnemyHpBarList[i].SetActive(false);
+                    EnemyHpBarList[i].transform.Find("Fill Area").gameObject.SetActive(false);
                 }
             }
+            else
+            {
+                EnemyHpBarList[i].SetActive(false);
+            }
         }
+        
     }
 
     public void ClickDownSkillButton(int uiNum)

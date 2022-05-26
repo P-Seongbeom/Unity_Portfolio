@@ -48,12 +48,12 @@ public class QuestManager : MonoBehaviour
         QuestList.Add(questId, QuestData[index]);
     }
 
-    public int GetQuestTalkIndex(int id)
+    public int GetQuestTalkIndex()
     {
         return QuestId + QuestActionIndex;
     }
 
-    public string CheckQuest(int id)
+    public void CheckQuest(int id)
     {
         if(id == QuestList[QuestId].NpcId[QuestActionIndex])
         {
@@ -66,13 +66,6 @@ public class QuestManager : MonoBehaviour
             QuestClear();
             DataManager.Instance.QuestLog.RenewQuestLog(QuestId, QuestActionIndex);
         }
-
-        return QuestList[QuestId].QuestName;
-    }
-
-    public string CheckQuest()
-    {
-        return QuestList[QuestId].QuestName;
     }
 
     public void QuestClear()

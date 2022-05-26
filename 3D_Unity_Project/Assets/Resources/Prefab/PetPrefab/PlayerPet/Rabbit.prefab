@@ -111,7 +111,7 @@ Animator:
   m_GameObject: {fileID: 8580239734322272684}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0b7d9308ac2a2f24a9b976e342ffd7bd, type: 3}
-  m_Controller: {fileID: 9100000, guid: b44d55d3a669d654498cc4a4b05655ea, type: 2}
+  m_Controller: {fileID: 9100000, guid: ec67ae173cb11b24ca70a13a22997a1f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -237,6 +237,7 @@ MonoBehaviour:
   Destination: {x: 0, y: 0, z: 0}
   SkillRange: {fileID: 2435498773775812059, guid: 7c4be5a77e964e54f9f1fce422ba7b0c, type: 3}
   SkillUseEffect: {fileID: 0}
+  _inPhase: 0
   Carrot: {fileID: 4552011381279846189, guid: b911a792bf548ea41856d5d213a50a90, type: 3}
 --- !u!114 &-1758184585307072006
 MonoBehaviour:
@@ -255,14 +256,15 @@ MonoBehaviour:
   PetNumber: 6
   IsGetted: 1
   Position: Supporter
-  HP: 60
-  ATK: 30
-  DEF: 10
+  HP: 144
+  ATK: 96
+  DEF: 24
   SkillCost: 3
   Cooltime: 30
   AttackRange: 15
   SkillRange: 30
-  Level: 1
+  Level: 14
+  Weight: 15
 --- !u!1 &8580287556031953690
 GameObject:
   m_ObjectHideFlags: 0

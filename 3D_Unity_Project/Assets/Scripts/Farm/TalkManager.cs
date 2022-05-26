@@ -6,7 +6,7 @@ public class TalkManager : MonoBehaviour
 {
     public static TalkManager Instance;
     public TalkData[] TalkData;
-    Dictionary<int, string[]> talkData;
+    Dictionary<int, string[]> talkList;
 
     void Awake()
     {
@@ -19,7 +19,8 @@ public class TalkManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        talkData = new Dictionary<int, string[]>();
+        talkList = new Dictionary<int, string[]>();
+
         for(int i = 0; i < TalkData.Length; ++i)
         {
             GenerateData(i);
@@ -28,14 +29,14 @@ public class TalkManager : MonoBehaviour
 
     void GenerateData(int index)
     {
-        talkData.Add(TalkData[index].TalkId, TalkData[index].TalkDialogue);
+        talkList.Add(TalkData[index].TalkId, TalkData[index].TalkDialogue);
     }
 
     public string GetDialogue(int id, int dialogeIndex)
     {
-        if(!talkData.ContainsKey(id))
+        if(!talkList.ContainsKey(id))
         {
-            if(!talkData.ContainsKey(id - (id % 10)))
+            if(!talkList.ContainsKey(id - (id % 10)))
             {
                 return GetDialogue(id - (id % 100), dialogeIndex);
             }
@@ -45,13 +46,13 @@ public class TalkManager : MonoBehaviour
             }
         }
 
-        if(dialogeIndex == talkData[id].Length)
+        if(dialogeIndex == talkList[id].Length)
         {
             return null;
         }
         else
         {
-            return talkData[id][dialogeIndex];
+            return talkList[id][dialogeIndex];
         }
     }
 }

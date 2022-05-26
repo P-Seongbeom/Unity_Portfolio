@@ -56,6 +56,14 @@ public class StageDatabase : Database
 
     public void OpenStage(int stageNum)
     {
+        for(int i = 0; i < OpenStageList.Count; ++i)
+        {
+            if(OpenStageList[i].StageNumber == AllStageList[stageNum].StageNumber)
+            {
+                return;
+            }
+        }
+
         AllStageList[stageNum].OpenStage = true;
 
         OpenStageList.Add(AllStageList[stageNum]);

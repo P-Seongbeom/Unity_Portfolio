@@ -25,6 +25,7 @@ ScriptsOnlyBuild:
     - Elephant
     - Farm.CameraController
     - FarmManager
+    - FixResolution
     - GameManager
     - InputManager
     - Lion
@@ -46,6 +47,7 @@ ScriptsOnlyBuild:
     - TalkData
     - TalkManager
     - TextMotion
+    - ThresholdControl
     - TypingEffect
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
@@ -58,8 +60,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -80,6 +84,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.InputField
     - UnityEngine.UI.LayoutElement
     - UnityEngine.UI.Mask
+    - UnityEngine.UI.Outline
     - UnityEngine.UI.ScrollRect
     - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Slider
@@ -138,13 +143,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3260}
     - Class: 114
-      Script: {instanceID: 3886}
+      Script: {instanceID: 3318}
     - Class: 114
-      Script: {instanceID: 4028}
+      Script: {instanceID: 3388}
     - Class: 114
-      Script: {instanceID: 4622}
+      Script: {instanceID: 3888}
     - Class: 114
-      Script: {instanceID: 4862}
+      Script: {instanceID: 4030}
+    - Class: 114
+      Script: {instanceID: 4240}
+    - Class: 114
+      Script: {instanceID: 4626}
+    - Class: 114
+      Script: {instanceID: 4866}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -255,25 +266,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3316}
     - Class: 114
+      Script: {instanceID: 3318}
+    - Class: 114
       Script: {instanceID: 3382}
     - Class: 114
-      Script: {instanceID: 3634}
+      Script: {instanceID: 3388}
     - Class: 114
-      Script: {instanceID: 3886}
+      Script: {instanceID: 3636}
     - Class: 114
-      Script: {instanceID: 4028}
+      Script: {instanceID: 3888}
     - Class: 114
-      Script: {instanceID: 4272}
+      Script: {instanceID: 4030}
     - Class: 114
-      Script: {instanceID: 4480}
+      Script: {instanceID: 4240}
     - Class: 114
-      Script: {instanceID: 4774}
+      Script: {instanceID: 4276}
     - Class: 114
-      Script: {instanceID: 4832}
+      Script: {instanceID: 4484}
     - Class: 114
-      Script: {instanceID: 4838}
+      Script: {instanceID: 4778}
     - Class: 114
-      Script: {instanceID: 4862}
+      Script: {instanceID: 4836}
+    - Class: 114
+      Script: {instanceID: 4842}
+    - Class: 114
+      Script: {instanceID: 4866}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -392,21 +409,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3382}
     - Class: 114
-      Script: {instanceID: 3430}
+      Script: {instanceID: 3432}
     - Class: 114
-      Script: {instanceID: 3634}
+      Script: {instanceID: 3636}
     - Class: 114
-      Script: {instanceID: 3640}
+      Script: {instanceID: 3642}
     - Class: 114
-      Script: {instanceID: 3674}
+      Script: {instanceID: 3676}
     - Class: 114
-      Script: {instanceID: 3786}
+      Script: {instanceID: 3788}
     - Class: 114
-      Script: {instanceID: 4086}
+      Script: {instanceID: 4088}
     - Class: 114
-      Script: {instanceID: 4562}
+      Script: {instanceID: 4240}
     - Class: 114
-      Script: {instanceID: 4838}
+      Script: {instanceID: 4566}
+    - Class: 114
+      Script: {instanceID: 4842}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -517,19 +536,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3382}
     - Class: 114
-      Script: {instanceID: 3430}
+      Script: {instanceID: 3432}
     - Class: 114
-      Script: {instanceID: 3640}
+      Script: {instanceID: 3642}
     - Class: 114
-      Script: {instanceID: 3786}
+      Script: {instanceID: 3788}
     - Class: 114
-      Script: {instanceID: 4086}
+      Script: {instanceID: 4088}
     - Class: 114
-      Script: {instanceID: 4308}
+      Script: {instanceID: 4240}
     - Class: 114
-      Script: {instanceID: 4492}
+      Script: {instanceID: 4312}
     - Class: 114
-      Script: {instanceID: 4562}
+      Script: {instanceID: 4496}
+    - Class: 114
+      Script: {instanceID: 4566}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -658,29 +679,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3264}
     - Class: 114
-      Script: {instanceID: 3430}
+      Script: {instanceID: 3432}
     - Class: 114
-      Script: {instanceID: 3640}
+      Script: {instanceID: 3642}
     - Class: 114
-      Script: {instanceID: 3786}
+      Script: {instanceID: 3788}
     - Class: 114
-      Script: {instanceID: 3918}
+      Script: {instanceID: 3920}
     - Class: 114
-      Script: {instanceID: 4086}
+      Script: {instanceID: 4088}
     - Class: 114
-      Script: {instanceID: 4116}
+      Script: {instanceID: 4118}
     - Class: 114
-      Script: {instanceID: 4160}
+      Script: {instanceID: 4162}
     - Class: 114
-      Script: {instanceID: 4314}
+      Script: {instanceID: 4240}
     - Class: 114
-      Script: {instanceID: 4372}
+      Script: {instanceID: 4318}
     - Class: 114
-      Script: {instanceID: 4506}
+      Script: {instanceID: 4376}
     - Class: 114
-      Script: {instanceID: 4562}
+      Script: {instanceID: 4510}
     - Class: 114
-      Script: {instanceID: 4904}
+      Script: {instanceID: 4566}
+    - Class: 114
+      Script: {instanceID: 4908}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -856,13 +879,13 @@ ScriptsOnlyBuild:
     className: CinemachineCameraOffset
   - hash:
       serializedVersion: 2
-      Hash: 3ce202f1d5f50b23ecae88b75787d3e1
+      Hash: 7c66f1dd9dbee81c89e7a038e3b912f4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Rabbit
   - hash:
       serializedVersion: 2
-      Hash: 57e711e86159b2cdcbbb0b9864597d86
+      Hash: 7896d3aac9db932318fdb145ec1ce665
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FarmManager
@@ -922,7 +945,7 @@ ScriptsOnlyBuild:
     className: TalkManager
   - hash:
       serializedVersion: 2
-      Hash: 66c3afc8631c1975622eb6b582bb9ddc
+      Hash: 65925bf842478b597a3161d236cfe74b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CardInvenPopup
@@ -1012,13 +1035,13 @@ ScriptsOnlyBuild:
     className: CinemachineSameAsFollowTarget
   - hash:
       serializedVersion: 2
-      Hash: 9cabf5b294048a1595fee6d1fe350027
+      Hash: 8516dea3cd1a349f377a566088e28ed5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StorePopup
   - hash:
       serializedVersion: 2
-      Hash: ced1f8ad79635f7d3eb7b26a5a16f883
+      Hash: dae08bea9ddeb4b0727afc223e495274
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PetInfo
@@ -1030,7 +1053,7 @@ ScriptsOnlyBuild:
     className: CinemachineVirtualCamera
   - hash:
       serializedVersion: 2
-      Hash: 9f97e0d57b4ea40776389a46739ec170
+      Hash: e4043c462d00f816f677d1930c17d5bd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lion
@@ -1186,7 +1209,7 @@ ScriptsOnlyBuild:
     className: CinemachineImpulseSource
   - hash:
       serializedVersion: 2
-      Hash: 6871123d3ca4b9600a9da280795ba692
+      Hash: 40c9740fd4fe68da69ca6816e651baa2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Dog
@@ -1222,7 +1245,7 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: 9f97e0d57b4ea40776389a46739ec170
+      Hash: e4043c462d00f816f677d1930c17d5bd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Elephant
@@ -1280,6 +1303,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 334b951a9474c7cd665714f8f667cb59
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ThresholdControl
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1432,7 +1461,7 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: 9f97e0d57b4ea40776389a46739ec170
+      Hash: e4043c462d00f816f677d1930c17d5bd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Alpaca
@@ -1498,7 +1527,7 @@ ScriptsOnlyBuild:
     className: CinemachineTouchInputMapper
   - hash:
       serializedVersion: 2
-      Hash: 9f97e0d57b4ea40776389a46739ec170
+      Hash: e4043c462d00f816f677d1930c17d5bd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Cat
@@ -1540,6 +1569,12 @@ ScriptsOnlyBuild:
     className: CinemachineHardLockToTarget
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FixResolution
+  - hash:
+      serializedVersion: 2
       Hash: 76a2ba7fa5af7563d2591791de122700
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1564,7 +1599,7 @@ ScriptsOnlyBuild:
     className: StageSelectPopup
   - hash:
       serializedVersion: 2
-      Hash: 9f97e0d57b4ea40776389a46739ec170
+      Hash: e4043c462d00f816f677d1930c17d5bd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Duck
@@ -1582,7 +1617,7 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
-      Hash: 9f97e0d57b4ea40776389a46739ec170
+      Hash: e4043c462d00f816f677d1930c17d5bd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Bear
@@ -1612,7 +1647,7 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 9f97e0d57b4ea40776389a46739ec170
+      Hash: e4043c462d00f816f677d1930c17d5bd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Deer
@@ -1642,7 +1677,7 @@ ScriptsOnlyBuild:
     className: CinemachineRecomposer
   - hash:
       serializedVersion: 2
-      Hash: ef51d8a396b8b01575dca69eedaf8bf0
+      Hash: 1b0c1826933ed6c774eedd80f953f4df
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DeckManager

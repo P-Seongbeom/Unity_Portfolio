@@ -27,8 +27,6 @@ public class FarmManager : MonoBehaviour
     public Text _goldText;
     public Text _playerName;
 
-    //public List<GameObject> temp;
-
     public BGMPlayer BgmPlayer;
 
     public GameObject ResetButton;
@@ -49,8 +47,6 @@ public class FarmManager : MonoBehaviour
     }
     void Start()
     {
-        //temp = SpawnedPets;
-
         foreach (GameObject pet in GameManager.Instance.HavePets)
         {
             Spawn(pet);
@@ -60,52 +56,42 @@ public class FarmManager : MonoBehaviour
         {
             Communicate(TutorialObject);
         }
-
-        QuestManager.Instance.CheckQuest();
     }
 
-    public void RealTimePetUpdate()
+    public void PetUpdate()
     {
         foreach (GameObject pet in GameManager.Instance.HavePets)
         {
             Spawn(pet);
         }
+        SpawnedPets.Sort(delegate (GameObject a, GameObject b) { return a.GetComponent<PetInfo>().PetNumber.CompareTo(b.GetComponent<PetInfo>().PetNumber); });
     }
 
     public void Spawn(GameObject prefab)
     {
-        if(prefab.GetComponent<PetController>() == null)
-        {
-            Debug.LogError("Prefab doesn't have 'PlayerPetController' component.");
-        }
-
         if (SpawnedPets.Count == 0)
         {
-            GameObject obj = Instantiate(prefab);
-            obj.transform.position = new Vector3(-2, 2, -2);
-            PetController controller = obj.GetComponent<PetController>();
-            InputHandle.AddController(controller);
-            SpawnedPets.Add(controller.gameObject);
+            GeneratePet(prefab, new Vector3(-2, 2, -2));
         }
         else
         {
-            bool ishave = false;
             for (int i = 0; i < SpawnedPets.Count; ++i)
             {
                 if (SpawnedPets[i].GetComponent<PetInfo>().PetName == prefab.GetComponent<PetInfo>().PetName)
                 {
-                    ishave = true;
+                    return;
                 }
             }
-            if(false == ishave)
-            {
-                GameObject spawnpet = Instantiate(prefab, SpawnedPets[0].transform.position + SpawnedPets[0].transform.forward * 5f, Quaternion.identity);
-                PetController controller = spawnpet.GetComponent<PetController>();
-                InputHandle.AddController(controller);
-
-                SpawnedPets.Add(controller.gameObject);
-            }
+            GeneratePet(prefab, SpawnedPets[0].transform.position + SpawnedPets[0].transform.forward * 5f);
         }
+    }
+
+    void GeneratePet(GameObject obj, Vector3 pos)
+    {
+        GameObject pet = Instantiate(obj, pos, Quaternion.identity);
+        PetController controller = pet.GetComponent<PetController>();
+        InputHandle.AddController(controller);
+        SpawnedPets.Add(controller.gameObject);
     }
 
     public void Communicate(GameObject scanObject)
@@ -121,7 +107,7 @@ public class FarmManager : MonoBehaviour
 
     void Talk(int id)
     {
-        int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex(id);
+        int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex();
 
         string talkData = TalkManager.Instance.GetDialogue(id + questTalkIndex, talkIndex);
         if (talkData == null)

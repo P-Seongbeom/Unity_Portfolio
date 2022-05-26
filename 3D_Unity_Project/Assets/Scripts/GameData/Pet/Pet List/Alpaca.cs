@@ -27,6 +27,7 @@ public class Alpaca : PlayerPetBattleController
         }
         else
         {
+            UsingSkill = false;
             SkillRange.SetActive(false);
         }
 
