@@ -14,6 +14,7 @@ public class StorePopup : FarmPopup
     public List<int> PickNums;
 
     public GameObject[] PickedCardSlot;
+    public Sprite nothing;
 
     private int SelectedSlotNum;
 
@@ -77,16 +78,17 @@ public class StorePopup : FarmPopup
 
     public void RandomCard(Action onClickClose)
     {
-        if(DataManager.Instance.PlayerData.Player.Gold < 100)
-        {
-            return;
-        }
-        DataManager.Instance.PlayerData.GetGold(-100);
-
         switch (SelectedSlotNum)
         {
             case 0:
                 {
+                    if (DataManager.Instance.PlayerData.Player.Gold < 10)
+                    {
+                        return;
+                    }
+
+                    DataManager.Instance.PlayerData.GetGold(-10);
+
                     PickNums.Clear();
 
                     PickNums.Add(RandomPick());
@@ -94,6 +96,13 @@ public class StorePopup : FarmPopup
                 }
             case 1:
                 {
+                    if (DataManager.Instance.PlayerData.Player.Gold < 100)
+                    {
+                        return;
+                    }
+
+                    DataManager.Instance.PlayerData.GetGold(-100);
+
                     PickNums.Clear();
 
                     for (int i = 0; i < 10; ++i)
@@ -104,13 +113,18 @@ public class StorePopup : FarmPopup
                 }
         }
 
+        for (int i = 0; i < PickedCardSlot.Length; ++i)
+        {
+            PickedCardSlot[i].GetComponent<Image>().sprite = nothing;
+        }
+
         for(int i = 0; i < PickNums.Count; ++i)
         {
             DataManager.Instance.MyPetData.GetPetCard(PickNums[i]);
 
             foreach(GameObject pet in GameManager.Instance.PetPrefabs)
             {
-                if(PickNums[i] == pet.GetComponent<PetInfo>().PetNumber)
+                if (PickNums[i] == pet.GetComponent<PetInfo>().PetNumber)
                 {
                     PickedCardSlot[i].GetComponent<Image>().sprite = pet.GetComponent<PetInfo>().CardPortrait;
                 }
